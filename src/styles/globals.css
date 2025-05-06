@@ -1,0 +1,36 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+/* Standard Tailwind directives */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Override Next.js specific behaviors */
+@layer base {
+  img {
+    @apply max-w-full;
+  }
+}
+
+/* Custom fixes for alignment issues */
+@layer utilities {
+  .flex-center {
+    @apply flex items-center justify-center;
+  }
+  
+  .grid-center {
+    @apply grid place-items-center;
+  }
+}
