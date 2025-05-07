@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import {
   Calendar,
   Mail,
@@ -127,9 +128,9 @@ const BookingForm = ({ slug, packageInfo }) => {
         <div className="relative z-10 max-w-7xl mx-auto px-4">
           <ol className="inline-flex items-center space-x-1 md:space-x-3">
             <li className="inline-flex items-center">
-              <a href="/" className="text-white hover:text-yellow-600">
+              <Link href="/" className="text-white hover:text-yellow-600">
                 Home
-              </a>
+              </Link>
             </li>
             <li>
               <div className="flex items-center font-semibold">
@@ -415,7 +416,7 @@ const BookingForm = ({ slug, packageInfo }) => {
                       </div>
                       <div className="border-t pt-4">
                         <p className="text-sm text-gray-600">
-                          By clicking "Confirm Booking", you agree to our terms
+                          By clicking &quot;Confirm Booking&quot;, you agree to our terms
                           and conditions and confirm that all the provided
                           information is correct.
                         </p>
@@ -472,7 +473,7 @@ const BookingForm = ({ slug, packageInfo }) => {
                   Thank You for Your Booking!
                 </h2>
                 <p className="text-gray-600">
-                  We've received your booking request. Our team will contact you
+                  We&apos;ve received your booking request. Our team will contact you
                   shortly to confirm your reservation.
                 </p>
               </div>
