@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { ChevronRight } from "lucide-react";
 import RentalProcess from "./components/rentalProcess";
 import WhyChooseUs from "./components/whyChooseUs";
@@ -27,9 +28,9 @@ export default function CarRentalPage() {
         <div className="relative z-10 max-w-7xl mx-auto px-4">
           <ol className="inline-flex items-center space-x-1 md:space-x-3">
             <li className="inline-flex items-center">
-              <a href="/" className="text-white hover:text-yellow-600">
+              <Link href="/" className="text-white hover:text-yellow-600">
                 Home
-              </a>
+              </Link>
             </li>
             <li>
               <div className="flex items-center font-semibold">
@@ -41,7 +42,7 @@ export default function CarRentalPage() {
             </li>
           </ol>
           <h1 className="text-2xl md:text-3xl font-bold text-white mt-6 md:mt-8">
-            Rent Your Dream Car, Drive in Comfort.{" "}
+            Rent Your Dream Car, Drive in Comfort.
           </h1>
         </div>
       </nav>
@@ -51,7 +52,7 @@ export default function CarRentalPage() {
         <RentalProcess />
         <WhyChooseUs />
 
-        {/* Other sections */}
+       
         <Others />
       </div>
     </div>
