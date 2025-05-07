@@ -1,17 +1,21 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { useSearchParams, useRouter } from 'next/navigation';
+import { useState, useEffect, Suspense } from 'react';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import { LocateIcon, ChevronRight, X, Shield, Clock, Car, Users } from 'lucide-react';
 
-export default function TouristSpotsPage() {
-  const searchParams = useSearchParams();
-  const router = useRouter();
+// Separate component that uses useSearchParams
+function TouristSpotsContent() {
   const [touristSpots, setTouristSpots] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [cityName, setCityName] = useState("");
+  const router = useRouter();
+  
+  // Import useSearchParams inside the component
+  const { useSearchParams } = require('next/navigation');
+  const searchParams = useSearchParams();
 
   // Fetch tourist spots data on component mount
   useEffect(() => {
@@ -193,6 +197,27 @@ export default function TouristSpotsPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+// Loading component for Suspense
+function TouristSpotsLoading() {
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gray-50">
+      <div className="text-center">
+        <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-yellow-400 mx-auto mb-4"></div>
+        <p className="text-gray-600">Loading tourist spots...</p>
+      </div>
+    </div>
+  );
+}
+
+// Main Page Component with Suspense
+export default function TouristSpotsPage() {
+  return (
+    <Suspense fallback={<TouristSpotsLoading />}>
+      <TouristSpotsContent />
+    </Suspense>
   );
 }
 
