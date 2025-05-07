@@ -11,7 +11,7 @@ import { phoneNumber } from "@/utilis/data";
 
 export const metadata = {
   title: 'Contact Us | Triveni Cabs',
-  description: 'Get in touch with Triveni Cabs. We\'d love to hear from you!',
+  description: 'Get in touch with Triveni Cabs. We&apos;d love to hear from you!',
 }
 
 export default function Contact() {
@@ -32,7 +32,7 @@ export default function Contact() {
               Get in Touch
             </h1>
             <p className="text-yellow-300 text-xs md:text-xl">
-              We'd love to hear from you
+              We&apos;d love to hear from you
             </p>
           </div>
           <ol className="flex justify-center items-center space-x-1 md:space-x-3">
@@ -70,7 +70,7 @@ export default function Contact() {
               icon: Mail,
               title: "Email Us",
               content: "cabstriveni@gmail.com",
-              subContent: "We'll respond within 24 hours",
+              subContent: "We&apos;ll respond within 24 hours",
             },
             {
               icon: MapPin,
@@ -109,7 +109,7 @@ export default function Contact() {
                 Send us a Message
               </h2>
               <p className="text-gray-600 text-sm">
-                Fill out the form below and we'll get back to you shortly.
+                Fill out the form below and we&apos;ll get back to you shortly.
               </p>
             </div>
 
