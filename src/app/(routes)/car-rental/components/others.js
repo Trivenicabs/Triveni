@@ -22,7 +22,7 @@ export default function Others() {
               <ul className="space-y-3">
                 <li className="flex items-center gap-2">
                   <CheckCircle className="w-5 h-5 text-yellow-400" />
-                  <span>Valid Driver's License (minimum 1 year old)</span>
+                  <span>Valid Driver&apos;s License (minimum 1 year old)</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <CheckCircle className="w-5 h-5 text-yellow-400" />
@@ -39,7 +39,7 @@ export default function Others() {
               </ul>
             </div>
             <div>
-              <h3 className="text-xl font-semibold mb-4">Terms & Conditions</h3>
+              <h3 className="text-xl font-semibold mb-4">Terms &amp; Conditions</h3>
               <ul className="space-y-3">
                 <li className="flex items-center gap-2">
                   <CheckCircle className="w-5 h-5 text-yellow-400" />
