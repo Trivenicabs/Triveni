@@ -51,7 +51,7 @@ export default function AboutPage() {
             <p className="text-gray-600 leading-relaxed">
               Welcome to Triveni Cabs, your trusted travel partner dedicated to
               providing seamless, reliable, and comfortable transportation
-              solutions. Whether you're planning a quick ride across the city,
+              solutions. Whether you&apos;re planning a quick ride across the city,
               an outstation journey, or an airport transfer, we are here to
               ensure your travel is smooth, affordable, and enjoyable.
             </p>
