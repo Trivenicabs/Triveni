@@ -1,12 +1,9 @@
-// File: /src/app/(routes)/tour-guide/page.js
-
 'use client';
 
 import React, { useState } from 'react';
 import { ChevronRight, Phone, MapPin } from 'lucide-react';
 import { BsWhatsapp } from 'react-icons/bs';
-
-// Remove the metadata export - you'll add this in a separate file later if needed
+import Link from 'next/link';
 
 // Define constants
 const availableLocations = [
@@ -110,9 +107,9 @@ export default function TourGuidePage() {
           <div className="relative z-10 max-w-7xl mx-auto px-4">
             <ol className="inline-flex items-center space-x-1 md:space-x-3">
               <li className="inline-flex items-center">
-                <a href="/" className="text-white hover:text-yellow-600">
+                <Link href="/" className="text-white hover:text-yellow-600">
                   Home
-                </a>
+                </Link>
               </li>
               <li>
                 <div className="flex items-center font-semibold">
@@ -135,7 +132,7 @@ export default function TourGuidePage() {
                 Booking Submitted Successfully!
               </h2>
               <p className="text-gray-600 mb-6">
-                We'll contact you shortly to confirm your tour guide booking.
+                We&apos;ll contact you shortly to confirm your tour guide booking.
               </p>
               <button
                 onClick={() => setIsSubmitted(false)}
