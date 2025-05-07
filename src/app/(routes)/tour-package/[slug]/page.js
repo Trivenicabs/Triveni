@@ -1,4 +1,6 @@
 import React from "react";
+import Image from "next/image";
+import Link from "next/link";
 import { tourDetails } from "@/utilis/data";
 import ItinerarySection from "@/components/ItinerarySection";
 import { Calendar, MapPin, Clock, Users, Car, Star, Coffee, BedDouble } from "lucide-react";
@@ -46,10 +48,12 @@ export default function TourPackagePage({ params }) {
   return (
     <div className="bg-white">
       <div className="relative h-[60vh]">
-        <img
+        <Image
           src={packageInfo.image}
           alt={packageInfo.title}
           className="w-full h-full object-cover"
+          fill
+          sizes="100vw"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/30 to-black/70">
           <div className="max-w-7xl mx-auto px-4 h-full flex flex-col justify-end pb-16 text-white">
@@ -140,14 +144,14 @@ export default function TourPackagePage({ params }) {
                   </li>
                 ))}
               </ul>
-              <a href={`/tour-package/${slug}/book`}>
+              <Link href={`/tour-package/${slug}/book`}>
                 <button
                   className="w-full mt-8 bg-[#FACF2D] text-black py-2 rounded-xl font-semibold text-lg
                   hover:bg-black hover:text-white transition-colors shadow-lg"
                 >
                   Book Now
                 </button>
-              </a>
+              </Link>
             </div>
           </div>
         </div>
