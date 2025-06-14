@@ -66,9 +66,9 @@ export default function Others() {
       {/* ready to book */}
       <section className="py-16 max-w-7xl mx-auto px-4">
         <div className="bg-black rounded-2xl p-8 md:p-12 text-center">
-          <h2 className="text-3xl text-white font-bold mb-4">
+          <h4 className="text-3xl text-white font-bold mb-4">
             Ready to Book Your Ride?
-          </h2>
+          </h4>
           <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
             Contact us now to check availability and get the best rates for your
             car rental
