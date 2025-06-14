@@ -223,9 +223,9 @@ const BookingForm = ({ slug, packageInfo }) => {
                 {currentStep === 1 && (
                   // Passenger Details Step
                   <motion.div {...fadeInUp} className="space-y-6">
-                    <h2 className="text-2xl font-semibold mb-6">
+                    <p className="text-2xl font-semibold mb-6">
                       Passenger Details
-                    </h2>
+                    </p>
                     {formData.passengers.map((passenger, index) => (
                       <motion.div
                         key={index}
@@ -305,9 +305,9 @@ const BookingForm = ({ slug, packageInfo }) => {
                 {currentStep === 2 && (
                   // Contact Information Step
                   <motion.div {...fadeInUp} className="space-y-6">
-                    <h2 className="text-2xl font-semibold mb-6">
+                    <p className="text-2xl font-semibold mb-6">
                       Contact Information
-                    </h2>
+                    </p>
                     <div className="bg-gray-50 p-6 rounded-xl space-y-6">
                       <div>
                         <label className="block text-sm text-start font-medium mb-2">
@@ -378,9 +378,9 @@ const BookingForm = ({ slug, packageInfo }) => {
 
                 {currentStep === 3 && (
                   <motion.div {...fadeInUp} className="space-y-6">
-                    <h2 className="text-2xl font-semibold mb-6">
+                    <p className="text-2xl font-semibold mb-6">
                       Confirm Your Booking
-                    </h2>
+                    </p>
                     <div className="bg-gray-50 p-6 rounded-xl space-y-6">
                       <div className="space-y-4">
                         <h3 className="text-lg font-medium">Booking Summary</h3>
@@ -469,9 +469,9 @@ const BookingForm = ({ slug, packageInfo }) => {
                 <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Check className="w-8 h-8 text-green-500" />
                 </div>
-                <h2 className="text-2xl font-bold mb-2">
+                <p className="text-2xl font-bold mb-2">
                   Thank You for Your Booking!
-                </h2>
+                </p>
                 <p className="text-gray-600">
                   We&apos;ve received your booking request. Our team will contact you
                   shortly to confirm your reservation.
