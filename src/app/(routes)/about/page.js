@@ -45,9 +45,9 @@ export default function AboutPage() {
         {/* Intro Section */}
         <div className="grid md:grid-cols-2 gap-12 mb-16">
           <div className="space-y-6">
-            <h2 className="text-3xl font-semibold text-yellow-800">
+            <h3 className="text-3xl font-semibold text-yellow-800">
               Your Trusted Travel Partner
-            </h2>
+            </h3>
             <p className="text-gray-600 leading-relaxed">
               Welcome to Triveni Cabs, your trusted travel partner dedicated to
               providing seamless, reliable, and comfortable transportation
