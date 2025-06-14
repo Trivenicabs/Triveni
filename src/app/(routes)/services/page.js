@@ -95,9 +95,9 @@ export default function ServicesPage() {
       {/* ready to start journey */}
       <section className="bg-gradient-to-b from-[#FACF2D] to-[#FFFCD1] py-8 md:py-16">
         <div className="max-w-7xl mx-auto px-4 text-center">
-          <h2 className="text-2xl md:text-3xl font-bold mb-3 md:mb-4">
+          <h7 className="text-2xl md:text-3xl font-bold mb-3 md:mb-4">
             Ready to Start Your Journey?
-          </h2>
+          </h7>
           <p className="mb-6 md:mb-8 tracking-[0.07rem] text-gray-700 text-sm md:text-base">
             Contact us today to customize your perfect travel experience
           </p>
