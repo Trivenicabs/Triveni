@@ -322,9 +322,9 @@ export default function Home() {
           <section className="py-16 bg-gray-50" aria-labelledby="trust-section">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <header className="text-center mb-12">
-                <h2 id="trust-section" className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                <h3 id="trust-section" className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
                   Trusted by Thousands
-                </h2>
+                </h3>
                 <p className="text-lg text-gray-600">
                   Join our satisfied customers across India
                 </p>
