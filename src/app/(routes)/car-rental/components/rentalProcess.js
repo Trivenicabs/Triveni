@@ -2,9 +2,9 @@ export default function RentalProcess() {
     return (
       <div className="bg-gray-50 py-16">
         <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h5 className="text-3xl font-bold text-center mb-12">
             How to Rent a Car
-          </h2>
+          </h5>
           <div className="grid md:grid-cols-4 gap-8">
             {[
               {
