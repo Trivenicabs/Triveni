@@ -67,7 +67,7 @@ export default function Home() {
             Welcome to Adventure
           </h1>
           <p className="text-xl md:text-2xl text-center max-w-2xl px-4">
-            Discover the world's most amazing places with us
+            Discover the worlds most amazing places with us
           </p>
           <motion.button
             className="mt-8 px-8 py-3 bg-white text-black rounded-full text-lg font-semibold hover:bg-opacity-90 transition-colors"
@@ -116,7 +116,7 @@ export default function Home() {
               Ready to Explore? Book Your Trip Today!
             </h3>
             <p className="text-lg text-gray-700 mb-8">
-              Whether you're looking for a local adventure or a weekend getaway,
+              Whether you are looking for a local adventure or a weekend getaway,
               we have the perfect package for you.
             </p>
             <button 
