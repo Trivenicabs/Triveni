@@ -107,10 +107,13 @@ const VehicleServices = () => {
                     )}
 
                     <div className="relative">
-                      <img
+                      <Image
                         src={vehicle.image}
                         alt={vehicle.type}
+                        width={400}
+                        height={224}
                         className="w-full h-56 object-cover"
+                        priority={index < 3} // Load first 3 images with priority
                       />
                       <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
                         <div className="flex items-center text-white">
@@ -182,7 +185,7 @@ const VehicleServices = () => {
                           Book Now
                         </button>
                         <Link
-                          href={`/vehicle-details/${vehicle.type
+                          href={`/vehicles/${vehicle.type
                             .toLowerCase()
                             .replace(/ /g, "-")}`}
                           className="px-4 border-2 border-yellow-400 flex justify-center items-center rounded-xl hover:bg-yellow-400 transition-colors"
