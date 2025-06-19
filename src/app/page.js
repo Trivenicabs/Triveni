@@ -64,7 +64,7 @@ export default function Home() {
           transition={{ delay: 0.8, duration: 0.8 }}
         >
           <h1 className="text-4xl md:text-7xl font-bold mb-4 text-center px-4">
-            Welcome to Adventure
+            Welcome to Triveni
           </h1>
           <p className="text-xl md:text-2xl text-center max-w-2xl px-4">
             Discover the worlds most amazing places with us
