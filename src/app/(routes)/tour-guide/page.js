@@ -65,7 +65,6 @@ export default function TourGuidePage() {
   });
 
   const [price, setPrice] = useState(0);
-  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -79,15 +78,28 @@ export default function TourGuidePage() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleWhatsAppSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
-    setIsSubmitted(true);
-    // In a real implementation, you would send this data to your API
-  };
+    
+    // Create formatted message with form data
+    const message = `🎯 *Tour Guide Booking Request*
 
-  const handleWhatsAppClick = () => {
-    window.open(`https://wa.me/${phoneNumber}`, '_blank');
+👤 *Name:* ${formData.name}
+📧 *Email:* ${formData.email}
+📱 *Phone:* ${formData.phoneNumber}
+🌍 *Language:* ${formData.language}
+📍 *City:* ${formData.city}
+💰 *Price:* ₹${price}
+
+📝 *Message:*
+${formData.message || 'No additional message'}
+
+Please confirm my booking. Thank you!`;
+
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+    
+    window.open(whatsappUrl, '_blank');
   };
 
   return (
@@ -126,125 +138,109 @@ export default function TourGuidePage() {
 
         {/* Form Section */}
         <div className="max-w-xl mx-auto px-4 py-16">
-          {isSubmitted ? (
-            <div className="bg-white shadow-lg rounded-lg p-8 text-center animate-bounceIn">
-              <h2 className="text-2xl font-semibold text-green-600 mb-4">
-                Booking Submitted Successfully!
-              </h2>
-              <p className="text-gray-600 mb-6">
-                We&apos;ll contact you shortly to confirm your tour guide booking.
-              </p>
-              <button
-                onClick={() => setIsSubmitted(false)}
-                className="bg-yellow-600 text-white px-6 py-2 rounded-md hover:bg-yellow-700"
-              >
-                Book Another Guide
-              </button>
+          <form onSubmit={handleWhatsAppSubmit} className="bg-white shadow-lg rounded-lg p-8 space-y-4 animate-slideUp">
+            <h2 className="text-2xl font-semibold text-yellow-800 mb-6 text-center">
+              Tour Guide Booking
+            </h2>
+
+            <div className="grid md:grid-cols-2 gap-4">
+              <input
+                type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                placeholder="Your Name"
+                className="w-full p-2 border text-sm tracking-wider rounded focus:ring-2 focus:ring-yellow-400 transition-all"
+                required
+              />
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                placeholder="Email Address"
+                className="w-full p-2 border rounded text-sm tracking-wider focus:ring-2 focus:ring-yellow-400 transition-all"
+                required
+              />
             </div>
-          ) : (
-            <form onSubmit={handleSubmit} className="bg-white shadow-lg rounded-lg p-8 space-y-4 animate-slideUp">
-              <h2 className="text-2xl font-semibold text-yellow-800 mb-6 text-center">
-                Tour Guide Booking
-              </h2>
 
-              <div className="grid md:grid-cols-2 gap-4">
-                <input
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  placeholder="Your Name"
-                  className="w-full p-2 border text-sm tracking-wider rounded focus:ring-2 focus:ring-yellow-400 transition-all"
-                  required
-                />
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  placeholder="Email Address"
-                  className="w-full p-2 border rounded text-sm tracking-wider focus:ring-2 focus:ring-yellow-400 transition-all"
-                  required
-                />
-              </div>
-
-              <div className="grid md:grid-cols-2 gap-4">
-                <input
-                  type="tel"
-                  name="phoneNumber"
-                  value={formData.phoneNumber}
-                  onChange={handleChange}
-                  placeholder="Phone Number"
-                  className="w-full p-2 border rounded text-sm tracking-wider focus:ring-2 focus:ring-yellow-400 transition-all"
-                  required
-                />
-                <select
-                  name="language"
-                  value={formData.language}
-                  onChange={handleChange}
-                  className="w-full p-2 border rounded text-sm tracking-wider focus:ring-2 focus:ring-yellow-400 transition-all"
-                  required
-                >
-                  <option value="">Select Language</option>
-                  {Object.keys(languagePrices).map(lang => (
-                    <option key={lang} value={lang}>{lang}</option>
-                  ))}
-                </select>
-              </div>
-
+            <div className="grid md:grid-cols-2 gap-4">
+              <input
+                type="tel"
+                name="phoneNumber"
+                value={formData.phoneNumber}
+                onChange={handleChange}
+                placeholder="Phone Number"
+                className="w-full p-2 border rounded text-sm tracking-wider focus:ring-2 focus:ring-yellow-400 transition-all"
+                required
+              />
               <select
-                name="city"
-                value={formData.city}
+                name="language"
+                value={formData.language}
                 onChange={handleChange}
                 className="w-full p-2 border rounded text-sm tracking-wider focus:ring-2 focus:ring-yellow-400 transition-all"
                 required
               >
-                <option value="">Select City</option>
-                {availableLocations.map(location => (
-                  <option key={location} value={location}>{location}</option>
+                <option value="">Select Language</option>
+                {Object.keys(languagePrices).map(lang => (
+                  <option key={lang} value={lang}>{lang}</option>
                 ))}
               </select>
+            </div>
 
-              <textarea
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                placeholder="Your Message"
-                className="w-full p-2 border text-sm tracking-wider rounded h-32 focus:ring-2 focus:ring-yellow-400 transition-all"
-              />
+            <select
+              name="city"
+              value={formData.city}
+              onChange={handleChange}
+              className="w-full p-2 border rounded text-sm tracking-wider focus:ring-2 focus:ring-yellow-400 transition-all"
+              required
+            >
+              <option value="">Select City</option>
+              {availableLocations.map(location => (
+                <option key={location} value={location}>{location}</option>
+              ))}
+            </select>
 
-              {formData.language && (
-                <div className="text-center font-semibold text-yellow-800 animate-fadeIn">
-                  Guide Price: ₹{price}
-                </div>
-              )}
+            <textarea
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
+              placeholder="Your Message"
+              className="w-full p-2 border text-sm tracking-wider rounded h-32 focus:ring-2 focus:ring-yellow-400 transition-all"
+            />
 
-              <div className="flex flex-col md:flex-row gap-4">
-                <button
-                  type="submit"
-                  className="flex-1 bg-yellow-600 text-white py-3 rounded-md hover:bg-yellow-700 transition-colors flex items-center justify-center"
-                >
-                  Book Tour Guide
-                </button>
+            {formData.language && (
+              <div className="text-center font-semibold text-yellow-800 animate-fadeIn">
+                Guide Price: ₹{price}
               </div>
+            )}
 
-              <div className="flex justify-center space-x-4 mt-4">
-                <a 
-                  href={`tel:+91${phoneNumber}`}
-                  className="bg-black text-sm tracking-wider text-white px-4 py-2 rounded-full flex items-center hover:bg-yellow-600 transition-colors"
-                >
-                  <Phone className="mr-2 w-4 h-4" /> Call Now
-                </a>
-                <button 
-                  onClick={handleWhatsAppClick}
-                  type="button"
-                  className="bg-green-600 text-sm tracking-wider text-white px-4 py-2 rounded-full flex items-center hover:bg-green-700 transition-colors"
-                >
-                  <BsWhatsapp className="mr-2" /> WhatsApp Us
-                </button>
-              </div>
-            </form>
-          )}
+            <div className="flex flex-col md:flex-row gap-4">
+              <button
+                type="submit"
+                className="flex-1 bg-green-600 text-white py-3 rounded-md hover:bg-green-700 transition-colors flex items-center justify-center"
+              >
+                <BsWhatsapp className="mr-2" />
+                Book via WhatsApp
+              </button>
+            </div>
+
+            <div className="flex justify-center space-x-4 mt-4">
+              <a 
+                href={`tel:+91${phoneNumber}`}
+                className="bg-black text-sm tracking-wider text-white px-4 py-2 rounded-full flex items-center hover:bg-yellow-600 transition-colors"
+              >
+                <Phone className="mr-2 w-4 h-4" /> Call Now
+              </a>
+              <button 
+                onClick={handleWhatsAppSubmit}
+                type="button"
+                className="bg-green-600 text-sm tracking-wider text-white px-4 py-2 rounded-full flex items-center hover:bg-green-700 transition-colors"
+              >
+                <BsWhatsapp className="mr-2" /> WhatsApp Us
+              </button>
+            </div>
+          </form>
         </div>
 
         {/* Quick Contact Section */}
