@@ -47,6 +47,26 @@ export default function TourPackage() {
     setCurrentIndex((prev) => Math.max(prev - 1, 0));
   };
 
+  // Function to handle WhatsApp redirect
+  const handleWhatsAppBooking = (pkg) => {
+    const phoneNumber = "7668570551"; // Replace with your WhatsApp business number
+    const message = `Hi! I'm interested in booking the "${pkg.title}" tour package.
+    
+Details:
+- Package: ${pkg.title}
+- Price: ${pkg.price}
+- Duration: ${pkg.duration}
+- Route: ${pkg.startingPoint} to ${pkg.destination}
+- Departure: ${pkg.departureDate}
+
+Please provide more information and booking details.`;
+
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+    
+    window.open(whatsappUrl, '_blank');
+  };
+
   return (
     <div>
       {/* tour package */}
@@ -126,16 +146,12 @@ export default function TourPackage() {
                         </div>
 
                         <div className="mt-4 md:mt-6 flex gap-2">
-                          <Link
-                            href={`/tour-package/${pkg.title
-                              .toLowerCase()
-                              .replace(/ /g, "-")}/book`}
-                            className="flex-1"
+                          <button
+                            onClick={() => handleWhatsAppBooking(pkg)}
+                            className="flex-1 bg-black px-10 text-white rounded-md py-1.5 md:py-2 text-xs md:text-sm font-semibold hover:bg-[#FACF2D] hover:text-black transition-all duration-300"
                           >
-                            <button className="w-full bg-black px-10 text-white rounded-md py-1.5 md:py-2 text-xs md:text-sm font-semibold hover:bg-[#FACF2D] hover:text-black transition-all duration-300">
-                              Book Now
-                            </button>
-                          </Link>
+                            Book Now
+                          </button>
                           <Link
                             href={`/tour-package/${pkg.title
                               .toLowerCase()
