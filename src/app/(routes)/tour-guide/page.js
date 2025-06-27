@@ -21,7 +21,7 @@ const languagePrices = {
   'Chinese': 2500
 };
 
-const phoneNumber = '9876543210'; // Replace with your actual phone number
+const phoneNumber = '7668570551'; 
 
 // CSS for animations (would normally be in globals.css)
 const animationStyles = `
