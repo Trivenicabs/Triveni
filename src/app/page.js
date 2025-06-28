@@ -114,7 +114,7 @@ export default function Home() {
               animate: { y: 0, opacity: 1, transition: { delay: 0.8, duration: 0.8 } }
             }}
           >
-            Welcome to Adventure
+            Welcome to Triveni
           </motion.h1>
           
           <motion.p 
