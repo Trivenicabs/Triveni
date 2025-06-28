@@ -108,9 +108,9 @@ Please confirm my booking. Thank you!`;
       {/* SEO Meta Tags */}
       <Head>
         {/* Primary Meta Tags */}
-        <title>Professional Tour Guide Booking | Multi-Language Guides in Delhi, Agra, Jaipur & More</title>
-        <meta name="title" content="Professional Tour Guide Booking | Multi-Language Guides in Delhi, Agra, Jaipur & More" />
-        <meta name="description" content="Book experienced tour guides in 14+ Indian cities. Multi-language guides available in English, Hindi, French, Spanish, German & Chinese. Starting from ₹1200. Expert local guides for heritage sites, cultural tours & sightseeing." />
+        <title>Professional Tour Guide Booking | Multi-Language Guides in Delhi, Agra, Jaipur and More</title>
+        <meta name="title" content="Professional Tour Guide Booking | Multi-Language Guides in Delhi, Agra, Jaipur and More" />
+        <meta name="description" content="Book experienced tour guides in 14+ Indian cities. Multi-language guides available in English, Hindi, French, Spanish, German and Chinese. Starting from ₹1200. Expert local guides for heritage sites, cultural tours and sightseeing." />
         <meta name="keywords" content="tour guide booking, professional tour guide, local tour guide, Delhi tour guide, Agra tour guide, Jaipur tour guide, Golden Triangle tour guide, Rajasthan tour guide, multi language tour guide, English speaking guide, heritage tour guide, private tour guide, certified tour guide, Shimla tour guide, Manali tour guide" />
         <meta name="robots" content="index, follow" />
         <meta name="language" content="English" />
@@ -120,8 +120,8 @@ Please confirm my booking. Thank you!`;
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://yourwebsite.com/tour-guide" />
-        <meta property="og:title" content="Professional Tour Guide Booking | Multi-Language Guides in Delhi, Agra, Jaipur & More" />
-        <meta property="og:description" content="Book experienced tour guides in 14+ Indian cities. Multi-language guides available in English, Hindi, French, Spanish, German & Chinese. Starting from ₹1200." />
+        <meta property="og:title" content="Professional Tour Guide Booking | Multi-Language Guides in Delhi, Agra, Jaipur and More" />
+        <meta property="og:description" content="Book experienced tour guides in 14+ Indian cities. Multi-language guides available in English, Hindi, French, Spanish, German and Chinese. Starting from ₹1200." />
         <meta property="og:image" content="https://yourwebsite.com/images/tour-guide-og-image.jpg" />
         <meta property="og:locale" content="en_IN" />
         <meta property="og:site_name" content="Your Company Name" />
@@ -129,8 +129,8 @@ Please confirm my booking. Thank you!`;
         {/* Twitter */}
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content="https://yourwebsite.com/tour-guide" />
-        <meta property="twitter:title" content="Professional Tour Guide Booking | Multi-Language Guides in Delhi, Agra, Jaipur & More" />
-        <meta property="twitter:description" content="Book experienced tour guides in 14+ Indian cities. Multi-language guides available in English, Hindi, French, Spanish, German & Chinese. Starting from ₹1200." />
+        <meta property="twitter:title" content="Professional Tour Guide Booking | Multi-Language Guides in Delhi, Agra, Jaipur and More" />
+        <meta property="twitter:description" content="Book experienced tour guides in 14+ Indian cities. Multi-language guides available in English, Hindi, French, Spanish, German and Chinese. Starting from ₹1200." />
         <meta property="twitter:image" content="https://yourwebsite.com/images/tour-guide-twitter-image.jpg" />
 
         {/* Additional SEO Tags */}
@@ -268,9 +268,9 @@ Please confirm my booking. Thank you!`;
               <div>
                 <h3 className="text-lg font-semibold mb-3 text-yellow-700">Why Choose Our Tour Guides?</h3>
                 <ul className="space-y-2">
-                  <li>✓ <strong>Certified & Licensed</strong> tour guides</li>
+                  <li>✓ <strong>Certified and Licensed</strong> tour guides</li>
                   <li>✓ <strong>Multi-language support</strong> in 6 languages</li>
-                  <li>✓ <strong>Local expertise</strong> in heritage & culture</li>
+                  <li>✓ <strong>Local expertise</strong> in heritage and culture</li>
                   <li>✓ <strong>Flexible booking</strong> options available</li>
                   <li>✓ <strong>Competitive pricing</strong> starting from ₹1200</li>
                 </ul>
