@@ -6,6 +6,11 @@ import { Phone } from "lucide-react";
 import { cityRoutesData, defaultRoutes } from "../../utilis/cityRoutesData";
 import { phoneNumber } from "../../utilis/data";
 
+// Helper function to create route slug
+function createRouteSlug(cityName, destination) {
+  return `${cityName.toLowerCase()}-to-${destination.toLowerCase().replace(/\s+/g, '-')}`;
+}
+
 const CityRoutes = ({ cityName }) => {
   // Get routes for this city or use default routes if none exist
   const routes = cityRoutesData[cityName] || defaultRoutes;
@@ -48,7 +53,7 @@ const CityRoutes = ({ cityName }) => {
                 <header className="bg-gray-50 py-3 px-4 border-b">
                   <h3 className="text-xl font-semibold">
                     <Link 
-                      href={`/${cityName.toLowerCase()}/to/${route.destination.toLowerCase().replace(/\s+/g, '-')}`}
+                      href={`/${createRouteSlug(cityName, route.destination)}`}
                       className="hover:text-yellow-600 transition-colors"
                       aria-label={`Book taxi from ${cityName} to ${route.destination}`}
                     >
@@ -88,7 +93,7 @@ const CityRoutes = ({ cityName }) => {
                   {/* Action Buttons */}
                   <div className="grid grid-cols-2 gap-3" role="group" aria-label="Booking actions">
                     <Link
-                      href={`/${cityName.toLowerCase()}/to/${route.destination.toLowerCase().replace(/\s+/g, '-')}`}
+                      href={`/${createRouteSlug(cityName, route.destination)}`}
                       className="flex items-center justify-center gap-2 bg-black hover:bg-yellow-400 hover:text-black text-white py-3 px-4 rounded-md transition-colors font-medium"
                       aria-label={`Book now for ${cityName} to ${route.destination} route`}
                     >
