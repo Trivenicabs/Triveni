@@ -24,10 +24,8 @@ import Image from "next/image";
 import { BsWhatsapp } from 'react-icons/bs';
 import { phoneNumber } from "@/utilis/data";
 
-// Lazy load heavy components
-const CityRoutes = dynamic(() => import("@/components/cities/CityRoutes"), {
-  loading: () => <div className="animate-pulse bg-gray-200 h-32 rounded-lg" />
-});
+// Import the updated CityRoutes component
+import CityRoutes from "@/components/cities/CityRoutes";
 
 // Separate components for better code splitting
 const HeroBanner = ({ formattedCityName }) => (
@@ -381,7 +379,7 @@ export default function CityServiceClient({
       <div className="max-w-7xl mx-auto px-4 -mt-30 mb-16">
         <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
           <div className="p-6 space-y-8">
-            {/* City Routes Section */}
+            {/* City Routes Section - This will use your updated data */}
             <CityRoutes cityName={formattedCityName} />
 
             {/* Vehicle Services Section */}

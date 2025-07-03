@@ -606,7 +606,7 @@ const VehicleDetails = ({ slug }) => {
         </motion.div>
 
       
-      <div className="max-w-7xl mx-auto px-4 py-16 bg-[#FFF8DC]">
+      {/* <div className="max-w-7xl mx-auto px-4 py-16 bg-[#FFF8DC]">
       <motion.div className="bg-white rounded-2xl shadow-xl overflow-hidden">
         <div className="py-16 bg-gradient-to-r from-yellow-100 to-yellow-100 p-10 rounded-xl">
           <h2 className="text-3xl font-bold text-center mb-8 text-gray-900">
@@ -643,7 +643,7 @@ const VehicleDetails = ({ slug }) => {
           </div>
         </div>
       </motion.div>
-    </div>
+    </div> */}
    
       </div>
     </motion.div>
