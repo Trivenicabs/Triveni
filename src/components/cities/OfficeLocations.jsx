@@ -16,7 +16,7 @@ const OfficeCard = ({ office, cityName, isOrigin = false }) => {
   };
 
   return (
-    <div className="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow">
+    <div className="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow h-full flex flex-col">
       {/* Header */}
       <div className="flex justify-between items-start mb-4">
         <div>
@@ -35,8 +35,8 @@ const OfficeCard = ({ office, cityName, isOrigin = false }) => {
         </div>
       </div>
 
-      {/* Address */}
-      <div className="mb-4">
+      {/* Address - This section will grow to fill available space */}
+      <div className="mb-4 flex-1">
         <div className="flex items-start gap-2 mb-2">
           <MapPin className="w-4 h-4 text-gray-500 mt-1 flex-shrink-0" />
           <div>
@@ -60,8 +60,8 @@ const OfficeCard = ({ office, cityName, isOrigin = false }) => {
         </div>
       </div>
 
-      {/* Action Buttons */}
-      <div className="flex gap-2">
+      {/* Action Buttons - Always at bottom */}
+      <div className="flex gap-2 mt-auto">
         <button
           onClick={handleCall}
           className="flex-1 bg-green-600 text-white py-2 px-3 rounded-lg text-sm font-medium hover:bg-green-700 transition-colors flex items-center justify-center gap-1"
