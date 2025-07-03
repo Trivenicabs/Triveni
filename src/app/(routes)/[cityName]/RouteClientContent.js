@@ -6,6 +6,8 @@ import Image from "next/image";
 import { Phone, MapPin, Car, ChevronRight, Star, ShieldCheck, Users, ArrowRight, Clock } from "lucide-react";
 import { BsWhatsapp } from "react-icons/bs";
 import { phoneNumber } from "@/utilis/data";
+import { getRouteOffices } from "@/utilis/officeLocations";
+import OfficeLocations from "@/components/cities/OfficeLocations";
 
 // Helper function to create route slug (replicated here since we can't import from server component)
 function createRouteSlug(cityName, destination) {
@@ -26,6 +28,9 @@ export default function RouteClientContent({
   const [activeTab, setActiveTab] = useState('oneWay');
   const [showAllVehicles, setShowAllVehicles] = useState(false);
   const [vehiclePricingType, setVehiclePricingType] = useState({});
+
+  // Get office locations for this route
+  const routeOffices = getRouteOffices(formattedCityName, formattedDestination);
 
   const handleCallNow = () => {
     window.open(`tel:+91${phoneNumber}`, '_blank');
@@ -350,6 +355,13 @@ export default function RouteClientContent({
                 </div>
               </div>
             </div>
+
+            {/* Office Locations Section - Only show if offices exist */}
+            <OfficeLocations 
+              originCity={formattedCityName}
+              destinationCity={formattedDestination}
+              offices={routeOffices}
+            />
             
             {/* Highlights */}
             <div className="space-y-4">
@@ -389,58 +401,6 @@ export default function RouteClientContent({
                 </div>
               </div>
             </div>
-            
-            {/* Recommended Vehicles */}
-            {/* <div className="space-y-4">
-              <h3 className="text-xl font-semibold">
-                Recommended Vehicles for {formattedCityName} to {formattedDestination}
-              </h3>
-              
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {vehiclesServices.slice(0, 3).map((vehicle, index) => (
-                  <div key={index} className="bg-white rounded-xl overflow-hidden shadow-lg border border-gray-200">
-                  
-                    <div className="relative h-48">
-                      <Image 
-                        src={vehicle.image || "/images/car/car1.png"} 
-                        alt={vehicle.type}
-                        className="object-cover"
-                        fill
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        onError={(e) => {
-                          e.target.src = "/images/car/car1.png";
-                        }}
-                      />
-                        <div className="absolute bottom-3 left-3 bg-black/60 rounded-full py-1 px-3 text-white flex items-center">
-                        <Star className="w-4 h-4 text-yellow-400 fill-yellow-400 mr-1" />
-                        <span className="text-sm">{vehicle.rating || "4.5"}</span>
-                      </div>
-                    </div>
-                   
-                    <div className="p-4">
-                      <div className="flex justify-between items-center mb-2">
-                        <h3 className="font-bold text-lg">{vehicle.type}</h3>
-                        <div className="bg-gray-100 px-2 py-1 rounded-full text-sm flex items-center">
-                          <Users className="w-4 h-4 mr-1" />
-                          <span>{vehicle.seating}</span>
-                        </div>
-                      </div>
-                      
-                      <p className="text-sm text-gray-600 mb-3">
-                        Perfect for {formattedCityName} to {formattedDestination} journey
-                      </p>
-             
-                      <button 
-                        onClick={handleWhatsApp}
-                        className="w-full bg-black text-white py-2 rounded-lg font-medium hover:bg-yellow-400 hover:text-black transition-colors"
-                      >
-                        Book Now
-                      </button>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div> */}
             
             {/* FAQs */}
             <div className="space-y-4">
