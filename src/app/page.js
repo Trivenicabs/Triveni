@@ -189,7 +189,7 @@ export default function OptimizedHomePage() {
 
   const handleBookNowClick = useCallback(() => {
     const phoneNumber = "7668570551";
-    const message = encodeURIComponent("Hi! I'm interested in booking a taxi service. Can you help me with the details?");
+    const message = encodeURIComponent("Hi! I am interested in booking a taxi service. Can you help me with the details?");
     const whatsappURL = `https://wa.me/${phoneNumber}?text=${message}`;
     window.open(whatsappURL, '_blank');
   }, []);
