@@ -20,14 +20,16 @@ function CarRentalSection() {
 
   return (
     <div>
-      {/* standard car rentals */}
-      <section className="py-16 max-w-7xl mx-auto px-4">
-        <h2 className="text-3xl max-sm:text-2xl font-bold text-center mb-4">
-          Standard Car Rentals
-        </h2>
-        <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
-          Choose from our fleet of reliable and comfortable standard vehicles
-        </p>
+      {/* Standard Car Rentals*/}
+      <section className="py-16 max-w-7xl mx-auto px-4" aria-labelledby="standard-cars-heading">
+        <header className="text-center mb-12">
+          <h3 id="standard-cars-heading" className="text-3xl max-sm:text-2xl font-bold mb-4">
+            Standard Car Rentals - Affordable Taxi Service
+          </h3>
+          <p className="text-gray-600 max-w-2xl mx-auto">
+            Choose from our fleet of reliable and comfortable standard vehicles for your daily transportation needs
+          </p>
+        </header>
         <CarSliderStandard
           cars={standardCars}
           currentIndex={standardIndex}
@@ -36,15 +38,16 @@ function CarRentalSection() {
         />
       </section>
 
-      {/* luxury car rentals */}
-      <section className="py-16 max-w-7xl mx-auto px-4">
-        <h2 className="text-3xl max-sm:text-2xl font-bold text-center mb-4">
-          Luxury Car Rentals
-        </h2>
-        <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
-          Experience luxury and comfort with our premium fleet of high-end
-          vehicles
-        </p>
+      {/* Luxury Car Rentals */}
+      <section className="py-16 max-w-7xl mx-auto px-4" aria-labelledby="luxury-cars-heading">
+        <header className="text-center mb-12">
+          <h3 id="luxury-cars-heading" className="text-3xl max-sm:text-2xl font-bold mb-4">
+            Luxury Car Rentals - Premium Taxi Experience
+          </h3>
+          <p className="text-gray-600 max-w-2xl mx-auto">
+            Experience luxury and comfort with our premium fleet of high-end vehicles and professional chauffeur service
+          </p>
+        </header>
         <CarSlider
           cars={luxuryCars}
           currentIndex={luxuryIndex}
@@ -53,54 +56,57 @@ function CarRentalSection() {
         />
       </section>
 
-      {/*  tempo traveller rentals */}
-      <section className="py-16 max-w-7xl mx-auto px-4">
-        <h2 className="text-3xl max-sm:text-2xl font-bold text-center mb-4">
-          Tempo traveller rentals
-        </h2>
-        <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
-          Experience luxury and comfort with our premium fleet of high-end
-          vehicles
-        </p>
+      {/* Tempo Traveller Rentals */}
+      <section className="py-16 max-w-7xl mx-auto px-4" aria-labelledby="tempo-traveller-heading">
+        <header className="text-center mb-12">
+          <h3 id="tempo-traveller-heading" className="text-3xl max-sm:text-2xl font-bold mb-4">
+            Tempo Traveller Rentals 
+          </h3>
+          <p className="text-gray-600 max-w-2xl mx-auto">
+            Perfect for group travel and family trips with spacious, comfortable tempo travellers and experienced drivers
+          </p>
+        </header>
         <CarSliderStandard
           cars={tempoTravellers}
           currentIndex={tempoIndex}
           setCurrentIndex={setTempoIndex}
-          title="Luxury Cars"
+          title="Tempo Travellers"
         />
       </section>
 
-      {/*  simple bus rentals */}
-      <section className="py-16 max-w-7xl mx-auto px-4">
-        <h2 className="text-3xl max-sm:text-2xl font-bold text-center mb-4">
-          Luxury Bus rentals
-        </h2>
-        <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
-          Experience luxury and comfort with our premium fleet of high-end
-          vehicles
-        </p>
+      {/* Luxury Bus Rentals - Changed H2 to H3 */}
+      <section className="py-16 max-w-7xl mx-auto px-4" aria-labelledby="luxury-bus-heading">
+        <header className="text-center mb-12">
+          <h3 id="luxury-bus-heading" className="text-3xl max-sm:text-2xl font-bold mb-4">
+            Luxury Bus Rentals 
+          </h3>
+          <p className="text-gray-600 max-w-2xl mx-auto">
+            Experience luxury group travel with our premium fleet of high-end buses equipped with modern amenities
+          </p>
+        </header>
         <CarSlider
           cars={luxuryBuses}
           currentIndex={luxuryBusIndex}
           setCurrentIndex={setLuxuryBusIndex}
-          title="Luxury Bus"
+          title="Luxury Buses"
         />
       </section>
 
-      {/*  tempo traveller rentals */}
-      <section className="py-16 max-w-7xl mx-auto px-4">
-        <h2 className="text-3xl max-sm:text-2xl font-bold text-center mb-4">
-          Simple Bus rentals
-        </h2>
-        <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
-          Experience luxury and comfort with our premium fleet of high-end
-          vehicles
-        </p>
+      {/* Simple Bus Rentals - Changed H2 to H3 */}
+      <section className="py-16 max-w-7xl mx-auto px-4" aria-labelledby="simple-bus-heading">
+        <header className="text-center mb-12">
+          <h3 id="simple-bus-heading" className="text-3xl max-sm:text-2xl font-bold mb-4">
+            Standard Bus Rentals 
+          </h3>
+          <p className="text-gray-600 max-w-2xl mx-auto">
+            Affordable and reliable bus rental service for large groups, events, and corporate transportation needs
+          </p>
+        </header>
         <CarSliderStandard
           cars={simpleBuses}
           currentIndex={busIndex}
           setCurrentIndex={setBusIndex}
-          title="Bus"
+          title="Standard Buses"
         />
       </section>
     </div>

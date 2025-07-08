@@ -1,4 +1,4 @@
-"use client"; // Add this for client-side interactivity
+"use client";
 
 import React from "react";
 import { ChevronRight } from "lucide-react";
@@ -13,14 +13,14 @@ const AboutSection = () => {
       aria-labelledby="about-heading"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
+        {/* Section Header - Changed from H2 to H3 */}
         <header className="text-center mb-16 md:mb-20">
-          <h2 
+          <h3 
             id="about-heading"
             className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 tracking-tight hover:text-[#FACF2D] transition-colors duration-300"
           >
-            About Us
-          </h2>
+            About Triveni Cabs - Your Reliable Transportation Partner
+          </h3>
           <div className="w-24 h-1 bg-gradient-to-r from-[#FACF2D] to-yellow-500 mx-auto rounded-full"></div>
         </header>
 
@@ -29,14 +29,14 @@ const AboutSection = () => {
           {/* Content Column */}
           <article className="space-y-8">
             <header>
-              <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-yellow-800 mb-6 tracking-tight hover:text-black transition-colors duration-300">
-                Your Trusted Travel Partner
-              </h3>
+              <h4 className="text-2xl md:text-3xl lg:text-4xl font-bold text-yellow-800 mb-6 tracking-tight hover:text-black transition-colors duration-300">
+                Professional Taxi Service Across India
+              </h4>
             </header>
             
             <div className="prose prose-lg max-w-none">
               <p className="text-gray-700 text-lg md:text-xl leading-relaxed tracking-wide">
-                Welcome to <strong className="text-yellow-800">Triveni Cabs</strong>, your trusted travel partner dedicated to
+                Welcome to <strong className="text-yellow-800">Triveni Cabs</strong>, your trusted taxi service provider dedicated to
                 providing seamless, reliable, and comfortable transportation
                 solutions. Whether you&apos;re planning a quick ride across the city,
                 an outstation journey, or an airport transfer, we are here to
@@ -49,9 +49,9 @@ const AboutSection = () => {
               <Link 
                 href="/about" 
                 className="inline-flex items-center justify-center bg-black text-white px-8 py-4 text-base md:text-lg font-semibold rounded-lg hover:bg-[#FACF2D] hover:text-black focus:outline-none focus:ring-2 focus:ring-[#FACF2D] focus:ring-offset-2 transition-all duration-300 group shadow-lg hover:shadow-xl"
-                aria-label="Learn more about Triveni Cabs"
+                aria-label="Learn more about Triveni Cabs taxi service"
               >
-                Learn More
+                Learn More About Our Service
                 <ChevronRight 
                   className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" 
                   aria-hidden="true"
@@ -61,9 +61,9 @@ const AboutSection = () => {
               <Link 
                 href="/contact" 
                 className="inline-flex items-center justify-center border-2 border-black text-black px-8 py-4 text-base md:text-lg font-semibold rounded-lg hover:bg-black hover:text-white focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 transition-all duration-300 group shadow-lg hover:shadow-xl"
-                aria-label="Contact Triveni Cabs"
+                aria-label="Contact Triveni Cabs for taxi booking"
               >
-                Contact Us
+                Contact for Booking
                 <ChevronRight 
                   className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" 
                   aria-hidden="true"
@@ -78,7 +78,7 @@ const AboutSection = () => {
               <div className="absolute inset-0 bg-gradient-to-r from-[#FACF2D] to-yellow-500 rounded-xl opacity-20 blur-lg"></div>
               <Image
                 src="/images/about/about_banner.jpg"
-                alt="Triveni Cabs - Professional taxi service with comfortable vehicles"
+                alt="Triveni Cabs - Professional taxi service with comfortable vehicles and experienced drivers"
                 width={600}
                 height={400}
                 className="relative rounded-xl shadow-2xl hover:shadow-3xl transition-shadow duration-300 w-full h-auto"
@@ -88,17 +88,17 @@ const AboutSection = () => {
           </aside>
         </div>
 
-        {/* Features Section */}
+        {/* Features Section - Changed heading structure */}
         <section aria-labelledby="features-heading">
           <header className="text-center mb-12">
-            <h3 
+            <h4 
               id="features-heading"
               className="text-2xl md:text-3xl font-bold text-gray-900 mb-4"
             >
-              Why Choose Us
-            </h3>
+              Why Choose Our Taxi Service
+            </h4>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Discover what makes Triveni Cabs your ideal travel companion
+              Discover what makes Triveni Cabs your ideal cab booking partner
             </p>
           </header>
 
@@ -115,9 +115,9 @@ const AboutSection = () => {
                       aria-hidden="true"
                     />
                   </div>
-                  <h4 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-[#FACF2D] transition-colors duration-300">
+                  <h5 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-[#FACF2D] transition-colors duration-300">
                     {feature.title}
-                  </h4>
+                  </h5>
                 </header>
                 
                 <p className="text-base text-gray-600 text-center leading-relaxed group-hover:text-gray-800 transition-colors duration-300">
@@ -128,9 +128,9 @@ const AboutSection = () => {
           </div>
         </section>
 
-        {/* Optional: Add testimonial or stats section */}
+        {/* Stats section - Changed to H5 */}
         <section className="mt-20 text-center" aria-labelledby="stats-heading">
-          <h3 id="stats-heading" className="sr-only">Our Statistics</h3>
+          <h5 id="stats-heading" className="sr-only">Our Service Statistics</h5>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <div className="stat-item">
               <div className="text-3xl md:text-4xl font-bold text-[#FACF2D] mb-2">1000+</div>
@@ -142,7 +142,7 @@ const AboutSection = () => {
             </div>
             <div className="stat-item">
               <div className="text-3xl md:text-4xl font-bold text-[#FACF2D] mb-2">24/7</div>
-              <div className="text-gray-600 font-medium">Service Available</div>
+              <div className="text-gray-600 font-medium">Taxi Service Available</div>
             </div>
             <div className="stat-item">
               <div className="text-3xl md:text-4xl font-bold text-[#FACF2D] mb-2">5★</div>

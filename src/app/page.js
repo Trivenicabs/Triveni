@@ -286,7 +286,7 @@ export default function OptimizedHomePage() {
                 animate: { y: 0, opacity: 1, transition: { delay: 0.5, duration: 0.8 } }
               }}
             >
-              Welcome to Triveni
+              Triveni Cabs - Professional Taxi Service in India
             </motion.h1>
             
             <motion.p 
@@ -359,10 +359,10 @@ export default function OptimizedHomePage() {
           <div className="max-w-7xl mx-auto px-4">
             <div className="text-center mb-12">
               <h2 id="features-heading" className="text-3xl md:text-4xl font-bold mb-4">
-                Why Choose Triveni Cabs?
+                Why Choose Our Taxi Services?
               </h2>
               <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-                Experience the difference with our premium taxi services
+                Experience the difference with our premium cab booking services
               </p>
             </div>
             
@@ -399,10 +399,10 @@ export default function OptimizedHomePage() {
           <div className="max-w-7xl mx-auto px-4">
             <div className="text-center mb-12">
               <h2 id="services-heading" className="text-3xl md:text-4xl font-bold mb-4">
-                Our Premium Services
+                Our Premium Cab Booking Services
               </h2>
               <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-                From local rides to luxury tours, we have got you covered
+                From local rides to luxury tours, we provide complete transportation solutions
               </p>
             </div>
             
@@ -473,10 +473,10 @@ export default function OptimizedHomePage() {
         >
           <div className="max-w-4xl mx-auto px-4 text-center">
             <h2 id="cta-heading" className="text-3xl md:text-4xl font-bold mb-6 text-black">
-              Ready for Your Next Journey?
+              Book Your Taxi Service Today - Get Free Quote
             </h2>
             <p className="text-xl text-gray-800 mb-8 max-w-2xl mx-auto">
-              Book your ride in just a few clicks. Professional drivers, clean vehicles, and competitive prices guaranteed.
+              Professional drivers, clean vehicles, and competitive prices for all your transportation needs. Available 24/7 across India.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">

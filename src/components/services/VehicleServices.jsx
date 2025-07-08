@@ -30,13 +30,8 @@ const VehicleServices = () => {
       }
     };
 
-    // Set initial value
     handleResize();
-
-    // Add event listener
     window.addEventListener("resize", handleResize);
-
-    // Cleanup
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
@@ -50,27 +45,29 @@ const VehicleServices = () => {
     setCurrentIndex((prev) => Math.max(prev - 1, 0));
   };
 
-  // call us
+  // WhatsApp contact handler
   const handleClick = () => {
     window.open(`https://wa.me/${phoneNumber}`, '_blank');
   };
 
   return (
     <div className="bg-gradient-to-b from-white to-[#FFFCD1]">
-      <section className="py-16 max-w-7xl mx-auto px-4">
-        <h2 className="text-3xl max-sm:text-2xl font-bold text-center mb-4">
-          Our Premium Fleet
-        </h2>
-        <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
-          Choose from our selection of well-maintained vehicles, perfect for any
-          journey
-        </p>
+      <section className="py-16 max-w-7xl mx-auto px-4" aria-labelledby="vehicle-fleet-heading">
+        <header className="text-center mb-12">
+          <h3 id="vehicle-fleet-heading" className="text-3xl max-sm:text-2xl font-bold mb-4">
+            Our Premium Vehicle Fleet - Professional Taxi Service
+          </h3>
+          <p className="text-gray-600 max-w-2xl mx-auto">
+            Choose from our selection of well-maintained vehicles, perfect for any journey with professional drivers and competitive rates
+          </p>
+        </header>
 
         <div className="relative">
           {currentIndex > 0 && (
             <button
               onClick={prevSlide}
               className="absolute -left-2 md:-left-4 top-1/2 -translate-y-1/2 z-10 bg-black/50 p-2 rounded-full text-white hover:bg-yellow-400 hover:text-black transition-all"
+              aria-label="Previous vehicles"
             >
               <ChevronLeft className="w-4 h-4 md:w-6 md:h-6" />
             </button>
@@ -80,6 +77,7 @@ const VehicleServices = () => {
             <button
               onClick={nextSlide}
               className="absolute -right-2 md:-right-4 top-1/2 -translate-y-1/2 z-10 bg-black/50 p-2 rounded-full text-white hover:bg-yellow-400 hover:text-black transition-all"
+              aria-label="Next vehicles"
             >
               <ChevronRight className="w-4 h-4 md:w-6 md:h-6" />
             </button>
@@ -93,11 +91,14 @@ const VehicleServices = () => {
                   currentIndex * (100 / visibleSlides)
                 }%)`,
               }}
+              role="list"
+              aria-label="Available vehicles for taxi service"
             >
               {vehiclesServices.map((vehicle, index) => (
-                <div
+                <article
                   key={index}
                   className="w-full sm:w-1/2 lg:w-1/3 flex-shrink-0 px-2 md:px-4"
+                  role="listitem"
                 >
                   <div className="group bg-white rounded-2xl shadow-lg overflow-hidden hover:-translate-y-2 transition-all duration-300 relative">
                     {vehicle.popular && (
@@ -109,15 +110,15 @@ const VehicleServices = () => {
                     <div className="relative">
                       <Image
                         src={vehicle.image}
-                        alt={vehicle.type}
+                        alt={`${vehicle.type} - Professional taxi service vehicle`}
                         width={400}
                         height={224}
                         className="w-full h-56 object-cover"
-                        priority={index < 3} // Load first 3 images with priority
+                        priority={index < 3}
                       />
                       <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
                         <div className="flex items-center text-white">
-                          <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
+                          <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" aria-hidden="true" />
                           <span className="ml-2 text-sm font-semibold">
                             {vehicle.rating}
                           </span>
@@ -129,29 +130,29 @@ const VehicleServices = () => {
                     </div>
 
                     <div className="p-6">
-                      <div className="flex justify-between items-start mb-4">
-                        <h3 className="text-xl font-bold">{vehicle.type}</h3>
+                      <header className="flex justify-between items-start mb-4">
+                        <h4 className="text-xl font-bold">{vehicle.type} Taxi Service</h4>
                         <div className="flex items-center bg-gray-100 px-3 py-1 rounded-full">
-                          <Users className="w-4 h-4 mr-1" />
+                          <Users className="w-4 h-4 mr-1" aria-hidden="true" />
                           <span className="text-sm font-medium">
                             {vehicle.seating}
                           </span>
                         </div>
-                      </div>
+                      </header>
 
                       <div className="grid grid-cols-2 gap-4 mb-6">
                         <div className="bg-gray-50 p-2 rounded-lg">
-                          <p className="text-gray-600 text-sm mb-1">Per KM</p>
+                          <p className="text-gray-600 text-sm mb-1">Per KM Rate</p>
                           <p className="font-bold text-sm">{vehicle.perKm}</p>
                         </div>
                         <div className="bg-gray-50 p-2 rounded-lg">
-                          <p className="text-gray-600 text-sm mb-1">Driver</p>
+                          <p className="text-gray-600 text-sm mb-1">Driver Charges</p>
                           <p className="font-bold text-sm">
                             {vehicle.driverCharges}
                           </p>
                         </div>
                         <div className="bg-gray-50 p-2 rounded-lg">
-                          <p className="text-gray-600 text-sm mb-1">Per Day KM</p>
+                          <p className="text-gray-600 text-sm mb-1">Daily Limit</p>
                           <p className="font-bold text-sm">{vehicle.perDayLimit}</p>
                         </div>
                         <div className="bg-gray-50 p-2 rounded-lg">
@@ -162,8 +163,8 @@ const VehicleServices = () => {
 
                       <div className="mb-6">
                         <div className="flex items-center mb-3">
-                          <ShieldCheck className="w-5 h-5 text-yellow-400 mr-2" />
-                          <h4 className="font-semibold">Included Features</h4>
+                          <ShieldCheck className="w-5 h-5 text-yellow-400 mr-2" aria-hidden="true" />
+                          <h5 className="font-semibold">Included Vehicle Features</h5>
                         </div>
                         <div className="flex flex-wrap gap-2">
                           {vehicle.facilities.map((facility, i) => (
@@ -181,21 +182,23 @@ const VehicleServices = () => {
                         <button 
                           onClick={handleClick} 
                           className="w-full bg-black text-white py-2 rounded-xl font-semibold hover:bg-yellow-400 hover:text-black transition-colors flex items-center justify-center"
+                          aria-label={`Book ${vehicle.type} taxi service via WhatsApp`}
                         >
-                          Book Now
+                          Book This Vehicle
                         </button>
                         <Link
                           href={`/vehicles/${vehicle.type
                             .toLowerCase()
                             .replace(/ /g, "-")}`}
                           className="px-4 border-2 border-yellow-400 flex justify-center items-center rounded-xl hover:bg-yellow-400 transition-colors"
+                          aria-label={`View details of ${vehicle.type} taxi service`}
                         >
                           <Navigation className="w-5 h-5" />
                         </Link>
                       </div>
                     </div>
                   </div>
-                </div>
+                </article>
               ))}
             </div>
           </div>

@@ -47,13 +47,13 @@ const CitiesSection = () => {
         {/* Hero Section */}
         <header className="text-center mb-12">
           <span className="text-yellow-500 font-semibold mb-2 block" role="text" aria-label="Service coverage indicator">
-            Our Coverage
+            Our Taxi Service Coverage
           </span>
-          <h1 id="cities-heading" className="text-3xl font-bold mb-4">
-            Serving Major Cities Across India
-          </h1>
+          <h3 id="cities-heading" className="text-3xl font-bold mb-4">
+            Cab Booking Available in Major Indian Cities
+          </h3>
           <p className="text-gray-600 text-sm max-w-2xl mx-auto">
-            Experience reliable 24/7 transportation services in {cities.length}+
+            Experience reliable 24/7 taxi services in {cities.length}+
             cities across India with professional drivers and well-maintained vehicles
           </p>
         </header>
@@ -61,7 +61,7 @@ const CitiesSection = () => {
         {/* Search and Filter */}
         <div className="mb-12 flex flex-col md:flex-row gap-4 justify-center items-center bg-white p-6 rounded-2xl shadow-lg" role="search" aria-label="City search and filter">
           <div className="relative w-full md:w-96">
-            <label htmlFor="city-search" className="sr-only">Search for a city</label>
+            <label htmlFor="city-search" className="sr-only">Search for a city where we provide taxi service</label>
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" aria-hidden="true" />
             <input
               id="city-search"
@@ -103,7 +103,7 @@ const CitiesSection = () => {
           <p className="text-gray-600" aria-label={`Showing ${startIndex + 1} to ${Math.min(startIndex + itemsPerPage, filteredCities.length)} of ${filteredCities.length} cities`}>
             Showing {startIndex + 1}-
             {Math.min(startIndex + itemsPerPage, filteredCities.length)} of{" "}
-            {filteredCities.length} cities
+            {filteredCities.length} cities with taxi service
           </p>
           <p className="text-gray-600" aria-label={`Page ${currentPage} of ${totalPages || 1}`}>
             Page {currentPage} of {totalPages || 1}
@@ -123,7 +123,7 @@ const CitiesSection = () => {
                   <div className="relative bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border-2 border-transparent hover:border-yellow-400 overflow-hidden h-full">
                     {/* Card Header */}
                     <header className="px-6 py-4 border-b">
-                      <h2 className="text-2xl font-bold mb-1">{city.name}</h2>
+                      <h4 className="text-2xl font-bold mb-1">{city.name} Taxi Service</h4>
                       <p className="text-gray-600 text-sm">{city.coverage}</p>
                     </header>
                     
@@ -131,10 +131,10 @@ const CitiesSection = () => {
                     <div className="px-6 py-3 flex justify-between items-center">
                       <div className="flex items-center">
                         <Car className="w-5 h-5 text-yellow-500 mr-2" aria-hidden="true" />
-                        <span className="text-gray-600 text-sm" aria-label="24/7 service available">24/7</span>
+                        <span className="text-gray-600 text-sm" aria-label="24/7 service available">24/7 Available</span>
                       </div>
                       <div className="flex items-center text-black group-hover:text-yellow-600 transition-colors font-medium">
-                        <span className="mr-1">Book Now</span>
+                        <span className="mr-1">Book Cab</span>
                         <ChevronRight className="w-4 h-4" aria-hidden="true" />
                       </div>
                     </div>
@@ -210,7 +210,7 @@ const CitiesSection = () => {
             className="inline-flex items-center bg-black text-white px-8 py-3 rounded-xl hover:bg-yellow-400 hover:text-black transition-all duration-300 gap-2"
             aria-label="Check taxi availability in your city"
           >
-            Check Availability
+            Check Taxi Availability
             <ChevronRight className="w-4 h-4" aria-hidden="true" />
           </Link>
         </aside>
