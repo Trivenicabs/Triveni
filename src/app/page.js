@@ -129,13 +129,13 @@ const serviceHighlights = [
     title: "Local Taxi",
     description: "Quick rides within the city",
     icon: Car,
-    whatsappMessage: "Hi! I'm interested in booking a local taxi service within the city. Can you provide more details about rates and availability?"
+    whatsappMessage: "Hi! I am interested in booking a local taxi service within the city. Can you provide more details about rates and availability?"
   },
   {
     title: "Outstation Trips",
     description: "Comfortable long-distance travel",
     icon: MapPin,
-    whatsappMessage: "Hi! I'm interested in booking an outstation trip. Can you help me with pricing and available vehicles for long-distance travel?"
+    whatsappMessage: "Hi! I am interested in booking an outstation trip. Can you help me with pricing and available vehicles for long-distance travel?"
   },
   {
     title: "Airport Transfer",
@@ -147,7 +147,7 @@ const serviceHighlights = [
     title: "Tour Packages",
     description: "Curated travel experiences",
     icon: Award,
-    whatsappMessage: "Hi! I'm interested in your tour packages. Can you share available travel experiences and pricing details?"
+    whatsappMessage: "Hi! I am interested in your tour packages. Can you share available travel experiences and pricing details?"
   }
 ];
 
@@ -296,7 +296,7 @@ export default function OptimizedHomePage() {
                 animate: { y: 0, opacity: 1, transition: { delay: 0.7, duration: 0.8 } }
               }}
             >
-              Discover the world's most amazing places with us
+              Discover the worlds most amazing places with us
             </motion.p>
             
             <motion.div
@@ -402,7 +402,7 @@ export default function OptimizedHomePage() {
                 Our Premium Services
               </h2>
               <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-                From local rides to luxury tours, we've got you covered
+                From local rides to luxury tours, we have got you covered
               </p>
             </div>
             
