@@ -17,7 +17,7 @@ const AboutSection = () => {
         <header className="text-center mb-16 md:mb-20">
           <h3 
             id="about-heading"
-            className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 tracking-tight hover:text-[#FACF2D] transition-colors duration-300"
+            className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 tracking-tight hover:text-[#FACF2D] transition-colors duration-300"
           >
             About Triveni Cabs - Your Reliable Transportation Partner
           </h3>
@@ -29,7 +29,7 @@ const AboutSection = () => {
           {/* Content Column */}
           <article className="space-y-8">
             <header>
-              <h4 className="text-2xl md:text-3xl lg:text-4xl font-bold text-yellow-800 mb-6 tracking-tight hover:text-black transition-colors duration-300">
+              <h4 className="text-xl md:text-2xl font-bold text-yellow-800 mb-6 tracking-tight hover:text-black transition-colors duration-300">
                 Professional Taxi Service Across India
               </h4>
             </header>
@@ -93,7 +93,7 @@ const AboutSection = () => {
           <header className="text-center mb-12">
             <h4 
               id="features-heading"
-              className="text-2xl md:text-3xl font-bold text-gray-900 mb-4"
+              className="text-xl md:text-2xl font-bold text-gray-900 mb-4"
             >
               Why Choose Our Taxi Service
             </h4>

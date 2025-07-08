@@ -44,12 +44,12 @@ const CitiesSection = () => {
   return (
     <section className="py-16 bg-gradient-to-b from-white to-gray-50" aria-labelledby="cities-heading">
       <div className="max-w-7xl mx-auto px-4">
-        {/* Hero Section */}
+        {/* Hero Section*/}
         <header className="text-center mb-12">
           <span className="text-yellow-500 font-semibold mb-2 block" role="text" aria-label="Service coverage indicator">
             Our Taxi Service Coverage
           </span>
-          <h3 id="cities-heading" className="text-3xl font-bold mb-4">
+          <h3 id="cities-heading" className="text-2xl md:text-3xl font-bold mb-4">
             Cab Booking Available in Major Indian Cities
           </h3>
           <p className="text-gray-600 text-sm max-w-2xl mx-auto">
@@ -123,7 +123,7 @@ const CitiesSection = () => {
                   <div className="relative bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border-2 border-transparent hover:border-yellow-400 overflow-hidden h-full">
                     {/* Card Header */}
                     <header className="px-6 py-4 border-b">
-                      <h4 className="text-2xl font-bold mb-1">{city.name} Taxi Service</h4>
+                      <h4 className="text-lg md:text-xl font-bold mb-1">{city.name} Taxi Service</h4>
                       <p className="text-gray-600 text-sm">{city.coverage}</p>
                     </header>
                     

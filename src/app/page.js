@@ -280,7 +280,7 @@ export default function OptimizedHomePage() {
           >
             <motion.h1 
               id="hero-heading"
-              className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 text-center leading-tight"
+              className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-center leading-tight"
               variants={{
                 initial: { y: 50, opacity: 0 },
                 animate: { y: 0, opacity: 1, transition: { delay: 0.5, duration: 0.8 } }
@@ -290,7 +290,7 @@ export default function OptimizedHomePage() {
             </motion.h1>
             
             <motion.p 
-              className="text-xl md:text-2xl text-center max-w-4xl mb-8 leading-relaxed"
+              className="text-lg md:text-xl text-center max-w-4xl mb-8 leading-relaxed"
               variants={{
                 initial: { y: 30, opacity: 0 },
                 animate: { y: 0, opacity: 1, transition: { delay: 0.7, duration: 0.8 } }
@@ -358,10 +358,10 @@ export default function OptimizedHomePage() {
         >
           <div className="max-w-7xl mx-auto px-4">
             <div className="text-center mb-12">
-              <h2 id="features-heading" className="text-3xl md:text-4xl font-bold mb-4">
+              <h2 id="features-heading" className="text-2xl md:text-3xl font-bold mb-4">
                 Why Choose Our Taxi Services?
               </h2>
-              <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
                 Experience the difference with our premium cab booking services
               </p>
             </div>
@@ -398,10 +398,10 @@ export default function OptimizedHomePage() {
         >
           <div className="max-w-7xl mx-auto px-4">
             <div className="text-center mb-12">
-              <h2 id="services-heading" className="text-3xl md:text-4xl font-bold mb-4">
+              <h2 id="services-heading" className="text-2xl md:text-3xl font-bold mb-4">
                 Our Premium Cab Booking Services
               </h2>
-              <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
                 From local rides to luxury tours, we provide complete transportation solutions
               </p>
             </div>
@@ -472,10 +472,10 @@ export default function OptimizedHomePage() {
           aria-labelledby="cta-heading"
         >
           <div className="max-w-4xl mx-auto px-4 text-center">
-            <h2 id="cta-heading" className="text-3xl md:text-4xl font-bold mb-6 text-black">
+            <h2 id="cta-heading" className="text-2xl md:text-3xl font-bold mb-6 text-black">
               Book Your Taxi Service Today - Get Free Quote
             </h2>
-            <p className="text-xl text-gray-800 mb-8 max-w-2xl mx-auto">
+            <p className="text-lg text-gray-800 mb-8 max-w-2xl mx-auto">
               Professional drivers, clean vehicles, and competitive prices for all your transportation needs. Available 24/7 across India.
             </p>
             
