@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { tourDetails } from "@/utilis/data";
@@ -65,6 +65,59 @@ const BookNowButton = ({ slug, packageTitle }) => {
   );
 };
 
+// Client component for tracking
+const TrackingProvider = ({ children, slug, packageTitle }) => {
+  useEffect(() => {
+    // Track page view
+    if (typeof gtag !== 'undefined') {
+      gtag('event', 'tour_package_view', {
+        'event_category': 'tour_engagement',
+        'event_label': slug,
+        'tour_package': packageTitle,
+        'page_type': 'tour_package_details',
+        'value': 1
+      });
+    }
+  }, [slug, packageTitle]);
+
+  return <>{children}</>;
+};
+
+// Client component for itinerary tracking
+const ItineraryWrapper = ({ children, slug }) => {
+  useEffect(() => {
+    // Track itinerary view
+    if (typeof gtag !== 'undefined') {
+      gtag('event', 'itinerary_view', {
+        'event_category': 'tour_engagement',
+        'event_label': slug,
+        'page_type': 'tour_package_details',
+        'value': 1
+      });
+    }
+  }, [slug]);
+
+  return <>{children}</>;
+};
+
+// Client component for accommodation tracking
+const AccommodationWrapper = ({ children, slug, accommodationName }) => {
+  useEffect(() => {
+    // Track accommodation view
+    if (typeof gtag !== 'undefined') {
+      gtag('event', 'accommodation_view', {
+        'event_category': 'tour_engagement',
+        'event_label': slug,
+        'accommodation_name': accommodationName,
+        'page_type': 'tour_package_details',
+        'value': 1
+      });
+    }
+  }, [slug, accommodationName]);
+
+  return <>{children}</>;
+};
+
 // Main Tour Package Page Component
 export default function TourPackagePage({ params }) {
   const { slug } = params;
@@ -74,69 +127,8 @@ export default function TourPackagePage({ params }) {
     return <div className="text-center py-16">Package not found</div>;
   }
 
-  // Client-side tracking script
-  const trackingScript = `
-    // Function to track page views
-    window.trackTourPackageView = function(tourSlug, packageTitle) {
-      if (typeof gtag !== 'undefined') {
-        gtag('event', 'tour_package_view', {
-          'event_category': 'tour_engagement',
-          'event_label': tourSlug,
-          'tour_package': packageTitle,
-          'page_type': 'tour_package_details',
-          'value': 1
-        });
-      }
-    };
-
-    // Function to track accommodation section views
-    window.trackAccommodationView = function(tourSlug, accommodationName) {
-      if (typeof gtag !== 'undefined') {
-        gtag('event', 'accommodation_view', {
-          'event_category': 'tour_engagement',
-          'event_label': tourSlug,
-          'accommodation_name': accommodationName,
-          'page_type': 'tour_package_details',
-          'value': 1
-        });
-      }
-    };
-
-    // Function to track itinerary interactions
-    window.trackItineraryView = function(tourSlug) {
-      if (typeof gtag !== 'undefined') {
-        gtag('event', 'itinerary_view', {
-          'event_category': 'tour_engagement',
-          'event_label': tourSlug,
-          'page_type': 'tour_package_details',
-          'value': 1
-        });
-      }
-    };
-  `;
-
   return (
-    <>
-      {/* Analytics tracking script */}
-      <script
-        dangerouslySetInnerHTML={{
-          __html: trackingScript
-        }}
-      />
-      
-      {/* Page view tracking */}
-      <script
-        dangerouslySetInnerHTML={{
-          __html: `
-            document.addEventListener('DOMContentLoaded', function() {
-              if (window.trackTourPackageView) {
-                window.trackTourPackageView('${slug}', '${packageInfo.title}');
-              }
-            });
-          `
-        }}
-      />
-
+    <TrackingProvider slug={slug} packageTitle={packageInfo.title}>
       <div className="bg-white">
         <div className="relative h-[60vh]">
           <Image
@@ -181,57 +173,46 @@ export default function TourPackagePage({ params }) {
                 </p>
               </section>
 
-              <div
-                onLoad={() => {
-                  if (typeof window !== 'undefined' && window.trackItineraryView) {
-                    window.trackItineraryView(slug);
-                  }
-                }}
-              >
+              <ItineraryWrapper slug={slug}>
                 <ItinerarySection itinerary={packageInfo.itinerary} />
-              </div>
+              </ItineraryWrapper>
 
-              <section 
-                className="bg-yellow-100 p-8 rounded-2xl shadow-lg"
-                onLoad={() => {
-                  if (typeof window !== 'undefined' && window.trackAccommodationView) {
-                    window.trackAccommodationView(slug, packageInfo.accommodation.name);
-                  }
-                }}
-              >
-                <h2 className="text-2xl tracking-[0.06rem] font-semibold mb-6">
-                  Accommodation
-                </h2>
-                <div className="bg-gray-50 p-8 rounded-xl">
-                  <h3 className="text-2xl mb-4">
-                    {packageInfo.accommodation.name}
-                  </h3>
-                  <div className="flex items-center mb-6">
-                    {[...Array(parseInt(packageInfo.accommodation.rating))].map(
-                      (_, i) => (
-                        <Star
-                          key={i}
-                          className="w-6 h-6 text-[#FACF2D]"
-                          fill="#FACF2D"
-                        />
-                      )
-                    )}
-                  </div>
-                  <div className="grid sm:grid-cols-2 gap-6">
-                    {packageInfo.accommodation.amenities.map((amenity, index) => (
-                      <div
-                        key={index}
-                        className="flex items-center bg-white p-4 rounded-lg shadow-sm hover:scale-[1.03] transition-transform"
-                      >
-                        <div className="w-10 h-10 rounded-full bg-[#FACF2D] flex items-center justify-center mr-3">
-                          <Coffee className="w-5 h-5 text-white" />
+              <AccommodationWrapper slug={slug} accommodationName={packageInfo.accommodation.name}>
+                <section className="bg-yellow-100 p-8 rounded-2xl shadow-lg">
+                  <h2 className="text-2xl tracking-[0.06rem] font-semibold mb-6">
+                    Accommodation
+                  </h2>
+                  <div className="bg-gray-50 p-8 rounded-xl">
+                    <h3 className="text-2xl mb-4">
+                      {packageInfo.accommodation.name}
+                    </h3>
+                    <div className="flex items-center mb-6">
+                      {[...Array(parseInt(packageInfo.accommodation.rating))].map(
+                        (_, i) => (
+                          <Star
+                            key={i}
+                            className="w-6 h-6 text-[#FACF2D]"
+                            fill="#FACF2D"
+                          />
+                        )
+                      )}
+                    </div>
+                    <div className="grid sm:grid-cols-2 gap-6">
+                      {packageInfo.accommodation.amenities.map((amenity, index) => (
+                        <div
+                          key={index}
+                          className="flex items-center bg-white p-4 rounded-lg shadow-sm hover:scale-[1.03] transition-transform"
+                        >
+                          <div className="w-10 h-10 rounded-full bg-[#FACF2D] flex items-center justify-center mr-3">
+                            <Coffee className="w-5 h-5 text-white" />
+                          </div>
+                          <span className="font-medium">{amenity}</span>
                         </div>
-                        <span className="font-medium">{amenity}</span>
-                      </div>
-                    ))}
+                      ))}
+                    </div>
                   </div>
-                </div>
-              </section>
+                </section>
+              </AccommodationWrapper>
             </div>
 
             <div className="md:col-span-1">
@@ -256,6 +237,6 @@ export default function TourPackagePage({ params }) {
           </div>
         </div>
       </div>
-    </>
+    </TrackingProvider>
   );
 }
