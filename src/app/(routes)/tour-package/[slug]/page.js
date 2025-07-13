@@ -5,9 +5,11 @@ import { tourDetails } from "@/utilis/data";
 import ItinerarySection from "@/components/ItinerarySection";
 import { Calendar, MapPin, Clock, Users, Car, Star, Coffee, BedDouble } from "lucide-react";
 
+// Import the client components
+import { TrackingProvider, ItineraryWrapper, AccommodationWrapper, BookNowButton } from "./client-components";
+
 // Generate static paths for all tour packages
 export async function generateStaticParams() {
-  // Create an array of objects with slug property for each tour package
   return Object.keys(tourDetails).map((slug) => ({
     slug: slug,
   }));
@@ -36,89 +38,7 @@ export async function generateMetadata({ params }) {
   };
 }
 
-// Client-side component for the Book Now button
-const BookNowButton = ({ slug, packageTitle }) => {
-  const handleBookNowClick = () => {
-    // Track the Book Now button click
-    if (typeof gtag !== 'undefined') {
-      gtag('event', 'tour_book_now_click', {
-        'event_category': 'tour_engagement',
-        'event_label': slug,
-        'tour_package': packageTitle,
-        'button_location': 'package_details_sidebar',
-        'page_type': 'tour_package_details',
-        'value': 1
-      });
-    }
-  };
-
-  return (
-    <Link href={`/tour-package/${slug}/book`}>
-      <button
-        onClick={handleBookNowClick}
-        className="w-full mt-8 bg-[#FACF2D] text-black py-2 rounded-xl font-semibold text-lg
-        hover:bg-black hover:text-white transition-colors shadow-lg"
-      >
-        Book Now
-      </button>
-    </Link>
-  );
-};
-
-// Client component for tracking
-const TrackingProvider = ({ children, slug, packageTitle }) => {
-  useEffect(() => {
-    // Track page view
-    if (typeof gtag !== 'undefined') {
-      gtag('event', 'tour_package_view', {
-        'event_category': 'tour_engagement',
-        'event_label': slug,
-        'tour_package': packageTitle,
-        'page_type': 'tour_package_details',
-        'value': 1
-      });
-    }
-  }, [slug, packageTitle]);
-
-  return <>{children}</>;
-};
-
-// Client component for itinerary tracking
-const ItineraryWrapper = ({ children, slug }) => {
-  useEffect(() => {
-    // Track itinerary view
-    if (typeof gtag !== 'undefined') {
-      gtag('event', 'itinerary_view', {
-        'event_category': 'tour_engagement',
-        'event_label': slug,
-        'page_type': 'tour_package_details',
-        'value': 1
-      });
-    }
-  }, [slug]);
-
-  return <>{children}</>;
-};
-
-// Client component for accommodation tracking
-const AccommodationWrapper = ({ children, slug, accommodationName }) => {
-  useEffect(() => {
-    // Track accommodation view
-    if (typeof gtag !== 'undefined') {
-      gtag('event', 'accommodation_view', {
-        'event_category': 'tour_engagement',
-        'event_label': slug,
-        'accommodation_name': accommodationName,
-        'page_type': 'tour_package_details',
-        'value': 1
-      });
-    }
-  }, [slug, accommodationName]);
-
-  return <>{children}</>;
-};
-
-// Main Tour Package Page Component
+// Main Tour Package Page Component (Server Component)
 export default function TourPackagePage({ params }) {
   const { slug } = params;
   const packageInfo = tourDetails[slug];
