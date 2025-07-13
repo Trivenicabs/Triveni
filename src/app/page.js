@@ -154,6 +154,26 @@ const serviceHighlights = [
 export default function OptimizedHomePage() {
   const router = useRouter();
 
+  // Analytics tracking functions
+  const trackEvent = useCallback((eventName, parameters = {}) => {
+    if (typeof gtag !== 'undefined') {
+      gtag('event', eventName, {
+        event_category: 'homepage_interaction',
+        page_location: window.location.href,
+        page_title: document.title,
+        ...parameters
+      });
+    }
+  }, []);
+
+  // Track page view
+  useEffect(() => {
+    trackEvent('homepage_view', {
+      event_category: 'page_view',
+      page_type: 'homepage'
+    });
+  }, [trackEvent]);
+
   // Memoized parallax function
   const parallaxScroll = useCallback(() => {
     const banner = document.querySelector(".hero-banner");
@@ -164,43 +184,109 @@ export default function OptimizedHomePage() {
     }
   }, []);
 
-  // Optimized scroll handler
+  // Optimized scroll handler with scroll tracking
   useEffect(() => {
     let ticking = false;
+    let scrollTimeout;
+    let hasTrackedScroll = false;
     
     const handleScroll = () => {
       if (!ticking) {
         requestAnimationFrame(() => {
           parallaxScroll();
           ticking = false;
+          
+          // Track scroll engagement (once per session)
+          if (!hasTrackedScroll && window.scrollY > 100) {
+            trackEvent('homepage_scroll_engagement', {
+              event_category: 'engagement',
+              scroll_depth: Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100)
+            });
+            hasTrackedScroll = true;
+          }
         });
         ticking = true;
       }
+
+      // Track scroll depth every 25%
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        const scrollPercent = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
+        if (scrollPercent >= 25 && scrollPercent % 25 === 0) {
+          trackEvent('scroll_depth', {
+            event_category: 'engagement',
+            scroll_depth: scrollPercent
+          });
+        }
+      }, 100);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [parallaxScroll]);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      clearTimeout(scrollTimeout);
+    };
+  }, [parallaxScroll, trackEvent]);
 
-  // Memoized event handlers
+  // Memoized event handlers with analytics
   const handleExploreClick = useCallback(() => {
+    trackEvent('explore_services_click', {
+      event_category: 'navigation',
+      event_label: 'hero_explore_button',
+      button_location: 'hero_section'
+    });
     router.push("/services");
-  }, [router]);
+  }, [router, trackEvent]);
 
-  const handleBookNowClick = useCallback(() => {
+  const handleBookNowClick = useCallback((location = 'hero') => {
+    trackEvent('book_now_click', {
+      event_category: 'conversion',
+      event_label: `${location}_book_now`,
+      button_location: location,
+      contact_method: 'whatsapp'
+    });
+    
     const phoneNumber = "7668570551";
     const message = encodeURIComponent("Hi! I am interested in booking a taxi service. Can you help me with the details?");
     const whatsappURL = `https://wa.me/${phoneNumber}?text=${message}`;
     window.open(whatsappURL, '_blank');
-  }, []);
+  }, [trackEvent]);
 
-  // WhatsApp service inquiry handler
+  // WhatsApp service inquiry handler with analytics
   const handleServiceInquiry = useCallback((service) => {
+    trackEvent('service_inquiry_click', {
+      event_category: 'conversion',
+      event_label: service.title.toLowerCase().replace(' ', '_'),
+      service_type: service.title,
+      button_location: 'service_highlights',
+      contact_method: 'whatsapp'
+    });
+    
     const phoneNumber = "7668570551";
     const message = encodeURIComponent(service.whatsappMessage);
     const whatsappURL = `https://wa.me/${phoneNumber}?text=${message}`;
     window.open(whatsappURL, '_blank');
-  }, []);
+  }, [trackEvent]);
+
+  // Track feature card interactions
+  const handleFeatureHover = useCallback((featureTitle) => {
+    trackEvent('feature_hover', {
+      event_category: 'engagement',
+      event_label: featureTitle.toLowerCase().replace(' ', '_'),
+      feature_name: featureTitle
+    });
+  }, [trackEvent]);
+
+  // Track CTA interactions
+  const handleCTAClick = useCallback(() => {
+    trackEvent('cta_book_now_click', {
+      event_category: 'conversion',
+      event_label: 'bottom_cta_button',
+      button_location: 'final_cta_section',
+      contact_method: 'whatsapp'
+    });
+    handleBookNowClick('cta_section');
+  }, [trackEvent, handleBookNowClick]);
 
   // Memoized structured data script
   const structuredDataScript = useMemo(() => 
@@ -268,6 +354,12 @@ export default function OptimizedHomePage() {
               quality={85}
               placeholder="blur"
               blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R+Sh6gqrR9/"
+              onLoad={() => {
+                trackEvent('hero_image_loaded', {
+                  event_category: 'performance',
+                  loading_time: performance.now()
+                });
+              }}
             />
           </div>
 
@@ -311,7 +403,7 @@ export default function OptimizedHomePage() {
                 variants={scaleOnHover}
                 whileHover="hover"
                 whileTap="tap"
-                onClick={handleBookNowClick}
+                onClick={() => handleBookNowClick('hero')}
                 aria-label="Get free quote for taxi service via WhatsApp"
               >
                 Free Quote
@@ -355,6 +447,12 @@ export default function OptimizedHomePage() {
           variants={fadeInUp}
           viewport={{ once: true, margin: "-100px" }}
           aria-labelledby="features-heading"
+          onViewportEnter={() => {
+            trackEvent('features_section_view', {
+              event_category: 'section_view',
+              section_name: 'key_features'
+            });
+          }}
         >
           <div className="max-w-7xl mx-auto px-4">
             <div className="text-center mb-12">
@@ -375,6 +473,7 @@ export default function OptimizedHomePage() {
                     initial: { opacity: 0, y: 30 },
                     animate: { opacity: 1, y: 0, transition: { delay: index * 0.1 } }
                   }}
+                  onHoverStart={() => handleFeatureHover(feature.title)}
                 >
                   <div className={`inline-flex items-center justify-center w-16 h-16 ${feature.color} bg-gray-100 rounded-full mb-4`}>
                     <feature.icon className="w-8 h-8" />
@@ -395,6 +494,12 @@ export default function OptimizedHomePage() {
           variants={fadeInUp}
           viewport={{ once: true, margin: "-100px" }}
           aria-labelledby="services-heading"
+          onViewportEnter={() => {
+            trackEvent('service_highlights_view', {
+              event_category: 'section_view',
+              section_name: 'service_highlights'
+            });
+          }}
         >
           <div className="max-w-7xl mx-auto px-4">
             <div className="text-center mb-12">
@@ -412,6 +517,13 @@ export default function OptimizedHomePage() {
                   key={index}
                   className="group cursor-pointer"
                   onClick={() => handleServiceInquiry(service)}
+                  onHoverStart={() => {
+                    trackEvent('service_card_hover', {
+                      event_category: 'engagement',
+                      service_type: service.title,
+                      card_index: index
+                    });
+                  }}
                 >
                   <motion.div
                     className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 group-hover:-translate-y-2"
@@ -438,14 +550,18 @@ export default function OptimizedHomePage() {
           </div>
         </motion.section>
 
-
-
         {/* About Section */}
         <motion.section
           initial="initial"
           whileInView="animate"
           variants={fadeInUp}
           viewport={{ once: true, margin: "-100px" }}
+          onViewportEnter={() => {
+            trackEvent('about_section_view', {
+              event_category: 'section_view',
+              section_name: 'about_section'
+            });
+          }}
         >
           <AboutSection />
         </motion.section>
@@ -456,11 +572,15 @@ export default function OptimizedHomePage() {
           whileInView="animate"
           variants={fadeInUp}
           viewport={{ once: true, margin: "-100px" }}
+          onViewportEnter={() => {
+            trackEvent('services_section_view', {
+              event_category: 'section_view',
+              section_name: 'services_section'
+            });
+          }}
         >
           <ServicesSection />
         </motion.section>
-
-
 
         {/* Final CTA Section */}
         <motion.section
@@ -470,6 +590,12 @@ export default function OptimizedHomePage() {
           variants={fadeInUp}
           viewport={{ once: true, margin: "-100px" }}
           aria-labelledby="cta-heading"
+          onViewportEnter={() => {
+            trackEvent('final_cta_view', {
+              event_category: 'section_view',
+              section_name: 'final_cta'
+            });
+          }}
         >
           <div className="max-w-4xl mx-auto px-4 text-center">
             <h2 id="cta-heading" className="text-2xl md:text-3xl font-bold mb-6 text-black">
@@ -485,7 +611,7 @@ export default function OptimizedHomePage() {
                 variants={scaleOnHover}
                 whileHover="hover"
                 whileTap="tap"
-                onClick={handleBookNowClick}
+                onClick={handleCTAClick}
                 aria-label="Book taxi service now via WhatsApp"
               >
                 <Phone className="w-5 h-5" />

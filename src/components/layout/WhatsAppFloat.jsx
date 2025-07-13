@@ -6,7 +6,44 @@ import { MessageCircle } from 'lucide-react';
 
 const WhatsAppFloat = ({ phoneNumber = "1234567890" }) => {
   const handleClick = () => {
+    // Track the WhatsApp float button click in Google Analytics
+    if (typeof gtag !== 'undefined') {
+      gtag('event', 'whatsapp_float_click', {
+        'event_category': 'engagement',
+        'event_label': 'floating_whatsapp_button',
+        'button_location': 'floating_bottom_right',
+        'contact_method': 'whatsapp',
+        'phone_number': phoneNumber,
+        'value': 1
+      });
+    }
+    
+    // Open WhatsApp
     window.open(`https://wa.me/${phoneNumber}`, '_blank');
+  };
+
+  // Track when the component becomes visible (optional)
+  const handleVisibilityChange = () => {
+    if (typeof gtag !== 'undefined') {
+      gtag('event', 'whatsapp_float_visible', {
+        'event_category': 'engagement',
+        'event_label': 'floating_whatsapp_visibility',
+        'button_location': 'floating_bottom_right',
+        'value': 1
+      });
+    }
+  };
+
+  // Track hover interactions (optional)
+  const handleHover = () => {
+    if (typeof gtag !== 'undefined') {
+      gtag('event', 'whatsapp_float_hover', {
+        'event_category': 'engagement',
+        'event_label': 'floating_whatsapp_hover',
+        'button_location': 'floating_bottom_right',
+        'value': 1
+      });
+    }
   };
   
   return (
@@ -20,11 +57,13 @@ const WhatsAppFloat = ({ phoneNumber = "1234567890" }) => {
         damping: 20,
         duration: 1
       }}
+      onAnimationComplete={handleVisibilityChange} // Track when animation completes
     >
       <motion.div
         className="relative"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
+        onHoverStart={handleHover} // Track hover events
       >
         {/* Ripple effect */}
         <motion.div
@@ -45,6 +84,7 @@ const WhatsAppFloat = ({ phoneNumber = "1234567890" }) => {
         <button
           onClick={handleClick}
           className="relative bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg flex items-center justify-center group transition-all duration-300"
+          aria-label="Contact us on WhatsApp"
         >
           <MessageCircle size={28} className="group-hover:rotate-12 transition-transform duration-300" />
           
