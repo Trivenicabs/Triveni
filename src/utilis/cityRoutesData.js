@@ -1503,3 +1503,6 @@ export const allCityRoutes = {
   ...cityRoutesData,
   ...basicCityRoutes
 };
+
+
+export const defaultRoutes = allCityRoutes;

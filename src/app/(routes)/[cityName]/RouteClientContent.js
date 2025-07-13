@@ -436,7 +436,7 @@ export default function RouteClientContent({
                           
                           <div className="mt-4 pt-4 border-t border-blue-200">
                             <p className="text-sm text-blue-600 font-medium">
-                              💡 Switch to "Round Trip" above to see all available vehicles and book these larger options!
+                              💡 Switch to Round Trip above to see all available vehicles and book these larger options!
                             </p>
                           </div>
                         </div>
