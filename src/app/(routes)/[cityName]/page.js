@@ -1,9 +1,15 @@
 // src/app/[cityName]/page.js - SERVER COMPONENT (NO "use client")
 import { notFound } from 'next/navigation';
 import { cities, vehiclesServices, cityDetails, touristSpots } from "@/utilis/data";
-import { cityRoutesData, defaultRoutes } from "@/utilis/cityRoutesData";
+import { cityRoutesData, basicCityRoutes, defaultRoutes } from "@/utilis/cityRoutesData";
 import CityServiceClient from "@/components/cities/CityServiceClient";
 import RouteClientContent from "./RouteClientContent";
+
+// Combine main routes and basic routes
+const allCityRoutes = {
+  ...cityRoutesData,
+  ...basicCityRoutes
+};
 
 // Helper functions
 function parseRouteSlug(slug) {
@@ -24,7 +30,18 @@ export function createRouteSlug(cityName, destination) {
 export async function generateStaticParams() {
   const params = [];
 
+  // Check if cities is defined and is an array
+  if (!Array.isArray(cities)) {
+    console.error("Cities is not an array:", cities);
+    return params;
+  }
+
   cities.forEach(city => {
+    if (!city || !city.name) {
+      console.error("Invalid city object:", city);
+      return;
+    }
+
     const cityName = city.name.toLowerCase();
     
     // Add city page
@@ -32,13 +49,22 @@ export async function generateStaticParams() {
       cityName: cityName
     });
     
-    // Add route pages
-    const routes = cityRoutesData[city.name] || defaultRoutes;
-    routes.forEach(route => {
-      params.push({
-        cityName: createRouteSlug(cityName, route.destination)
+    // Get formatted city name for cityRoutesData lookup
+    const formattedCityName = city.name.charAt(0).toUpperCase() + city.name.slice(1);
+    
+    // Add route pages with proper error handling
+    const routes = allCityRoutes[formattedCityName] || defaultRoutes || [];
+    
+    // Ensure routes is an array before calling forEach
+    if (Array.isArray(routes)) {
+      routes.forEach(route => {
+        if (route && route.destination) {
+          params.push({
+            cityName: createRouteSlug(cityName, route.destination)
+          });
+        }
       });
-    });
+    }
   });
 
   return params;
@@ -102,19 +128,19 @@ export default function CityNamePage({ params }) {
       notFound();
     }
     
-    // Get routes for this city
-    const routes = cityRoutesData[formattedCityName] || defaultRoutes;
+    // Get routes for this city with error handling
+    const routes = allCityRoutes[formattedCityName] || defaultRoutes || [];
     
     // Find the specific route
-    const route = routes.find(r => 
-      r.destination.toLowerCase() === formattedDestination.toLowerCase()
-    );
+    const route = Array.isArray(routes) ? routes.find(r => 
+      r && r.destination && r.destination.toLowerCase() === formattedDestination.toLowerCase()
+    ) : null;
     
     if (!route) {
       notFound();
     }
 
-    const estimatedDistance = route.distance || `${Math.floor(Math.random() * 300) + 100}`;
+    const estimatedDistance = route.distance || `${Math.floor(Math.random() * 300) + 100} km`;
     const estimatedTime = route.time || `${Math.floor(Math.random() * 5) + 2} hours`;
 
     return (

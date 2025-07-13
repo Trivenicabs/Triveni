@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Phone, MapPin, Car, ChevronRight, Star, ShieldCheck, Users, ArrowRight, Clock } from "lucide-react";
+import { Phone, MapPin, Car, ChevronRight, Star, ShieldCheck, Users, ArrowRight, Clock, Info } from "lucide-react";
 import { BsWhatsapp } from "react-icons/bs";
 import { phoneNumber } from "@/utilis/data";
 import { getRouteOffices } from "@/utilis/officeLocations";
@@ -40,13 +40,39 @@ export default function RouteClientContent({
     window.open(`https://wa.me/${phoneNumber}`, '_blank');
   };
 
-  const getDisplayPrice = (price) => {
-    return activeTab === 'oneWay' ? price.price : price.roundTrip;
+  // Filter vehicles based on trip type
+  const getFilteredVehicles = (prices) => {
+    if (!prices) return [];
+    
+    if (activeTab === 'oneWay') {
+      // For one-way trips, exclude Bus and Tempo Traveller
+      return prices.filter(price => 
+        !price.vehicle.toLowerCase().includes('bus') && 
+        !price.vehicle.toLowerCase().includes('tempo')
+      );
+    } else {
+      // For round trips, show all vehicles
+      return prices;
+    }
+  };
+
+  // Get vehicles that are only available for round trips
+  const getRoundTripOnlyVehicles = (prices) => {
+    if (!prices) return [];
+    
+    return prices.filter(price => 
+      price.vehicle.toLowerCase().includes('bus') || 
+      price.vehicle.toLowerCase().includes('tempo')
+    );
   };
 
   const getStartingPrice = () => {
     if (!route.prices || route.prices.length === 0) return "₹3000";
-    const prices = route.prices.map(p => {
+    
+    const filteredPrices = getFilteredVehicles(route.prices);
+    if (filteredPrices.length === 0) return "₹3000";
+    
+    const prices = filteredPrices.map(p => {
       const price = activeTab === 'oneWay' ? p.price : p.roundTrip;
       return parseInt(price.replace('₹', ''));
     });
@@ -61,9 +87,20 @@ export default function RouteClientContent({
     }));
   };
 
-  // Get individual vehicle pricing type
+  // Get individual vehicle pricing type - now syncs with main tab
   const getVehiclePricingType = (vehicleIndex) => {
-    return vehiclePricingType[vehicleIndex] || 'oneWay';
+    // If user hasn't specifically set this vehicle's pricing, use the main tab
+    if (vehiclePricingType[vehicleIndex] === undefined) {
+      return activeTab;
+    }
+    return vehiclePricingType[vehicleIndex];
+  };
+
+  // Reset individual toggles when main tab changes
+  const handleTabChange = (newTab) => {
+    setActiveTab(newTab);
+    // Reset all individual vehicle toggles to match the new main tab
+    setVehiclePricingType({});
   };
 
   // Map vehicle types to images
@@ -72,12 +109,17 @@ export default function RouteClientContent({
       'Sedan': '/images/car/car1.png',
       'SUV Ertiga': '/images/car/car2.png', 
       'SUV Innova': '/images/car/car2.png',
+      'Tempo Traveller': '/images/car/tempo_traveller.jpeg',
       'Traveller 9 Seater': '/images/car/tempo_traveller.jpeg',
-      'Traveller 12 Seater': '/images/car/tempo-side2.jpeg',
-      'Traveller 17 Seater': '/images/car/luxury_bus.jpeg'
+      'Traveller 12 Seater': '/images/car/tempo_traveller.jpeg', 
+      'Traveller 17 Seater': '/images/car/tempo_traveller.jpeg',
+      'Bus': '/images/car/luxury_bus.jpeg'
     };
     return vehicleImageMap[vehicleType] || '/images/car/car1.png';
   };
+
+  const filteredVehicles = route.prices ? getFilteredVehicles(route.prices) : [];
+  const roundTripOnlyVehicles = route.prices ? getRoundTripOnlyVehicles(route.prices) : [];
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
@@ -161,7 +203,7 @@ export default function RouteClientContent({
                 {/* Trip Type Tabs */}
                 <div className="flex bg-gray-100 rounded-lg p-1">
                   <button
-                    onClick={() => setActiveTab('oneWay')}
+                    onClick={() => handleTabChange('oneWay')}
                     className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
                       activeTab === 'oneWay'
                         ? 'bg-white text-black shadow-sm'
@@ -171,7 +213,7 @@ export default function RouteClientContent({
                     One Way
                   </button>
                   <button
-                    onClick={() => setActiveTab('roundTrip')}
+                    onClick={() => handleTabChange('roundTrip')}
                     className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
                       activeTab === 'roundTrip'
                         ? 'bg-white text-black shadow-sm'
@@ -202,14 +244,14 @@ export default function RouteClientContent({
                   </div>
                 )}
                 
-                {/* Vehicle Pricing with Individual Toggle Options */}
+                {/* Vehicle Pricing */}
                 <div className="space-y-6 mb-6">
                   <h3 className="text-xl font-semibold">
                     Vehicle Options & Pricing for {activeTab === 'oneWay' ? 'One Way' : 'Round Trip'}
                   </h3>
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {route.prices && route.prices.map((price, index) => {
+                    {filteredVehicles.length > 0 && filteredVehicles.map((price, index) => {
                       const currentPricingType = getVehiclePricingType(index);
                       const isRoundTrip = currentPricingType === 'roundTrip';
                       
@@ -233,10 +275,15 @@ export default function RouteClientContent({
                           <div className="text-center flex-1 flex flex-col">
                             <h4 className="font-bold text-lg mb-2">{price.vehicle}</h4>
                             
-                            {/* Always show capacity info - add default if missing */}
+                            {/* Always show capacity info */}
                             <div className="text-gray-500 text-sm flex items-center justify-center mb-4">
                               <Users className="w-4 h-4 mr-1" />
-                              {price.capacity || (price.vehicle === 'Sedan' ? '4 guests' : '6+ guests')}
+                              {price.capacity || 
+                                (price.vehicle === 'Sedan' ? '4 guests' : 
+                                 price.vehicle.includes('Ertiga') ? '6 guests' :
+                                 price.vehicle.includes('Innova') ? '7 guests' :
+                                 price.vehicle === 'Tempo Traveller' || price.vehicle.includes('Traveller') ? '25 guests' :
+                                 price.vehicle === 'Bus' ? '35 guests' : '6+ guests')}
                             </div>
                             
                             {/* Round Trip Toggle */}
@@ -256,19 +303,7 @@ export default function RouteClientContent({
                               </label>
                             </div>
                             
-                            {/* Current Pricing Display */}
-                            <div className="mb-4">
-                              <div className="flex justify-between items-center">
-                                <span className="text-gray-600">
-                                  {isRoundTrip ? 'Round Trip:' : 'One Way:'}
-                                </span>
-                                <span className={`font-semibold ${isRoundTrip ? 'text-blue-600' : 'text-green-600'}`}>
-                                  {isRoundTrip ? price.roundTrip : price.price}
-                                </span>
-                              </div>
-                            </div>
-                            
-                            {/* Large Price Display */}
+                            {/* Large Price Display - Based on Individual Toggle */}
                             <div className="text-center mb-6 flex-1 flex flex-col justify-center">
                               <div className={`text-3xl font-bold ${isRoundTrip ? 'text-blue-600' : 'text-green-600'}`}>
                                 {isRoundTrip ? price.roundTrip : price.price}
@@ -292,8 +327,9 @@ export default function RouteClientContent({
                       );
                     })}
                   </div>
-                  
-                  {(!route.prices || route.prices.length === 0) && (
+
+                  {/* Fallback vehicles if no pricing data */}
+                  {(!route.prices || filteredVehicles.length === 0) && (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                       <div className="bg-white border border-gray-200 rounded-xl p-6 h-full flex flex-col">
                         <div className="relative w-full h-40 mb-4 rounded-lg overflow-hidden bg-gray-50">
@@ -353,6 +389,61 @@ export default function RouteClientContent({
                     </div>
                   )}
                 </div>
+
+                {/* Round Trip Only Vehicles Information Section */}
+                {activeTab === 'oneWay' && roundTripOnlyVehicles.length > 0 && (
+                  <div className="space-y-4 mb-6">
+                    <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
+                      <div className="flex items-start gap-3">
+                        <Info className="w-6 h-6 text-blue-600 flex-shrink-0 mt-1" />
+                        <div>
+                          <h4 className="text-lg font-semibold text-blue-900 mb-2">
+                            Additional Vehicles Available for Round Trips
+                          </h4>
+                          <p className="text-blue-700 mb-4">
+                            For better value and comfort on longer journeys, we also offer larger vehicles exclusively for round-trip bookings:
+                          </p>
+                          
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            {roundTripOnlyVehicles.map((vehicle, index) => (
+                              <div key={index} className="bg-white rounded-lg p-4 border border-blue-200">
+                                <div className="flex items-center gap-3">
+                                  <div className="relative w-16 h-12 rounded overflow-hidden bg-gray-50 flex-shrink-0">
+                                    <Image
+                                      src={getVehicleImage(vehicle.vehicle)}
+                                      alt={vehicle.vehicle}
+                                      fill
+                                      className="object-contain"
+                                      sizes="64px"
+                                    />
+                                  </div>
+                                  <div className="flex-1">
+                                    <h5 className="font-semibold text-gray-900">{vehicle.vehicle}</h5>
+                                    <div className="text-sm text-gray-600 flex items-center">
+                                      <Users className="w-3 h-3 mr-1" />
+                                      {vehicle.capacity || 
+                                        (vehicle.vehicle === 'Tempo Traveller' || vehicle.vehicle.includes('Traveller') ? '25 guests' :
+                                         vehicle.vehicle === 'Bus' ? '35 guests' : '25+ guests')}
+                                    </div>
+                                    <div className="text-sm font-medium text-blue-600">
+                                      Round Trip: {vehicle.roundTrip}
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                          
+                          <div className="mt-4 pt-4 border-t border-blue-200">
+                            <p className="text-sm text-blue-600 font-medium">
+                              💡 Switch to "Round Trip" above to see all available vehicles and book these larger options!
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
 
@@ -441,9 +532,20 @@ export default function RouteClientContent({
                     What types of vehicles are available for {formattedCityName} to {formattedDestination} travel?
                   </div>
                   <div className="p-4 text-gray-600">
-                    We offer a range of vehicles including Sedans, SUVs, and Tempo Travellers depending on your group size and comfort preferences.
+                    We offer a range of vehicles including Sedans, SUVs for both one-way and round trips. For round trips, we also provide Tempo Travellers and Buses for larger groups.
                   </div>
                 </div>
+
+                {roundTripOnlyVehicles.length > 0 && (
+                  <div className="border border-gray-200 rounded-lg overflow-hidden">
+                    <div className="bg-gray-50 p-4 font-medium">
+                      Why are Tempo Travellers and Buses only available for round trips?
+                    </div>
+                    <div className="p-4 text-gray-600">
+                      Larger vehicles like Tempo Travellers and Buses are more economical and practical for round-trip journeys. This ensures better value for money and reduces environmental impact by optimizing vehicle utilization.
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
             

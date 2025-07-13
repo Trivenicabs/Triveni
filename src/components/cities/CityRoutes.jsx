@@ -2,7 +2,8 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Clock, MapPin, Eye, Calendar, Car, Users } from 'lucide-react';
+import { Clock, MapPin, Eye, Calendar, Car, Users, Info } from 'lucide-react';
+import Image from 'next/image';
 import { cityRoutesData, defaultRoutes } from "@/utilis/cityRoutesData";
 import { phoneNumber } from "@/utilis/data";
 
@@ -22,9 +23,37 @@ const CityRoutes = ({ cityName }) => {
     window.open(`https://wa.me/${phoneNumber}`, '_blank');
   };
 
+  // Filter vehicles based on trip type
+  const getFilteredVehicles = (prices) => {
+    if (!prices) return [];
+    
+    if (activeTab === 'oneWay') {
+      // For one-way trips, exclude Bus and Tempo Traveller
+      return prices.filter(price => 
+        !price.vehicle.toLowerCase().includes('bus') && 
+        !price.vehicle.toLowerCase().includes('tempo')
+      );
+    } else {
+      // For round trips, show all vehicles
+      return prices;
+    }
+  };
+
+  // Get vehicles that are only available for round trips
+  const getRoundTripOnlyVehicles = (prices) => {
+    if (!prices) return [];
+    
+    return prices.filter(price => 
+      price.vehicle.toLowerCase().includes('bus') || 
+      price.vehicle.toLowerCase().includes('tempo')
+    );
+  };
+
   const getStartingPrice = (route) => {
-    if (!route.prices || route.prices.length === 0) return "₹3000";
-    const lowestPrice = Math.min(...route.prices.map(p => {
+    const filteredPrices = getFilteredVehicles(route.prices);
+    if (!filteredPrices || filteredPrices.length === 0) return "₹3000";
+    
+    const lowestPrice = Math.min(...filteredPrices.map(p => {
       const price = activeTab === 'oneWay' ? p.price : p.roundTrip;
       return parseInt(price.replace('₹', ''));
     }));
@@ -36,6 +65,21 @@ const CityRoutes = ({ cityName }) => {
       ...prev,
       [index]: !prev[index]
     }));
+  };
+
+  // Map vehicle types to images
+  const getVehicleImage = (vehicleType) => {
+    const vehicleImageMap = {
+      'Sedan': '/images/car/car1.png',
+      'SUV Ertiga': '/images/car/car2.png', 
+      'SUV Innova': '/images/car/car2.png',
+      'Tempo Traveller': '/images/car/tempo_traveller.jpeg',
+      'Traveller 9 Seater': '/images/car/tempo_traveller.jpeg',
+      'Traveller 12 Seater': '/images/car/tempo_traveller.jpeg', 
+      'Traveller 17 Seater': '/images/car/tempo_traveller.jpeg',
+      'Bus': '/images/car/luxury_bus.jpeg'
+    };
+    return vehicleImageMap[vehicleType] || '/images/car/car1.png';
   };
 
   return (
@@ -69,96 +113,136 @@ const CityRoutes = ({ cityName }) => {
 
       {/* Routes Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {routes.map((route, index) => (
-          <div key={index} className="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow">
-            {/* Route Header */}
-            <div className="flex justify-between items-start mb-4">
-              <div>
-                <h3 className="text-xl font-bold">{cityName} to {route.destination}</h3>
-                <div className="flex items-center gap-4 mt-2 text-sm text-gray-600">
-                  <div className="flex items-center gap-1">
-                    <MapPin className="w-4 h-4" />
-                    <span>{route.distance}</span>
-                  </div>
-                  {route.time && (
+        {routes.map((route, index) => {
+          const filteredVehicles = getFilteredVehicles(route.prices);
+          const roundTripOnlyVehicles = getRoundTripOnlyVehicles(route.prices);
+          const vehiclesToShow = expandedRoutes[index] ? filteredVehicles : filteredVehicles.slice(0, 2);
+
+          return (
+            <div key={index} className="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow">
+              {/* Route Header */}
+              <div className="flex justify-between items-start mb-4">
+                <div>
+                  <h3 className="text-xl font-bold">{cityName} to {route.destination}</h3>
+                  <div className="flex items-center gap-4 mt-2 text-sm text-gray-600">
                     <div className="flex items-center gap-1">
-                      <Clock className="w-4 h-4" />
-                      <span>{route.time}</span>
+                      <MapPin className="w-4 h-4" />
+                      <span>{route.distance}</span>
                     </div>
-                  )}
-                </div>
-              </div>
-              <div className="text-right">
-                <div className="text-sm text-gray-500">Starting from</div>
-                <div className="text-2xl font-bold text-green-600">
-                  {getStartingPrice(route)}
-                </div>
-              </div>
-            </div>
-
-            {/* Description */}
-            <p className="text-gray-600 text-sm mb-4">{route.description}</p>
-
-            {/* Tags */}
-            {route.tags && (
-              <div className="flex flex-wrap gap-2 mb-4">
-                {route.tags.map((tag, tagIndex) => (
-                  <span
-                    key={tagIndex}
-                    className="px-2 py-1 bg-green-100 text-green-700 text-xs rounded-full"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            )}
-
-            {/* Vehicle Options */}
-            <div className="space-y-2 mb-4">
-              {route.prices && route.prices.slice(0, expandedRoutes[index] ? route.prices.length : 2).map((price, priceIndex) => (
-                <div key={priceIndex} className="flex justify-between items-center">
-                  <div className="flex items-center gap-2">
-                    <Car className="w-4 h-4 text-gray-500" />
-                    <span className="text-sm font-medium">{price.vehicle}</span>
-                    {price.capacity && (
-                      <span className="text-xs text-gray-500">({price.capacity})</span>
+                    {route.time && (
+                      <div className="flex items-center gap-1">
+                        <Clock className="w-4 h-4" />
+                        <span>{route.time}</span>
+                      </div>
                     )}
                   </div>
-                  <div className="font-semibold">
-                    {activeTab === 'oneWay' ? price.price : price.roundTrip}
+                </div>
+                <div className="text-right">
+                  <div className="text-sm text-gray-500">Starting from</div>
+                  <div className="text-2xl font-bold text-green-600">
+                    {getStartingPrice(route)}
                   </div>
                 </div>
-              ))}
-            </div>
+              </div>
 
-            {/* Action Buttons */}
-            <div className="flex gap-3">
-              <Link
-                href={`/${createRouteSlug(cityName, route.destination)}`}
-                className="flex-1 bg-black text-white py-2 px-4 rounded-lg text-center text-sm font-medium hover:bg-gray-800 transition-colors flex items-center justify-center gap-2"
-              >
-                <Eye className="w-4 h-4" />
-                View Details
-              </Link>
-              <button
-                onClick={handleBookNow}
-                className="flex-1 bg-green-600 text-white py-2 px-4 rounded-lg text-sm font-medium hover:bg-green-700 transition-colors"
-              >
-                Book Now
-              </button>
-            </div>
+              {/* Description */}
+              <p className="text-gray-600 text-sm mb-4">{route.description}</p>
 
-            {/* Show all vehicle options link */}
-            {route.prices && route.prices.length > 2 && (
-              <button
-                className="w-full mt-3 text-center text-sm text-gray-500 hover:text-gray-700 transition-colors"
-                onClick={() => toggleVehicleOptions(index)}
-              >
-                {expandedRoutes[index] ? 'Show less vehicle options ˄' : 'Show all vehicle options ˅'}
-              </button>
-            )}
-          </div>
-        ))}
+              {/* Tags */}
+              {route.tags && (
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {route.tags.map((tag, tagIndex) => (
+                    <span
+                      key={tagIndex}
+                      className="px-2 py-1 bg-green-100 text-green-700 text-xs rounded-full"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              )}
+
+              {/* Vehicle Options */}
+              <div className="space-y-2 mb-4">
+                {vehiclesToShow.map((price, priceIndex) => (
+                  <div key={priceIndex} className="flex justify-between items-center">
+                    <div className="flex items-center gap-2">
+                      <Car className="w-4 h-4 text-gray-500" />
+                      <span className="text-sm font-medium">{price.vehicle}</span>
+                      {price.capacity && (
+                        <span className="text-xs text-gray-500">({price.capacity})</span>
+                      )}
+                    </div>
+                    <div className="font-semibold">
+                      {activeTab === 'oneWay' ? price.price : price.roundTrip}
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Round Trip Only Vehicles Information */}
+              {activeTab === 'oneWay' && roundTripOnlyVehicles.length > 0 && (
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
+                  <div className="flex items-start gap-2">
+                    <Info className="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" />
+                    <div>
+                      <p className="text-sm text-blue-700 font-medium mb-2">
+                        Additional vehicles available for round trips:
+                      </p>
+                      <div className="space-y-1">
+                        {roundTripOnlyVehicles.map((vehicle, idx) => (
+                          <div key={idx} className="flex items-center gap-2 text-sm">
+                            <div className="relative w-8 h-6 rounded overflow-hidden bg-white flex-shrink-0">
+                              <Image
+                                src={getVehicleImage(vehicle.vehicle)}
+                                alt={vehicle.vehicle}
+                                fill
+                                className="object-contain"
+                                sizes="32px"
+                              />
+                            </div>
+                            <span className="font-medium text-blue-800">{vehicle.vehicle}</span>
+                            <span className="text-blue-600">- {vehicle.roundTrip}</span>
+                          </div>
+                        ))}
+                      </div>
+                      <p className="text-xs text-blue-600 mt-2">
+                        💡 Switch to "Round Trip" to book these options!
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Action Buttons */}
+              <div className="flex gap-3">
+                <Link
+                  href={`/${createRouteSlug(cityName, route.destination)}`}
+                  className="flex-1 bg-black text-white py-2 px-4 rounded-lg text-center text-sm font-medium hover:bg-gray-800 transition-colors flex items-center justify-center gap-2"
+                >
+                  <Eye className="w-4 h-4" />
+                  View Details
+                </Link>
+                <button
+                  onClick={handleBookNow}
+                  className="flex-1 bg-green-600 text-white py-2 px-4 rounded-lg text-sm font-medium hover:bg-green-700 transition-colors"
+                >
+                  Book Now
+                </button>
+              </div>
+
+              {/* Show all vehicle options link */}
+              {filteredVehicles.length > 2 && (
+                <button
+                  className="w-full mt-3 text-center text-sm text-gray-500 hover:text-gray-700 transition-colors"
+                  onClick={() => toggleVehicleOptions(index)}
+                >
+                  {expandedRoutes[index] ? 'Show less vehicle options ˄' : 'Show all vehicle options ˅'}
+                </button>
+              )}
+            </div>
+          );
+        })}
       </div>
     </div>
   );
