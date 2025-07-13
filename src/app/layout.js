@@ -102,6 +102,22 @@ export default function RootLayout({ children }) {
             />
           </>
         )}
+
+        {/* Google Ads (gtag.js) */}
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=AW-17336319883"
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'AW-17336319883');
+            `,
+          }}
+        />
         
         {/* Structured Data for Local Business */}
         <script

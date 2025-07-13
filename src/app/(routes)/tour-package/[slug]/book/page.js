@@ -27,6 +27,49 @@ export async function generateMetadata({ params }) {
   };
 }
 
+// Client-side tracking functions
+const trackingScript = `
+  // Function to track WhatsApp booking clicks
+  window.trackTourBookingClick = function(tourSlug, packageTitle, bookingType = 'whatsapp') {
+    if (typeof gtag !== 'undefined') {
+      gtag('event', 'tour_booking_click', {
+        'event_category': 'tour_booking',
+        'event_label': tourSlug,
+        'tour_package': packageTitle,
+        'booking_type': bookingType,
+        'page_type': 'booking_form',
+        'value': 1
+      });
+    }
+  };
+
+  // Function to track form submissions
+  window.trackTourFormSubmission = function(tourSlug, packageTitle) {
+    if (typeof gtag !== 'undefined') {
+      gtag('event', 'tour_form_submit', {
+        'event_category': 'tour_booking',
+        'event_label': tourSlug,
+        'tour_package': packageTitle,
+        'page_type': 'booking_form',
+        'value': 1
+      });
+    }
+  };
+
+  // Function to track page views
+  window.trackTourBookingPageView = function(tourSlug, packageTitle) {
+    if (typeof gtag !== 'undefined') {
+      gtag('event', 'tour_booking_page_view', {
+        'event_category': 'tour_engagement',
+        'event_label': tourSlug,
+        'tour_package': packageTitle,
+        'page_type': 'booking_form',
+        'value': 1
+      });
+    }
+  };
+`;
+
 // Server component for the booking page
 export default function BookingPage({ params }) {
   const { slug } = params;
@@ -36,5 +79,29 @@ export default function BookingPage({ params }) {
     return <div className="text-center py-16">Package not found</div>;
   }
   
-  return <BookingForm slug={slug} packageInfo={packageInfo} />;
+  return (
+    <>
+      {/* Analytics tracking script */}
+      <script
+        dangerouslySetInnerHTML={{
+          __html: trackingScript
+        }}
+      />
+      
+      {/* Page view tracking */}
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `
+            document.addEventListener('DOMContentLoaded', function() {
+              if (window.trackTourBookingPageView) {
+                window.trackTourBookingPageView('${slug}', '${packageInfo.title}');
+              }
+            });
+          `
+        }}
+      />
+      
+      <BookingForm slug={slug} packageInfo={packageInfo} />
+    </>
+  );
 }

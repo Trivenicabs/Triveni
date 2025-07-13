@@ -36,6 +36,35 @@ export async function generateMetadata({ params }) {
   };
 }
 
+// Client-side component for the Book Now button
+const BookNowButton = ({ slug, packageTitle }) => {
+  const handleBookNowClick = () => {
+    // Track the Book Now button click
+    if (typeof gtag !== 'undefined') {
+      gtag('event', 'tour_book_now_click', {
+        'event_category': 'tour_engagement',
+        'event_label': slug,
+        'tour_package': packageTitle,
+        'button_location': 'package_details_sidebar',
+        'page_type': 'tour_package_details',
+        'value': 1
+      });
+    }
+  };
+
+  return (
+    <Link href={`/tour-package/${slug}/book`}>
+      <button
+        onClick={handleBookNowClick}
+        className="w-full mt-8 bg-[#FACF2D] text-black py-2 rounded-xl font-semibold text-lg
+        hover:bg-black hover:text-white transition-colors shadow-lg"
+      >
+        Book Now
+      </button>
+    </Link>
+  );
+};
+
 // Main Tour Package Page Component
 export default function TourPackagePage({ params }) {
   const { slug } = params;
@@ -45,117 +74,188 @@ export default function TourPackagePage({ params }) {
     return <div className="text-center py-16">Package not found</div>;
   }
 
+  // Client-side tracking script
+  const trackingScript = `
+    // Function to track page views
+    window.trackTourPackageView = function(tourSlug, packageTitle) {
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'tour_package_view', {
+          'event_category': 'tour_engagement',
+          'event_label': tourSlug,
+          'tour_package': packageTitle,
+          'page_type': 'tour_package_details',
+          'value': 1
+        });
+      }
+    };
+
+    // Function to track accommodation section views
+    window.trackAccommodationView = function(tourSlug, accommodationName) {
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'accommodation_view', {
+          'event_category': 'tour_engagement',
+          'event_label': tourSlug,
+          'accommodation_name': accommodationName,
+          'page_type': 'tour_package_details',
+          'value': 1
+        });
+      }
+    };
+
+    // Function to track itinerary interactions
+    window.trackItineraryView = function(tourSlug) {
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'itinerary_view', {
+          'event_category': 'tour_engagement',
+          'event_label': tourSlug,
+          'page_type': 'tour_package_details',
+          'value': 1
+        });
+      }
+    };
+  `;
+
   return (
-    <div className="bg-white">
-      <div className="relative h-[60vh]">
-        <Image
-          src={packageInfo.image}
-          alt={packageInfo.title}
-          className="w-full h-full object-cover"
-          fill
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/30 to-black/70">
-          <div className="max-w-7xl mx-auto px-4 h-full flex flex-col justify-end pb-16 text-white">
-            <h1 className="text-4xl font-bold mb-6 tracking-[0.07rem]">
-              {packageInfo.title}
-            </h1>
-            <div className="flex flex-wrap justify-center gap-6 text-sm tracking-[0.05rem]">
-              <div className="flex items-center bg-black/30 px-3 rounded-full">
-                <Clock className="w-4 h-4 mr-2" />
-                {packageInfo.duration}
-              </div>
-              <div className="flex items-center bg-black/30 px-3 rounded-full">
-                <MapPin className="w-5 h-5 mr-2" />
-                {packageInfo.startingPoint} to {packageInfo.destination}
-              </div>
-              <div className="text-xl font-bold bg-[#FACF2D] text-black px-6 py-1 rounded-full">
-                {packageInfo.price}{" "}
-                <span className="text-sm font-normal">per person</span>
+    <>
+      {/* Analytics tracking script */}
+      <script
+        dangerouslySetInnerHTML={{
+          __html: trackingScript
+        }}
+      />
+      
+      {/* Page view tracking */}
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `
+            document.addEventListener('DOMContentLoaded', function() {
+              if (window.trackTourPackageView) {
+                window.trackTourPackageView('${slug}', '${packageInfo.title}');
+              }
+            });
+          `
+        }}
+      />
+
+      <div className="bg-white">
+        <div className="relative h-[60vh]">
+          <Image
+            src={packageInfo.image}
+            alt={packageInfo.title}
+            className="w-full h-full object-cover"
+            fill
+            sizes="100vw"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/30 to-black/70">
+            <div className="max-w-7xl mx-auto px-4 h-full flex flex-col justify-end pb-16 text-white">
+              <h1 className="text-4xl font-bold mb-6 tracking-[0.07rem]">
+                {packageInfo.title}
+              </h1>
+              <div className="flex flex-wrap justify-center gap-6 text-sm tracking-[0.05rem]">
+                <div className="flex items-center bg-black/30 px-3 rounded-full">
+                  <Clock className="w-4 h-4 mr-2" />
+                  {packageInfo.duration}
+                </div>
+                <div className="flex items-center bg-black/30 px-3 rounded-full">
+                  <MapPin className="w-5 h-5 mr-2" />
+                  {packageInfo.startingPoint} to {packageInfo.destination}
+                </div>
+                <div className="text-xl font-bold bg-[#FACF2D] text-black px-6 py-1 rounded-full">
+                  {packageInfo.price}{" "}
+                  <span className="text-sm font-normal">per person</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div className="max-w-7xl mx-auto px-4 py-16">
-        <div className="grid md:grid-cols-3 gap-12">
-          <div className="md:col-span-2 space-y-16">
-            <section className="bg-yellow-100 p-8 rounded-2xl shadow-lg">
-              <h2 className="text-2xl tracking-[0.06rem] font-semibold mb-6">
-                Overview
-              </h2>
-              <p className="text-yellow-900 text-lg leading-relaxed">
-                {packageInfo.overview}
-              </p>
-            </section>
+        <div className="max-w-7xl mx-auto px-4 py-16">
+          <div className="grid md:grid-cols-3 gap-12">
+            <div className="md:col-span-2 space-y-16">
+              <section className="bg-yellow-100 p-8 rounded-2xl shadow-lg">
+                <h2 className="text-2xl tracking-[0.06rem] font-semibold mb-6">
+                  Overview
+                </h2>
+                <p className="text-yellow-900 text-lg leading-relaxed">
+                  {packageInfo.overview}
+                </p>
+              </section>
 
-            <ItinerarySection itinerary={packageInfo.itinerary} />
+              <div
+                onLoad={() => {
+                  if (typeof window !== 'undefined' && window.trackItineraryView) {
+                    window.trackItineraryView(slug);
+                  }
+                }}
+              >
+                <ItinerarySection itinerary={packageInfo.itinerary} />
+              </div>
 
-            <section className="bg-yellow-100 p-8 rounded-2xl shadow-lg">
-              <h2 className="text-2xl tracking-[0.06rem] font-semibold mb-6">
-                Accommodation
-              </h2>
-              <div className="bg-gray-50 p-8 rounded-xl">
-                <h3 className="text-2xl mb-4">
-                  {packageInfo.accommodation.name}
-                </h3>
-                <div className="flex items-center mb-6">
-                  {[...Array(parseInt(packageInfo.accommodation.rating))].map(
-                    (_, i) => (
-                      <Star
-                        key={i}
-                        className="w-6 h-6 text-[#FACF2D]"
-                        fill="#FACF2D"
-                      />
-                    )
-                  )}
-                </div>
-                <div className="grid sm:grid-cols-2 gap-6">
-                  {packageInfo.accommodation.amenities.map((amenity, index) => (
-                    <div
-                      key={index}
-                      className="flex items-center bg-white p-4 rounded-lg shadow-sm hover:scale-[1.03] transition-transform"
-                    >
-                      <div className="w-10 h-10 rounded-full bg-[#FACF2D] flex items-center justify-center mr-3">
-                        <Coffee className="w-5 h-5 text-white" />
+              <section 
+                className="bg-yellow-100 p-8 rounded-2xl shadow-lg"
+                onLoad={() => {
+                  if (typeof window !== 'undefined' && window.trackAccommodationView) {
+                    window.trackAccommodationView(slug, packageInfo.accommodation.name);
+                  }
+                }}
+              >
+                <h2 className="text-2xl tracking-[0.06rem] font-semibold mb-6">
+                  Accommodation
+                </h2>
+                <div className="bg-gray-50 p-8 rounded-xl">
+                  <h3 className="text-2xl mb-4">
+                    {packageInfo.accommodation.name}
+                  </h3>
+                  <div className="flex items-center mb-6">
+                    {[...Array(parseInt(packageInfo.accommodation.rating))].map(
+                      (_, i) => (
+                        <Star
+                          key={i}
+                          className="w-6 h-6 text-[#FACF2D]"
+                          fill="#FACF2D"
+                        />
+                      )
+                    )}
+                  </div>
+                  <div className="grid sm:grid-cols-2 gap-6">
+                    {packageInfo.accommodation.amenities.map((amenity, index) => (
+                      <div
+                        key={index}
+                        className="flex items-center bg-white p-4 rounded-lg shadow-sm hover:scale-[1.03] transition-transform"
+                      >
+                        <div className="w-10 h-10 rounded-full bg-[#FACF2D] flex items-center justify-center mr-3">
+                          <Coffee className="w-5 h-5 text-white" />
+                        </div>
+                        <span className="font-medium">{amenity}</span>
                       </div>
-                      <span className="font-medium">{amenity}</span>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
-              </div>
-            </section>
-          </div>
+              </section>
+            </div>
 
-          <div className="md:col-span-1">
-            <div className="sticky top-4 bg-white p-8 rounded-2xl shadow-lg">
-              <h2 className="text-2xl font-semibold mb-6">
-                Package Inclusions
-              </h2>
-              <ul className="space-y-4">
-                {packageInfo.inclusions.map((inclusion, index) => (
-                  <li
-                    key={index}
-                    className="flex items-start"
-                  >
-                    <Star className="w-5 h-5 text-[#FACF2D] mr-3 flex-shrink-0 mt-1" />
-                    <span className="text-gray-700">{inclusion}</span>
-                  </li>
-                ))}
-              </ul>
-              <Link href={`/tour-package/${slug}/book`}>
-                <button
-                  className="w-full mt-8 bg-[#FACF2D] text-black py-2 rounded-xl font-semibold text-lg
-                  hover:bg-black hover:text-white transition-colors shadow-lg"
-                >
-                  Book Now
-                </button>
-              </Link>
+            <div className="md:col-span-1">
+              <div className="sticky top-4 bg-white p-8 rounded-2xl shadow-lg">
+                <h2 className="text-2xl font-semibold mb-6">
+                  Package Inclusions
+                </h2>
+                <ul className="space-y-4">
+                  {packageInfo.inclusions.map((inclusion, index) => (
+                    <li
+                      key={index}
+                      className="flex items-start"
+                    >
+                      <Star className="w-5 h-5 text-[#FACF2D] mr-3 flex-shrink-0 mt-1" />
+                      <span className="text-gray-700">{inclusion}</span>
+                    </li>
+                  ))}
+                </ul>
+                <BookNowButton slug={slug} packageTitle={packageInfo.title} />
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
