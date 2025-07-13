@@ -16,8 +16,8 @@ const CityRoutes = ({ cityName }) => {
   const [activeTab, setActiveTab] = useState('oneWay');
   const [expandedRoutes, setExpandedRoutes] = useState({});
 
-  // Get routes for the current city
-  const routes = cityRoutesData[cityName] || defaultRoutes;
+  // Get routes for the current city - FIXED: Proper fallback handling
+  const routes = cityRoutesData[cityName] || defaultRoutes[cityName] || [];
 
   const handleBookNow = () => {
     window.open(`https://wa.me/${phoneNumber}`, '_blank');
@@ -81,6 +81,27 @@ const CityRoutes = ({ cityName }) => {
     };
     return vehicleImageMap[vehicleType] || '/images/car/car1.png';
   };
+
+  // Add a check for empty routes
+  if (!routes || routes.length === 0) {
+    return (
+      <div className="space-y-6">
+        <div className="flex justify-between items-center">
+          <h2 className="text-2xl font-bold">Popular Routes from {cityName}</h2>
+        </div>
+        <div className="bg-white border border-gray-200 rounded-xl p-6 text-center">
+          <p className="text-gray-600">No routes available for {cityName} at the moment.</p>
+          <p className="text-sm text-gray-500 mt-2">Please contact us for custom routes and pricing.</p>
+          <button
+            onClick={handleBookNow}
+            className="mt-4 bg-green-600 text-white py-2 px-4 rounded-lg text-sm font-medium hover:bg-green-700 transition-colors"
+          >
+            Contact Us
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-6">

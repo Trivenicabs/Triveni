@@ -1315,17 +1315,6 @@ export const basicCityRoutes = {
         { vehicle: "Tempo Traveller", price: "₹8400", roundTrip: "₹16800", capacity: "25 guests" },
         { vehicle: "Bus", price: "₹13200", roundTrip: "₹26400", capacity: "35 guests" }
       ]
-    },
-    {
-      destination: "Nearest Airport",
-      distance: "35 km",
-      time: "1 hour",
-      description: "Airport transfer service from Haridwar to Dehradun Airport.",
-      tags: ["Airport Transfer", "Quick Service"],
-      prices: [
-        { vehicle: "Sedan", price: "₹420", roundTrip: "₹840" },
-        { vehicle: "SUV Ertiga", price: "₹525", roundTrip: "₹1050", capacity: "6 guests" }
-      ]
     }
   ],
   
@@ -1342,17 +1331,6 @@ export const basicCityRoutes = {
         { vehicle: "SUV Innova", price: "₹9720", roundTrip: "₹19440", capacity: "7 guests" },
         { vehicle: "Tempo Traveller", price: "₹18900", roundTrip: "₹37800", capacity: "25 guests" },
         { vehicle: "Bus", price: "₹29700", roundTrip: "₹59400", capacity: "35 guests" }
-      ]
-    },
-    {
-      destination: "Nearest Airport",
-      distance: "50 km",
-      time: "1.5 hours", 
-      description: "Airport transfer service from Manali to Kullu Airport.",
-      tags: ["Airport Transfer", "Mountain Route"],
-      prices: [
-        { vehicle: "Sedan", price: "₹600", roundTrip: "₹1200" },
-        { vehicle: "SUV Ertiga", price: "₹750", roundTrip: "₹1500", capacity: "6 guests" }
       ]
     }
   ],
@@ -1371,17 +1349,6 @@ export const basicCityRoutes = {
         { vehicle: "Tempo Traveller", price: "₹15750", roundTrip: "₹31500", capacity: "25 guests" },
         { vehicle: "Bus", price: "₹24750", roundTrip: "₹49500", capacity: "35 guests" }
       ]
-    },
-    {
-      destination: "Nearest Airport",
-      distance: "15 km",
-      time: "30 minutes",
-      description: "Airport transfer service from Amritsar to Raja Sansi Airport.",
-      tags: ["Airport Transfer", "Local Service"],
-      prices: [
-        { vehicle: "Sedan", price: "₹180", roundTrip: "₹360" },
-        { vehicle: "SUV Ertiga", price: "₹225", roundTrip: "₹450", capacity: "6 guests" }
-      ]
     }
   ],
 
@@ -1398,17 +1365,6 @@ export const basicCityRoutes = {
         { vehicle: "SUV Innova", price: "₹11160", roundTrip: "₹22320", capacity: "7 guests" },
         { vehicle: "Tempo Traveller", price: "₹21700", roundTrip: "₹43400", capacity: "25 guests" },
         { vehicle: "Bus", price: "₹34100", roundTrip: "₹68200", capacity: "35 guests" }
-      ]
-    },
-    {
-      destination: "Nearest Airport", 
-      distance: "5 km",
-      time: "15 minutes",
-      description: "Airport transfer service from Jodhpur to Jodhpur Airport.",
-      tags: ["Airport Transfer", "Quick Service"],
-      prices: [
-        { vehicle: "Sedan", price: "₹60", roundTrip: "₹120" },
-        { vehicle: "SUV Ertiga", price: "₹75", roundTrip: "₹150", capacity: "6 guests" }
       ]
     }
   ],
@@ -1427,17 +1383,6 @@ export const basicCityRoutes = {
         { vehicle: "Tempo Traveller", price: "₹23100", roundTrip: "₹46200", capacity: "25 guests" },
         { vehicle: "Bus", price: "₹36300", roundTrip: "₹72600", capacity: "35 guests" }
       ]
-    },
-    {
-      destination: "Nearest Airport",
-      distance: "25 km", 
-      time: "45 minutes",
-      description: "Airport transfer service from Udaipur to Maharana Pratap Airport.",
-      tags: ["Airport Transfer", "City Service"],
-      prices: [
-        { vehicle: "Sedan", price: "₹300", roundTrip: "₹600" },
-        { vehicle: "SUV Ertiga", price: "₹375", roundTrip: "₹750", capacity: "6 guests" }
-      ]
     }
   ],
 
@@ -1455,17 +1400,6 @@ export const basicCityRoutes = {
         { vehicle: "Tempo Traveller", price: "₹24150", roundTrip: "₹48300", capacity: "25 guests" },
         { vehicle: "Bus", price: "₹37950", roundTrip: "₹75900", capacity: "35 guests" }
       ]
-    },
-    {
-      destination: "Nearest Airport",
-      distance: "145 km",
-      time: "3 hours",
-      description: "Airport transfer service from Ayodhya to Lucknow Airport.",
-      tags: ["Airport Transfer", "Regional Service"],
-      prices: [
-        { vehicle: "Sedan", price: "₹1740", roundTrip: "₹3480" },
-        { vehicle: "SUV Ertiga", price: "₹2175", roundTrip: "₹4350", capacity: "6 guests" }
-      ]
     }
   ],
 
@@ -1482,17 +1416,6 @@ export const basicCityRoutes = {
         { vehicle: "SUV Innova", price: "₹17100", roundTrip: "₹34200", capacity: "7 guests" },
         { vehicle: "Tempo Traveller", price: "₹33250", roundTrip: "₹66500", capacity: "25 guests" },
         { vehicle: "Bus", price: "₹52250", roundTrip: "₹104500", capacity: "35 guests" }
-      ]
-    },
-    {
-      destination: "Nearest Airport",
-      distance: "15 km",
-      time: "30 minutes",
-      description: "Airport transfer service from Ahmedabad to Sardar Vallabhbhai Patel Airport.",
-      tags: ["Airport Transfer", "Metro Access"],
-      prices: [
-        { vehicle: "Sedan", price: "₹180", roundTrip: "₹360" },
-        { vehicle: "SUV Ertiga", price: "₹225", roundTrip: "₹450", capacity: "6 guests" }
       ]
     }
   ]
