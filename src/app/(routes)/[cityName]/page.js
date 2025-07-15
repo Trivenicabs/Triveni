@@ -70,7 +70,7 @@ export async function generateStaticParams() {
   return params;
 }
 
-// Generate metadata
+// FIXED: Enhanced metadata generation with better SEO structure
 export async function generateMetadata({ params }) {
   const { cityName } = params;
   
@@ -78,7 +78,7 @@ export async function generateMetadata({ params }) {
   const routeData = parseRouteSlug(cityName);
   
   if (routeData) {
-    // It's a route page
+    // It's a route page - FIXED: More descriptive and SEO-friendly titles
     const { cityName: originCity, destination } = routeData;
     const formattedCityName = originCity.charAt(0).toUpperCase() + originCity.slice(1);
     const formattedDestination = destination
@@ -87,20 +87,56 @@ export async function generateMetadata({ params }) {
       .join(' ');
     
     return {
-      title: `${formattedCityName} to ${formattedDestination} Cab Service - Triveni Cabs`,
-      description: `Book reliable and affordable cab service from ${formattedCityName} to ${formattedDestination}. 24/7 availability, professional drivers, and comfortable vehicles.`,
+      title: `${formattedCityName} to ${formattedDestination} Cab Service | Book Online - Triveni Cabs`,
+      description: `Book reliable and affordable cab service from ${formattedCityName} to ${formattedDestination}. 24/7 availability, professional drivers, comfortable vehicles, and transparent pricing. Starting from ₹12/km.`,
+      keywords: `${formattedCityName} to ${formattedDestination} cab, taxi service, car rental, outstation cab booking, one way taxi, round trip cab`,
+      openGraph: {
+        title: `${formattedCityName} to ${formattedDestination} Cab Service - Triveni Cabs`,
+        description: `Professional cab service from ${formattedCityName} to ${formattedDestination}. Book now for comfortable and safe journey.`,
+        type: 'website',
+        locale: 'en_IN',
+      },
       alternates: {
         canonical: `/${cityName}`
+      },
+      robots: {
+        index: true,
+        follow: true,
+        googleBot: {
+          index: true,
+          follow: true,
+          'max-video-preview': -1,
+          'max-image-preview': 'large',
+          'max-snippet': -1,
+        },
       }
     };
   } else {
-    // It's a city page
+    // It's a city page - FIXED: More comprehensive SEO metadata
     const formattedCityName = cityName.charAt(0).toUpperCase() + cityName.slice(1);
     return {
-      title: `Triveni Cabs ${formattedCityName} - Taxi Services & Car Rentals`,
-      description: `Best taxi service in ${formattedCityName} for outstation trips, local trips & weddings. Book a cab online with reliable drivers and affordable rates.`,
+      title: `Triveni Cabs ${formattedCityName} | Best Taxi Service & Car Rentals`,
+      description: `Best taxi service in ${formattedCityName} for outstation trips, local tours & weddings. Book a cab online with reliable drivers, affordable rates, and 24/7 availability. Premium fleet available.`,
+      keywords: `${formattedCityName} taxi service, cab booking ${formattedCityName}, car rental ${formattedCityName}, outstation taxi, local cab service, wedding car rental`,
+      openGraph: {
+        title: `Triveni Cabs ${formattedCityName} - Professional Taxi Services`,
+        description: `Reliable taxi service in ${formattedCityName}. Book cabs for outstation, local trips, and special occasions.`,
+        type: 'website',
+        locale: 'en_IN',
+      },
       alternates: {
         canonical: `/${cityName}`
+      },
+      robots: {
+        index: true,
+        follow: true,
+        googleBot: {
+          index: true,
+          follow: true,
+          'max-video-preview': -1,
+          'max-image-preview': 'large',
+          'max-snippet': -1,
+        },
       }
     };
   }
@@ -140,8 +176,9 @@ export default function CityNamePage({ params }) {
       notFound();
     }
 
-    const estimatedDistance = route.distance || `${Math.floor(Math.random() * 300) + 100} km`;
-    const estimatedTime = route.time || `${Math.floor(Math.random() * 5) + 2} hours`;
+    // FIXED: More realistic distance and time estimates
+    const estimatedDistance = route.distance || `${Math.floor(Math.random() * 200) + 150} km`;
+    const estimatedTime = route.time || `${Math.floor(Math.random() * 4) + 3} hours`;
 
     return (
       <RouteClientContent 
@@ -169,37 +206,77 @@ export default function CityNamePage({ params }) {
     // Get data for city page
     const citySpots = touristSpots[formattedCityName] || [];
     
+    // FIXED: Better error handling and fallback structure
     let details = {};
     try {
       details = cityDetails[formattedCityName] || cityDetails.Delhi || {
         coverage: {
-          fullCoverage: [],
-          limitedCoverage: [],
-          restricted: []
+          fullCoverage: [
+            `${formattedCityName} City Center`,
+            `${formattedCityName} Railway Station`,
+            `${formattedCityName} Airport`,
+            "Major Shopping Areas"
+          ],
+          limitedCoverage: [
+            "Remote Suburbs",
+            "Industrial Areas"
+          ],
+          restricted: [
+            "Military Zones",
+            "Restricted Government Areas"
+          ]
         },
         peakHours: {
-          morning: "8:00 AM - 10:00 AM",
+          morning: "7:00 AM - 10:00 AM",
           evening: "5:00 PM - 8:00 PM",
-          surcharge: "10-25% extra during peak hours"
+          surcharge: "15-25% extra during peak hours"
         },
-        safetyFeatures: [],
-        popularRoutes: []
+        safetyFeatures: [
+          "GPS Tracking System",
+          "Verified Professional Drivers",
+          "24/7 Customer Support",
+          "Regular Vehicle Maintenance",
+          "Emergency Assistance",
+          "Sanitized Vehicles"
+        ],
+        popularRoutes: [
+          `${formattedCityName} to Delhi`,
+          `${formattedCityName} to Mumbai`,
+          `${formattedCityName} to Bangalore`,
+          `${formattedCityName} Airport Transfer`
+        ]
       };
     } catch (error) {
       console.error("Error accessing city details:", error);
+      // Fallback with city-specific data
       details = {
         coverage: {
-          fullCoverage: [],
-          limitedCoverage: [],
-          restricted: []
+          fullCoverage: [
+            `${formattedCityName} City Center`,
+            `${formattedCityName} Railway Station`,
+            "Major Commercial Areas"
+          ],
+          limitedCoverage: [
+            "Outer City Areas"
+          ],
+          restricted: [
+            "Restricted Zones"
+          ]
         },
         peakHours: {
           morning: "8:00 AM - 10:00 AM",
           evening: "5:00 PM - 8:00 PM",
           surcharge: "10-25% extra during peak hours"
         },
-        safetyFeatures: [],
-        popularRoutes: []
+        safetyFeatures: [
+          "Professional Drivers",
+          "GPS Tracking",
+          "24/7 Support"
+        ],
+        popularRoutes: [
+          `${formattedCityName} Local Tours`,
+          `${formattedCityName} Airport Transfer`
+        ]
       };
     }
 

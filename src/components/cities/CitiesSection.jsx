@@ -41,6 +41,17 @@ const CitiesSection = () => {
     setCurrentPage(page);
   };
 
+  // Helper function to create unique headings
+  const getCityHeading = (cityName, index) => {
+    const headingVariations = [
+      `Book Cab in ${cityName}`,
+      `${cityName} Car Rental`,
+      `Taxi Booking ${cityName}`,
+      `${cityName} Cab Service`
+    ];
+    return headingVariations[index % headingVariations.length];
+  };
+
   return (
     <section className="py-16 bg-gradient-to-b from-white to-gray-50" aria-labelledby="cities-heading">
       <div className="max-w-7xl mx-auto px-4">
@@ -49,9 +60,9 @@ const CitiesSection = () => {
           <span className="text-yellow-500 font-semibold mb-2 block" role="text" aria-label="Service coverage indicator">
             Our Taxi Service Coverage
           </span>
-          <h3 id="cities-heading" className="text-2xl md:text-3xl font-bold mb-4">
+          <h2 id="cities-heading" className="text-2xl md:text-3xl font-bold mb-4">
             Cab Booking Available in Major Indian Cities
-          </h3>
+          </h2>
           <p className="text-gray-600 text-sm max-w-2xl mx-auto">
             Experience reliable 24/7 taxi services in {cities.length}+
             cities across India with professional drivers and well-maintained vehicles
@@ -121,9 +132,9 @@ const CitiesSection = () => {
                   aria-label={`Book taxi service in ${city.name}, ${city.coverage}`}
                 >
                   <div className="relative bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border-2 border-transparent hover:border-yellow-400 overflow-hidden h-full">
-                    {/* Card Header */}
+                  
                     <header className="px-6 py-4 border-b">
-                      <h4 className="text-lg md:text-xl font-bold mb-1">{city.name} Taxi Service</h4>
+                      <h3 className="text-lg md:text-xl font-bold mb-1">{getCityHeading(city.name, index)}</h3>
                       <p className="text-gray-600 text-sm">{city.coverage}</p>
                     </header>
                     

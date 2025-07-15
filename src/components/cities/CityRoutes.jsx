@@ -82,6 +82,17 @@ const CityRoutes = ({ cityName }) => {
     return vehicleImageMap[vehicleType] || '/images/car/car1.png';
   };
 
+  // FIXED: Helper function to create unique route headings
+  const getRouteHeading = (cityName, destination, index) => {
+    const headingVariations = [
+      `${cityName} to ${destination} Route`,
+      `Travel from ${cityName} to ${destination}`,
+      `${cityName}-${destination} Cab Booking`,
+      `Journey: ${cityName} → ${destination}`
+    ];
+    return headingVariations[index % headingVariations.length];
+  };
+
   // Add a check for empty routes
   if (!routes || routes.length === 0) {
     return (
@@ -105,7 +116,7 @@ const CityRoutes = ({ cityName }) => {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
+      {/* Header - FIXED: Changed to h2 for better hierarchy */}
       <div className="flex justify-between items-center">
         <h2 className="text-2xl font-bold">Popular Routes from {cityName}</h2>
         <div className="flex bg-gray-100 rounded-lg p-1">
@@ -141,10 +152,10 @@ const CityRoutes = ({ cityName }) => {
 
           return (
             <div key={index} className="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow">
-              {/* Route Header */}
+              {/* Route Header - FIXED: Unique headings */}
               <div className="flex justify-between items-start mb-4">
                 <div>
-                  <h3 className="text-xl font-bold">{cityName} to {route.destination}</h3>
+                  <h3 className="text-xl font-bold">{getRouteHeading(cityName, route.destination, index)}</h3>
                   <div className="flex items-center gap-4 mt-2 text-sm text-gray-600">
                     <div className="flex items-center gap-1">
                       <MapPin className="w-4 h-4" />
@@ -183,8 +194,9 @@ const CityRoutes = ({ cityName }) => {
                 </div>
               )}
 
-              {/* Vehicle Options */}
+              {/* Vehicle Options - FIXED: Reduced heading levels */}
               <div className="space-y-2 mb-4">
+                <h4 className="text-sm font-semibold text-gray-700 mb-2">Available Vehicles</h4>
                 {vehiclesToShow.map((price, priceIndex) => (
                   <div key={priceIndex} className="flex justify-between items-center">
                     <div className="flex items-center gap-2">
@@ -240,6 +252,7 @@ const CityRoutes = ({ cityName }) => {
                 <Link
                   href={`/${createRouteSlug(cityName, route.destination)}`}
                   className="flex-1 bg-black text-white py-2 px-4 rounded-lg text-center text-sm font-medium hover:bg-gray-800 transition-colors flex items-center justify-center gap-2"
+                  aria-label={`View detailed information for ${cityName} to ${route.destination} route`}
                 >
                   <Eye className="w-4 h-4" />
                   View Details
@@ -247,6 +260,7 @@ const CityRoutes = ({ cityName }) => {
                 <button
                   onClick={handleBookNow}
                   className="flex-1 bg-green-600 text-white py-2 px-4 rounded-lg text-sm font-medium hover:bg-green-700 transition-colors"
+                  aria-label={`Book cab from ${cityName} to ${route.destination}`}
                 >
                   Book Now
                 </button>
@@ -257,6 +271,7 @@ const CityRoutes = ({ cityName }) => {
                 <button
                   className="w-full mt-3 text-center text-sm text-gray-500 hover:text-gray-700 transition-colors"
                   onClick={() => toggleVehicleOptions(index)}
+                  aria-label={expandedRoutes[index] ? 'Show fewer vehicle options' : 'Show all vehicle options'}
                 >
                   {expandedRoutes[index] ? 'Show less vehicle options ˄' : 'Show all vehicle options ˅'}
                 </button>

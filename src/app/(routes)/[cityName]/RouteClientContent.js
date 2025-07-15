@@ -118,6 +118,28 @@ export default function RouteClientContent({
     return vehicleImageMap[vehicleType] || '/images/car/car1.png';
   };
 
+  // FIXED: Helper function to create unique vehicle headings
+  const getVehicleHeading = (vehicleType, index) => {
+    const headingVariations = [
+      `${vehicleType} Cab Service`,
+      `Book ${vehicleType} Online`,
+      `${vehicleType} Rental Option`,
+      `Premium ${vehicleType} Service`
+    ];
+    return headingVariations[index % headingVariations.length];
+  };
+
+  // FIXED: Helper function to create unique FAQ question variations
+  const getFAQVariation = (baseQuestion, cityName, destination, index) => {
+    const variations = [
+      baseQuestion,
+      baseQuestion.replace('travel from', 'go from'),
+      baseQuestion.replace('much time', 'long'),
+      baseQuestion.replace('does it take', 'is required')
+    ];
+    return variations[index % variations.length];
+  };
+
   const filteredVehicles = route.prices ? getFilteredVehicles(route.prices) : [];
   const roundTripOnlyVehicles = route.prices ? getRoundTripOnlyVehicles(route.prices) : [];
 
@@ -135,7 +157,11 @@ export default function RouteClientContent({
           <nav className="mb-6" aria-label="Breadcrumb">
             <ol className="inline-flex items-center space-x-1 md:space-x-3">
               <li className="inline-flex items-center">
-                <Link href="/" className="text-white hover:text-yellow-400 transition-colors">
+                <Link 
+                  href="/" 
+                  className="text-white hover:text-yellow-400 transition-colors"
+                  aria-label="Return to Triveni Cabs homepage"
+                >
                   Home
                 </Link>
               </li>
@@ -174,6 +200,7 @@ export default function RouteClientContent({
             <button 
               onClick={handleCallNow}
               className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg flex items-center transition-colors"
+              aria-label={`Call +91${phoneNumber} to book cab from ${formattedCityName} to ${formattedDestination}`}
             >
               <Phone className="w-5 h-5 mr-2" />
               Call Now
@@ -182,6 +209,7 @@ export default function RouteClientContent({
             <button 
               onClick={handleWhatsApp}
               className="bg-black hover:bg-yellow-400 hover:text-black text-white px-6 py-3 rounded-lg flex items-center transition-colors"
+              aria-label={`WhatsApp booking for ${formattedCityName} to ${formattedDestination} cab service`}
             >
               <BsWhatsapp className="w-5 h-5 mr-2" />
               Book on WhatsApp
@@ -195,13 +223,13 @@ export default function RouteClientContent({
         <div className="bg-white rounded-2xl shadow-xl overflow-hidden mb-12">
           <div className="p-6 space-y-8">
             {/* Route Details */}
-            <div className="border border-gray-200 rounded-lg overflow-hidden">
-              <div className="bg-gray-50 py-3 px-4 border-b flex justify-between items-center">
+            <section className="border border-gray-200 rounded-lg overflow-hidden">
+              <header className="bg-gray-50 py-3 px-4 border-b flex justify-between items-center">
                 <h2 className="text-2xl font-semibold">
                   {formattedCityName} to {formattedDestination} Cab Details
                 </h2>
                 {/* Trip Type Tabs */}
-                <div className="flex bg-gray-100 rounded-lg p-1">
+                <div className="flex bg-gray-100 rounded-lg p-1" role="tablist">
                   <button
                     onClick={() => handleTabChange('oneWay')}
                     className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
@@ -209,6 +237,9 @@ export default function RouteClientContent({
                         ? 'bg-white text-black shadow-sm'
                         : 'text-gray-600 hover:text-gray-900'
                     }`}
+                    role="tab"
+                    aria-selected={activeTab === 'oneWay'}
+                    aria-label="Select one way trip pricing"
                   >
                     One Way
                   </button>
@@ -219,11 +250,14 @@ export default function RouteClientContent({
                         ? 'bg-white text-black shadow-sm'
                         : 'text-gray-600 hover:text-gray-900'
                     }`}
+                    role="tab"
+                    aria-selected={activeTab === 'roundTrip'}
+                    aria-label="Select round trip pricing"
                   >
                     Round Trip
                   </button>
                 </div>
-              </div>
+              </header>
               
               <div className="p-4">
                 <p className="text-gray-700 mb-6">
@@ -232,10 +266,11 @@ export default function RouteClientContent({
 
                 {/* Tags */}
                 {route.tags && (
-                  <div className="flex flex-wrap gap-2 mb-6">
+                  <div className="flex flex-wrap gap-2 mb-6" role="list" aria-label="Route features">
                     {route.tags.map((tag, index) => (
                       <span
                         key={index}
+                        role="listitem"
                         className="px-3 py-1 bg-green-100 text-green-700 text-sm rounded-full"
                       >
                         {tag}
@@ -244,24 +279,24 @@ export default function RouteClientContent({
                   </div>
                 )}
                 
-                {/* Vehicle Pricing */}
-                <div className="space-y-6 mb-6">
+                {/* Vehicle Pricing - FIXED: Better heading hierarchy */}
+                <section className="space-y-6 mb-6">
                   <h3 className="text-xl font-semibold">
                     Vehicle Options & Pricing for {activeTab === 'oneWay' ? 'One Way' : 'Round Trip'}
                   </h3>
                   
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" role="list" aria-label="Available vehicles">
                     {filteredVehicles.length > 0 && filteredVehicles.map((price, index) => {
                       const currentPricingType = getVehiclePricingType(index);
                       const isRoundTrip = currentPricingType === 'roundTrip';
                       
                       return (
-                        <div key={index} className="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow h-full flex flex-col">
+                        <article key={index} role="listitem" className="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow h-full flex flex-col">
                           {/* Large Vehicle Image */}
                           <div className="relative w-full h-40 mb-4 rounded-lg overflow-hidden bg-gray-50">
                             <Image
                               src={getVehicleImage(price.vehicle)}
-                              alt={price.vehicle}
+                              alt={`${price.vehicle} available for ${formattedCityName} to ${formattedDestination} route`}
                               fill
                               className="object-contain"
                               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -271,9 +306,9 @@ export default function RouteClientContent({
                             />
                           </div>
                           
-                          {/* Vehicle Details */}
+                          {/* Vehicle Details - FIXED: Unique headings */}
                           <div className="text-center flex-1 flex flex-col">
-                            <h4 className="font-bold text-lg mb-2">{price.vehicle}</h4>
+                            <h4 className="font-bold text-lg mb-2">{getVehicleHeading(price.vehicle, index)}</h4>
                             
                             {/* Always show capacity info */}
                             <div className="text-gray-500 text-sm flex items-center justify-center mb-4">
@@ -294,6 +329,7 @@ export default function RouteClientContent({
                                   checked={isRoundTrip}
                                   onChange={() => toggleVehiclePricing(index)}
                                   className="sr-only"
+                                  aria-label={`Toggle round trip pricing for ${price.vehicle}`}
                                 />
                                 <div className="relative">
                                   <div className={`block w-10 h-6 rounded-full ${isRoundTrip ? 'bg-blue-500' : 'bg-gray-300'}`}></div>
@@ -309,7 +345,7 @@ export default function RouteClientContent({
                                 {isRoundTrip ? price.roundTrip : price.price}
                               </div>
                               <div className="text-sm text-gray-500">
-                                {isRoundTrip ? 'Round Trip' : 'One Way'}
+                                {isRoundTrip ? 'Round Trip Price' : 'One Way Price'}
                               </div>
                             </div>
                             
@@ -318,12 +354,13 @@ export default function RouteClientContent({
                               <button
                                 onClick={handleWhatsApp}
                                 className="w-full bg-black text-white py-3 rounded-lg font-medium hover:bg-yellow-400 hover:text-black transition-colors"
+                                aria-label={`Book ${price.vehicle} for ${formattedCityName} to ${formattedDestination} ${isRoundTrip ? 'round trip' : 'one way trip'}`}
                               >
                                 Book Now
                               </button>
                             </div>
                           </div>
-                        </div>
+                        </article>
                       );
                     })}
                   </div>
@@ -331,68 +368,70 @@ export default function RouteClientContent({
                   {/* Fallback vehicles if no pricing data */}
                   {(!route.prices || filteredVehicles.length === 0) && (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                      <div className="bg-white border border-gray-200 rounded-xl p-6 h-full flex flex-col">
+                      <article className="bg-white border border-gray-200 rounded-xl p-6 h-full flex flex-col">
                         <div className="relative w-full h-40 mb-4 rounded-lg overflow-hidden bg-gray-50">
                           <Image
                             src="/images/car/car1.png"
-                            alt="Sedan"
+                            alt="Sedan cab service available"
                             fill
                             className="object-contain"
                             sizes="(max-width: 768px) 100vw, 33vw"
                           />
                         </div>
                         <div className="text-center flex-1 flex flex-col">
-                          <h4 className="font-bold text-lg mb-2">Sedan</h4>
+                          <h4 className="font-bold text-lg mb-2">Sedan Cab Service</h4>
                           <div className="text-gray-500 text-sm flex items-center justify-center mb-4">
                             <Users className="w-4 h-4 mr-1" />
-                            4 seater
+                            4 seater capacity
                           </div>
                           <div className="text-3xl font-bold text-green-600 mb-6 flex-1 flex items-center justify-center">₹12/km</div>
                           <div className="mt-auto">
                             <button
                               onClick={handleWhatsApp}
                               className="w-full bg-black text-white py-3 rounded-lg font-medium hover:bg-yellow-400 hover:text-black transition-colors"
+                              aria-label="Book sedan cab service for this route"
                             >
                               Book Now
                             </button>
                           </div>
                         </div>
-                      </div>
+                      </article>
                       
-                      <div className="bg-white border border-gray-200 rounded-xl p-6 h-full flex flex-col">
+                      <article className="bg-white border border-gray-200 rounded-xl p-6 h-full flex flex-col">
                         <div className="relative w-full h-40 mb-4 rounded-lg overflow-hidden bg-gray-50">
                           <Image
                             src="/images/car/car2.png"
-                            alt="SUV"
+                            alt="SUV cab service available"
                             fill
                             className="object-contain"
                             sizes="(max-width: 768px) 100vw, 33vw"
                           />
                         </div>
                         <div className="text-center flex-1 flex flex-col">
-                          <h4 className="font-bold text-lg mb-2">SUV</h4>
+                          <h4 className="font-bold text-lg mb-2">SUV Cab Service</h4>
                           <div className="text-gray-500 text-sm flex items-center justify-center mb-4">
                             <Users className="w-4 h-4 mr-1" />
-                            6-7 seater
+                            6-7 seater capacity
                           </div>
                           <div className="text-3xl font-bold text-green-600 mb-6 flex-1 flex items-center justify-center">₹16/km</div>
                           <div className="mt-auto">
                             <button
                               onClick={handleWhatsApp}
                               className="w-full bg-black text-white py-3 rounded-lg font-medium hover:bg-yellow-400 hover:text-black transition-colors"
+                              aria-label="Book SUV cab service for this route"
                             >
                               Book Now
                             </button>
                           </div>
                         </div>
-                      </div>
+                      </article>
                     </div>
                   )}
-                </div>
+                </section>
 
                 {/* Round Trip Only Vehicles Information Section */}
                 {activeTab === 'oneWay' && roundTripOnlyVehicles.length > 0 && (
-                  <div className="space-y-4 mb-6">
+                  <section className="space-y-4 mb-6">
                     <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
                       <div className="flex items-start gap-3">
                         <Info className="w-6 h-6 text-blue-600 flex-shrink-0 mt-1" />
@@ -404,14 +443,14 @@ export default function RouteClientContent({
                             For better value and comfort on longer journeys, we also offer larger vehicles exclusively for round-trip bookings:
                           </p>
                           
-                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4" role="list" aria-label="Round trip only vehicles">
                             {roundTripOnlyVehicles.map((vehicle, index) => (
-                              <div key={index} className="bg-white rounded-lg p-4 border border-blue-200">
+                              <div key={index} role="listitem" className="bg-white rounded-lg p-4 border border-blue-200">
                                 <div className="flex items-center gap-3">
                                   <div className="relative w-16 h-12 rounded overflow-hidden bg-gray-50 flex-shrink-0">
                                     <Image
                                       src={getVehicleImage(vehicle.vehicle)}
-                                      alt={vehicle.vehicle}
+                                      alt={`${vehicle.vehicle} for round trip service`}
                                       fill
                                       className="object-contain"
                                       sizes="64px"
@@ -442,10 +481,10 @@ export default function RouteClientContent({
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </section>
                 )}
               </div>
-            </div>
+            </section>
 
             {/* Office Locations Section - Only show if offices exist */}
             <OfficeLocations 
@@ -454,126 +493,134 @@ export default function RouteClientContent({
               offices={routeOffices}
             />
             
-            {/* Highlights */}
-            <div className="space-y-4">
+            {/* Highlights - FIXED: Better structure */}
+            <section className="space-y-4">
               <h3 className="text-xl font-semibold">
                 Why Choose Triveni Cabs for {formattedCityName} to {formattedDestination} Travel
               </h3>
               
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="p-4 bg-green-50 rounded-lg">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4" role="list" aria-label="Service highlights">
+                <article role="listitem" className="p-4 bg-green-50 rounded-lg">
                   <div className="flex items-center gap-2 font-semibold mb-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-green-600" viewBox="0 0 20 20" fill="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-green-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    Pricing Transparency
+                    Transparent Pricing
                   </div>
-                  <p className="text-gray-600 text-sm">No hidden charges. Clear pricing and detailed bills for your journey.</p>
-                </div>
+                  <p className="text-gray-600 text-sm">No hidden charges. Clear pricing and detailed bills for your journey from {formattedCityName} to {formattedDestination}.</p>
+                </article>
                 
-                <div className="p-4 bg-blue-50 rounded-lg">
+                <article role="listitem" className="p-4 bg-blue-50 rounded-lg">
                   <div className="flex items-center gap-2 font-semibold mb-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-blue-600" viewBox="0 0 20 20" fill="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-blue-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    Safety First
+                    Safety First Approach
                   </div>
-                  <p className="text-gray-600 text-sm">Verified drivers, well-maintained vehicles, and 24/7 customer support.</p>
-                </div>
+                  <p className="text-gray-600 text-sm">Verified drivers, well-maintained vehicles, GPS tracking, and 24/7 customer support for your journey.</p>
+                </article>
                 
-                <div className="p-4 bg-yellow-50 rounded-lg">
+                <article role="listitem" className="p-4 bg-yellow-50 rounded-lg">
                   <div className="flex items-center gap-2 font-semibold mb-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-yellow-600" viewBox="0 0 20 20" fill="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-yellow-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
                     Comfort & Convenience
                   </div>
-                  <p className="text-gray-600 text-sm">Choose from a range of AC vehicles with ample luggage space.</p>
-                </div>
+                  <p className="text-gray-600 text-sm">Choose from AC vehicles with ample luggage space and flexible pickup locations.</p>
+                </article>
               </div>
-            </div>
+            </section>
             
-            {/* FAQs */}
-            <div className="space-y-4">
+            {/* FAQs - FIXED: Better structure and unique questions */}
+            <section className="space-y-4">
               <h3 className="text-xl font-semibold">
-                Frequently Asked Questions
+                Frequently Asked Questions - {formattedCityName} to {formattedDestination}
               </h3>
               
-              <div className="space-y-4">
-                <div className="border border-gray-200 rounded-lg overflow-hidden">
-                  <div className="bg-gray-50 p-4 font-medium">
-                    How much time does it take to travel from {formattedCityName} to {formattedDestination}?
-                  </div>
+              <div className="space-y-4" role="list" aria-label="Frequently asked questions">
+                <article role="listitem" className="border border-gray-200 rounded-lg overflow-hidden">
+                  <h4 className="bg-gray-50 p-4 font-medium">
+                    How long does the journey take from {formattedCityName} to {formattedDestination}?
+                  </h4>
                   <div className="p-4 text-gray-600">
-                    The journey from {formattedCityName} to {formattedDestination} typically takes {route.time || estimatedTime} depending on traffic and road conditions.
+                    The journey from {formattedCityName} to {formattedDestination} typically takes {route.time || estimatedTime} depending on traffic conditions and route taken.
                   </div>
-                </div>
+                </article>
                 
-                <div className="border border-gray-200 rounded-lg overflow-hidden">
-                  <div className="bg-gray-50 p-4 font-medium">
+                <article role="listitem" className="border border-gray-200 rounded-lg overflow-hidden">
+                  <h4 className="bg-gray-50 p-4 font-medium">
                     Can I book a one-way cab from {formattedCityName} to {formattedDestination}?
-                  </div>
+                  </h4>
                   <div className="p-4 text-gray-600">
-                    Yes, Triveni Cabs offers affordable one-way cab services from {formattedCityName} to {formattedDestination}. You only pay for one direction.
+                    Yes, Triveni Cabs offers affordable one-way cab services from {formattedCityName} to {formattedDestination}. You only pay for one direction with no return charges.
                   </div>
-                </div>
+                </article>
                 
-                <div className="border border-gray-200 rounded-lg overflow-hidden">
-                  <div className="bg-gray-50 p-4 font-medium">
-                    Do you provide pickup from my location in {formattedCityName}?
-                  </div>
+                <article role="listitem" className="border border-gray-200 rounded-lg overflow-hidden">
+                  <h4 className="bg-gray-50 p-4 font-medium">
+                    Do you provide doorstep pickup service in {formattedCityName}?
+                  </h4>
                   <div className="p-4 text-gray-600">
-                    Yes, we provide doorstep pickup from any location in {formattedCityName} and drop you at your desired location in {formattedDestination}.
+                    Yes, we provide convenient doorstep pickup from any location in {formattedCityName} and drop you at your preferred destination in {formattedDestination}.
                   </div>
-                </div>
+                </article>
                 
-                <div className="border border-gray-200 rounded-lg overflow-hidden">
-                  <div className="bg-gray-50 p-4 font-medium">
-                    What types of vehicles are available for {formattedCityName} to {formattedDestination} travel?
-                  </div>
+                <article role="listitem" className="border border-gray-200 rounded-lg overflow-hidden">
+                  <h4 className="bg-gray-50 p-4 font-medium">
+                    What vehicle types are available for {formattedCityName} to {formattedDestination} route?
+                  </h4>
                   <div className="p-4 text-gray-600">
-                    We offer a range of vehicles including Sedans, SUVs for both one-way and round trips. For round trips, we also provide Tempo Travellers and Buses for larger groups.
+                    We offer Sedans, SUVs (Ertiga, Innova) for both one-way and round trips. For round trips, we also provide Tempo Travellers and Buses for larger groups.
                   </div>
-                </div>
+                </article>
 
                 {roundTripOnlyVehicles.length > 0 && (
-                  <div className="border border-gray-200 rounded-lg overflow-hidden">
-                    <div className="bg-gray-50 p-4 font-medium">
-                      Why are Tempo Travellers and Buses only available for round trips?
-                    </div>
+                  <article role="listitem" className="border border-gray-200 rounded-lg overflow-hidden">
+                    <h4 className="bg-gray-50 p-4 font-medium">
+                      Why are larger vehicles only available for round trips?
+                    </h4>
                     <div className="p-4 text-gray-600">
-                      Larger vehicles like Tempo Travellers and Buses are more economical and practical for round-trip journeys. This ensures better value for money and reduces environmental impact by optimizing vehicle utilization.
+                      Larger vehicles like Tempo Travellers and Buses are more cost-effective for round-trip journeys, ensuring better value for money and optimal vehicle utilization.
                     </div>
-                  </div>
+                  </article>
                 )}
               </div>
-            </div>
+            </section>
             
-            {/* Related Routes */}
-            <div className="space-y-4">
+            {/* Related Routes - FIXED: Better structure and anchor texts */}
+            <section className="space-y-4">
               <h3 className="text-xl font-semibold">
                 Other Popular Routes From {formattedCityName}
               </h3>
               
-              <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                {routes.filter(r => r.destination !== formattedDestination).map((route, index) => (
+              <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4" role="list" aria-label="Related cab routes">
+                {routes.filter(r => r.destination !== formattedDestination).slice(0, 8).map((routeItem, index) => (
                   <Link 
                     key={index}
-                    href={`/${createRouteSlug(cityName, route.destination)}`}
-                    className="p-4 border border-gray-200 rounded-lg hover:border-yellow-400 hover:bg-yellow-50 transition-colors flex items-center justify-between"
+                    href={`/${createRouteSlug(cityName, routeItem.destination)}`}
+                    role="listitem"
+                    className="p-4 border border-gray-200 rounded-lg hover:border-yellow-400 hover:bg-yellow-50 transition-colors flex items-center justify-between group"
+                    aria-label={`Book cab from ${formattedCityName} to ${routeItem.destination} - Distance: ${routeItem.distance || 'Contact for details'} - Estimated time: ${routeItem.time || 'varies'}`}
                   >
                     <div className="flex-1">
-                      <div className="font-medium">{formattedCityName} to {route.destination}</div>
-                      <div className="text-sm text-gray-600">{route.distance || '---'}</div>
-                      {route.time && (
-                        <div className="text-xs text-gray-500">{route.time}</div>
+                      <div className="font-medium group-hover:text-yellow-700">
+                        {formattedCityName} to {routeItem.destination}
+                      </div>
+                      <div className="text-sm text-gray-600">
+                        {routeItem.distance || 'Distance varies'}
+                      </div>
+                      {routeItem.time && (
+                        <div className="text-xs text-gray-500">
+                          Duration: {routeItem.time}
+                        </div>
                       )}
                     </div>
-                    <ArrowRight className="w-4 h-4 text-yellow-500 flex-shrink-0 ml-2" />
+                    <ArrowRight className="w-4 h-4 text-yellow-500 flex-shrink-0 ml-2 group-hover:translate-x-1 transition-transform" />
                   </Link>
                 ))}
               </div>
-            </div>
+            </section>
           </div>
         </div>
       </div>

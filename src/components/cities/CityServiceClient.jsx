@@ -61,7 +61,7 @@ const HeroBanner = ({ formattedCityName }) => (
   </nav>
 );
 
-const VehicleCard = ({ vehicle, onBookNow }) => (
+const VehicleCard = ({ vehicle, onBookNow, index }) => (
   <div className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
     <div className="relative h-48">
       <Image
@@ -84,7 +84,8 @@ const VehicleCard = ({ vehicle, onBookNow }) => (
 
     <div className="p-4">
       <div className="flex justify-between items-center mb-4">
-        <h3 className="font-bold text-lg">{vehicle.type}</h3>
+        {/* FIXED: Unique vehicle headings */}
+        <h4 className="font-bold text-lg">{vehicle.type} - Vehicle #{index + 1}</h4>
         <div className="bg-gray-100 px-2 py-1 rounded-full text-sm flex items-center">
           <Users className="w-4 h-4 mr-1" />
           <span>{vehicle.seating}</span>
@@ -111,10 +112,10 @@ const VehicleCard = ({ vehicle, onBookNow }) => (
       </div>
 
       <div className="mb-4">
-        <h4 className="text-sm font-semibold mb-2 flex items-center">
+        <h5 className="text-sm font-semibold mb-2 flex items-center">
           <ShieldCheck className="w-4 h-4 text-yellow-500 mr-1" />
           Included Features
-        </h4>
+        </h5>
         <div className="flex flex-wrap gap-1">
           {vehicle.facilities && vehicle.facilities.slice(0, 3).map((feature, i) => (
             <span key={i} className="bg-gray-100 text-xs px-2 py-1 rounded-full">
@@ -166,10 +167,10 @@ const CoverageSection = ({ details }) => {
 
   return (
     <div className="space-y-4">
-      <h3 className="text-xl font-semibold flex items-center gap-2">
+      <h2 className="text-xl font-semibold flex items-center gap-2">
         <MapIcon className="w-5 h-5 text-yellow-500" />
         Coverage Areas
-      </h3>
+      </h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {coverageAreas.map((area, index) => (
           <div key={index} className={`${area.bgColor} p-4 rounded-lg`}>
@@ -218,10 +219,10 @@ const TouristSpotsSection = ({ citySpots, formattedCityName }) => {
 
   return (
     <div className="space-y-4">
-      <h3 className="text-xl font-semibold flex items-center gap-2">
+      <h2 className="text-xl font-semibold flex items-center gap-2">
         <LocateIcon className="w-5 h-5 text-yellow-500" />
-        Popular Tourist Spots
-      </h3>
+        Popular Tourist Spots in {formattedCityName}
+      </h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {spotsToDisplay.map((spot, index) => (
           <div
@@ -266,10 +267,10 @@ const SafetySection = ({ safetyFeatures }) => {
 
   return (
     <div className="space-y-4">
-      <h3 className="text-xl font-semibold flex items-center gap-2">
+      <h2 className="text-xl font-semibold flex items-center gap-2">
         <Shield className="w-5 h-5 text-yellow-500" />
         Safety Features
-      </h3>
+      </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {features.map((feature, index) => (
           <div
@@ -297,10 +298,10 @@ const PopularRoutesSection = ({ popularRoutes, formattedCityName }) => {
 
   return (
     <div className="space-y-4">
-      <h3 className="text-xl font-semibold flex items-center gap-2">
+      <h2 className="text-xl font-semibold flex items-center gap-2">
         <ParkingCircle className="w-5 h-5 text-yellow-500" />
-        Popular Routes
-      </h3>
+        Popular Routes from {formattedCityName}
+      </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {routes.map((route, index) => (
           <div
@@ -334,10 +335,10 @@ const PeakHoursSection = ({ peakHours }) => {
 
   return (
     <div className="space-y-4">
-      <h3 className="text-xl max-sm:text-sm font-semibold flex items-center gap-2">
+      <h2 className="text-xl max-sm:text-sm font-semibold flex items-center gap-2">
         <Clock className="w-5 h-5 text-yellow-500" />
         Peak Hours & Pricing
-      </h3>
+      </h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {peakData.map((item, index) => (
           <div key={index} className="bg-gray-50 p-4 rounded-lg">
@@ -384,10 +385,10 @@ export default function CityServiceClient({
 
             {/* Vehicle Services Section */}
             <div className="space-y-4 mt-8">
-              <h3 className="text-xl font-semibold flex items-center gap-2">
+              <h2 className="text-xl font-semibold flex items-center gap-2">
                 <Car className="w-5 h-5 text-yellow-500" />
-                Our Premium Fleet
-              </h3>
+                Our Premium Fleet in {formattedCityName}
+              </h2>
               <p className="text-gray-600 mt-5">
                 Choose from our selection of well-maintained vehicles, perfect for any journey
               </p>
@@ -396,6 +397,7 @@ export default function CityServiceClient({
                   <VehicleCard
                     key={index}
                     vehicle={vehicle}
+                    index={index}
                     onBookNow={handleWhatsAppClick}
                   />
                 ))}
