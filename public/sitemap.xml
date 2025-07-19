@@ -1,226 +1,344 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset
-      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-
-
+This XML file does not appear to have any style information associated with it. The document tree is shown below.
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!--  created with Free Online Sitemap Generator www.xml-sitemaps.com  -->
 <url>
-  <loc>https://www.trivenicabs.in/</loc>
-  <lastmod>2025-06-23T16:27:26+00:00</lastmod>
-  <priority>1.00</priority>
+<loc>https://www.trivenicabs.in/</loc>
+<lastmod>2025-07-19T17:14:18+00:00</lastmod>
+<priority>1.00</priority>
 </url>
 <url>
-  <loc>https://www.trivenicabs.in/about</loc>
-  <lastmod>2025-06-23T16:27:26+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://www.trivenicabs.in/about</loc>
+<lastmod>2025-07-19T17:14:18+00:00</lastmod>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://www.trivenicabs.in/services</loc>
-  <lastmod>2025-06-23T16:27:26+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://www.trivenicabs.in/services</loc>
+<lastmod>2025-07-19T17:14:18+00:00</lastmod>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://www.trivenicabs.in/destinations</loc>
-  <lastmod>2025-06-23T16:27:26+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://www.trivenicabs.in/destinations</loc>
+<lastmod>2025-07-19T17:14:18+00:00</lastmod>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://www.trivenicabs.in/car-rental</loc>
-  <lastmod>2025-06-23T16:27:26+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://www.trivenicabs.in/car-rental</loc>
+<lastmod>2025-07-19T17:14:18+00:00</lastmod>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://www.trivenicabs.in/tour-guide</loc>
-  <lastmod>2025-06-23T16:27:26+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://www.trivenicabs.in/tour-guide</loc>
+<lastmod>2025-07-19T17:14:18+00:00</lastmod>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://www.trivenicabs.in/contact</loc>
-  <lastmod>2025-06-23T16:27:26+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://www.trivenicabs.in/contact</loc>
+<lastmod>2025-07-19T17:14:18+00:00</lastmod>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://www.trivenicabs.in/tour-package/manali-tour-from-mumbai/book</loc>
-  <lastmod>2025-06-23T16:27:26+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://www.trivenicabs.in/tour-package/manali-tour-from-mumbai</loc>
+<lastmod>2025-07-19T17:14:18+00:00</lastmod>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://www.trivenicabs.in/tour-package/manali-tour-from-mumbai</loc>
-  <lastmod>2025-06-23T16:27:26+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://www.trivenicabs.in/tour-package/chardham-yatra-package</loc>
+<lastmod>2025-07-19T17:14:18+00:00</lastmod>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://www.trivenicabs.in/tour-package/chardham-yatra-package/book</loc>
-  <lastmod>2025-06-23T16:27:26+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://www.trivenicabs.in/tour-package/shimla-from-mumbai</loc>
+<lastmod>2025-07-19T17:14:18+00:00</lastmod>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://www.trivenicabs.in/tour-package/chardham-yatra-package</loc>
-  <lastmod>2025-06-23T16:27:26+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://www.trivenicabs.in/tour-package/rajasthan-tour</loc>
+<lastmod>2025-07-19T17:14:18+00:00</lastmod>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://www.trivenicabs.in/tour-package/shimla-from-mumbai/book</loc>
-  <lastmod>2025-06-23T16:27:26+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://www.trivenicabs.in/tour-package/kashmir-tour</loc>
+<lastmod>2025-07-19T17:14:18+00:00</lastmod>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://www.trivenicabs.in/tour-package/shimla-from-mumbai</loc>
-  <lastmod>2025-06-23T16:27:26+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://www.trivenicabs.in/tour-package/punjab-tour</loc>
+<lastmod>2025-07-19T17:14:18+00:00</lastmod>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://www.trivenicabs.in/tour-package/rajasthan-tour/book</loc>
-  <lastmod>2025-06-23T16:27:26+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://www.trivenicabs.in/vehicles/sedan</loc>
+<lastmod>2025-07-19T17:14:18+00:00</lastmod>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://www.trivenicabs.in/tour-package/rajasthan-tour</loc>
-  <lastmod>2025-06-23T16:27:26+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://www.trivenicabs.in/vehicles/suv</loc>
+<lastmod>2025-07-19T17:14:18+00:00</lastmod>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://www.trivenicabs.in/tour-package/kashmir-tour/book</loc>
-  <lastmod>2025-06-23T16:27:26+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://www.trivenicabs.in/vehicles/tempo-traveller</loc>
+<lastmod>2025-07-19T17:14:18+00:00</lastmod>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://www.trivenicabs.in/tour-package/kashmir-tour</loc>
-  <lastmod>2025-06-23T16:27:26+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://www.trivenicabs.in/vehicles/luxury-bus</loc>
+<lastmod>2025-07-19T17:14:18+00:00</lastmod>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://www.trivenicabs.in/tour-package/punjab-tour/book</loc>
-  <lastmod>2025-06-23T16:27:26+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://www.trivenicabs.in/vehicles/bus</loc>
+<lastmod>2025-07-19T17:14:18+00:00</lastmod>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://www.trivenicabs.in/tour-package/punjab-tour</loc>
-  <lastmod>2025-06-23T16:27:26+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://www.trivenicabs.in/delhi</loc>
+<lastmod>2025-07-19T17:14:18+00:00</lastmod>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://www.trivenicabs.in/vehicles/sedan</loc>
-  <lastmod>2025-06-23T16:27:26+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://www.trivenicabs.in/agra</loc>
+<lastmod>2025-07-19T17:14:18+00:00</lastmod>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://www.trivenicabs.in/vehicles/suv</loc>
-  <lastmod>2025-06-23T16:27:26+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://www.trivenicabs.in/jaipur</loc>
+<lastmod>2025-07-19T17:14:18+00:00</lastmod>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://www.trivenicabs.in/vehicles/tempo-traveller</loc>
-  <lastmod>2025-06-23T16:27:26+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://www.trivenicabs.in/haridwar</loc>
+<lastmod>2025-07-19T17:14:18+00:00</lastmod>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://www.trivenicabs.in/vehicles/luxury-bus</loc>
-  <lastmod>2025-06-23T16:27:26+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://www.trivenicabs.in/tour-package/manali-tour-from-mumbai/book</loc>
+<lastmod>2025-07-19T17:14:18+00:00</lastmod>
+<priority>0.64</priority>
 </url>
 <url>
-  <loc>https://www.trivenicabs.in/vehicles/bus</loc>
-  <lastmod>2025-06-23T16:27:26+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://www.trivenicabs.in/tour-package/chardham-yatra-package/book</loc>
+<lastmod>2025-07-19T17:14:18+00:00</lastmod>
+<priority>0.64</priority>
 </url>
 <url>
-  <loc>https://www.trivenicabs.in/delhi</loc>
-  <lastmod>2025-06-23T16:27:26+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://www.trivenicabs.in/tour-package/shimla-from-mumbai/book</loc>
+<lastmod>2025-07-19T17:14:18+00:00</lastmod>
+<priority>0.64</priority>
 </url>
 <url>
-  <loc>https://www.trivenicabs.in/agra</loc>
-  <lastmod>2025-06-23T16:27:26+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://www.trivenicabs.in/tour-package/rajasthan-tour/book</loc>
+<lastmod>2025-07-19T17:14:18+00:00</lastmod>
+<priority>0.64</priority>
 </url>
 <url>
-  <loc>https://www.trivenicabs.in/jaipur</loc>
-  <lastmod>2025-06-23T16:27:26+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://www.trivenicabs.in/tour-package/kashmir-tour/book</loc>
+<lastmod>2025-07-19T17:14:18+00:00</lastmod>
+<priority>0.64</priority>
 </url>
 <url>
-  <loc>https://www.trivenicabs.in/haridwar</loc>
-  <lastmod>2025-06-23T16:27:26+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://www.trivenicabs.in/tour-package/punjab-tour/book</loc>
+<lastmod>2025-07-19T17:14:18+00:00</lastmod>
+<priority>0.64</priority>
 </url>
 <url>
-  <loc>https://www.trivenicabs.in/delhi/to/agra</loc>
-  <lastmod>2025-06-23T16:27:26+00:00</lastmod>
-  <priority>0.64</priority>
+<loc>https://www.trivenicabs.in/delhi-to-agra</loc>
+<lastmod>2025-07-19T17:14:18+00:00</lastmod>
+<priority>0.64</priority>
 </url>
 <url>
-  <loc>https://www.trivenicabs.in/delhi/to/haridwar</loc>
-  <lastmod>2025-06-23T16:27:26+00:00</lastmod>
-  <priority>0.64</priority>
+<loc>https://www.trivenicabs.in/delhi-to-jaipur</loc>
+<lastmod>2025-07-19T17:14:18+00:00</lastmod>
+<priority>0.64</priority>
 </url>
 <url>
-  <loc>https://www.trivenicabs.in/delhi/to/jaipur</loc>
-  <lastmod>2025-06-23T16:27:26+00:00</lastmod>
-  <priority>0.64</priority>
+<loc>https://www.trivenicabs.in/delhi-to-haridwar</loc>
+<lastmod>2025-07-19T17:14:18+00:00</lastmod>
+<priority>0.64</priority>
 </url>
 <url>
-  <loc>https://www.trivenicabs.in/delhi/to/chandigarh</loc>
-  <lastmod>2025-06-23T16:27:26+00:00</lastmod>
-  <priority>0.64</priority>
+<loc>https://www.trivenicabs.in/delhi-to-chandigarh</loc>
+<lastmod>2025-07-19T17:14:18+00:00</lastmod>
+<priority>0.64</priority>
 </url>
 <url>
-  <loc>https://www.trivenicabs.in/delhi/to/shimla</loc>
-  <lastmod>2025-06-23T16:27:26+00:00</lastmod>
-  <priority>0.64</priority>
+<loc>https://www.trivenicabs.in/delhi-to-shimla</loc>
+<lastmod>2025-07-19T17:14:18+00:00</lastmod>
+<priority>0.64</priority>
 </url>
 <url>
-  <loc>https://www.trivenicabs.in/delhi/to/manali</loc>
-  <lastmod>2025-06-23T16:27:26+00:00</lastmod>
-  <priority>0.64</priority>
+<loc>https://www.trivenicabs.in/delhi-to-manali</loc>
+<lastmod>2025-07-19T17:14:18+00:00</lastmod>
+<priority>0.64</priority>
 </url>
 <url>
-  <loc>https://www.trivenicabs.in/delhi/to/amritsar</loc>
-  <lastmod>2025-06-23T16:27:26+00:00</lastmod>
-  <priority>0.64</priority>
+<loc>https://www.trivenicabs.in/delhi-to-amritsar</loc>
+<lastmod>2025-07-19T17:14:18+00:00</lastmod>
+<priority>0.64</priority>
 </url>
 <url>
-  <loc>https://www.trivenicabs.in/delhi/to/dharamshala</loc>
-  <lastmod>2025-06-23T16:27:26+00:00</lastmod>
-  <priority>0.64</priority>
+<loc>https://www.trivenicabs.in/delhi-to-dehradun</loc>
+<lastmod>2025-07-19T17:14:18+00:00</lastmod>
+<priority>0.64</priority>
 </url>
 <url>
-  <loc>https://www.trivenicabs.in/agra/to/delhi</loc>
-  <lastmod>2025-06-23T16:27:26+00:00</lastmod>
-  <priority>0.64</priority>
+<loc>https://www.trivenicabs.in/delhi-to-rishikesh</loc>
+<lastmod>2025-07-19T17:14:18+00:00</lastmod>
+<priority>0.64</priority>
 </url>
 <url>
-  <loc>https://www.trivenicabs.in/agra/to/jaipur</loc>
-  <lastmod>2025-06-23T16:27:26+00:00</lastmod>
-  <priority>0.64</priority>
+<loc>https://www.trivenicabs.in/delhi-to-jodhpur</loc>
+<lastmod>2025-07-19T17:14:18+00:00</lastmod>
+<priority>0.64</priority>
 </url>
 <url>
-  <loc>https://www.trivenicabs.in/jaipur/to/delhi</loc>
-  <lastmod>2025-06-23T16:27:26+00:00</lastmod>
-  <priority>0.64</priority>
+<loc>https://www.trivenicabs.in/delhi-to-udaipur</loc>
+<lastmod>2025-07-19T17:14:18+00:00</lastmod>
+<priority>0.64</priority>
 </url>
 <url>
-  <loc>https://www.trivenicabs.in/jaipur/to/udaipur</loc>
-  <lastmod>2025-06-23T16:27:26+00:00</lastmod>
-  <priority>0.64</priority>
+<loc>https://www.trivenicabs.in/delhi-to-ayodhya</loc>
+<lastmod>2025-07-19T17:14:18+00:00</lastmod>
+<priority>0.64</priority>
 </url>
 <url>
-  <loc>https://www.trivenicabs.in/jaipur/to/jodhpur</loc>
-  <lastmod>2025-06-23T16:27:26+00:00</lastmod>
-  <priority>0.64</priority>
+<loc>https://www.trivenicabs.in/delhi-to-ahmedabad</loc>
+<lastmod>2025-07-19T17:14:18+00:00</lastmod>
+<priority>0.64</priority>
 </url>
 <url>
-  <loc>https://www.trivenicabs.in/haridwar/to/delhi</loc>
-  <lastmod>2025-06-23T16:27:26+00:00</lastmod>
-  <priority>0.64</priority>
+<loc>https://www.trivenicabs.in/agra-to-delhi</loc>
+<lastmod>2025-07-19T17:14:18+00:00</lastmod>
+<priority>0.64</priority>
 </url>
 <url>
-  <loc>https://www.trivenicabs.in/haridwar/to/rishikesh</loc>
-  <lastmod>2025-06-23T16:27:26+00:00</lastmod>
-  <priority>0.64</priority>
+<loc>https://www.trivenicabs.in/agra-to-jaipur</loc>
+<lastmod>2025-07-19T17:14:18+00:00</lastmod>
+<priority>0.64</priority>
 </url>
-
-
+<url>
+<loc>https://www.trivenicabs.in/agra-to-haridwar</loc>
+<lastmod>2025-07-19T17:14:18+00:00</lastmod>
+<priority>0.64</priority>
+</url>
+<url>
+<loc>https://www.trivenicabs.in/agra-to-chandigarh</loc>
+<lastmod>2025-07-19T17:14:18+00:00</lastmod>
+<priority>0.64</priority>
+</url>
+<url>
+<loc>https://www.trivenicabs.in/agra-to-shimla</loc>
+<lastmod>2025-07-19T17:14:18+00:00</lastmod>
+<priority>0.64</priority>
+</url>
+<url>
+<loc>https://www.trivenicabs.in/agra-to-manali</loc>
+<lastmod>2025-07-19T17:14:18+00:00</lastmod>
+<priority>0.64</priority>
+</url>
+<url>
+<loc>https://www.trivenicabs.in/agra-to-amritsar</loc>
+<lastmod>2025-07-19T17:14:18+00:00</lastmod>
+<priority>0.64</priority>
+</url>
+<url>
+<loc>https://www.trivenicabs.in/agra-to-dehradun</loc>
+<lastmod>2025-07-19T17:14:18+00:00</lastmod>
+<priority>0.64</priority>
+</url>
+<url>
+<loc>https://www.trivenicabs.in/agra-to-rishikesh</loc>
+<lastmod>2025-07-19T17:14:18+00:00</lastmod>
+<priority>0.64</priority>
+</url>
+<url>
+<loc>https://www.trivenicabs.in/agra-to-jodhpur</loc>
+<lastmod>2025-07-19T17:14:18+00:00</lastmod>
+<priority>0.64</priority>
+</url>
+<url>
+<loc>https://www.trivenicabs.in/agra-to-udaipur</loc>
+<lastmod>2025-07-19T17:14:18+00:00</lastmod>
+<priority>0.64</priority>
+</url>
+<url>
+<loc>https://www.trivenicabs.in/agra-to-ayodhya</loc>
+<lastmod>2025-07-19T17:14:18+00:00</lastmod>
+<priority>0.64</priority>
+</url>
+<url>
+<loc>https://www.trivenicabs.in/agra-to-ahmedabad</loc>
+<lastmod>2025-07-19T17:14:18+00:00</lastmod>
+<priority>0.64</priority>
+</url>
+<url>
+<loc>https://www.trivenicabs.in/jaipur-to-delhi</loc>
+<lastmod>2025-07-19T17:14:18+00:00</lastmod>
+<priority>0.64</priority>
+</url>
+<url>
+<loc>https://www.trivenicabs.in/jaipur-to-agra</loc>
+<lastmod>2025-07-19T17:14:18+00:00</lastmod>
+<priority>0.64</priority>
+</url>
+<url>
+<loc>https://www.trivenicabs.in/jaipur-to-haridwar</loc>
+<lastmod>2025-07-19T17:14:18+00:00</lastmod>
+<priority>0.64</priority>
+</url>
+<url>
+<loc>https://www.trivenicabs.in/jaipur-to-chandigarh</loc>
+<lastmod>2025-07-19T17:14:18+00:00</lastmod>
+<priority>0.64</priority>
+</url>
+<url>
+<loc>https://www.trivenicabs.in/jaipur-to-shimla</loc>
+<lastmod>2025-07-19T17:14:18+00:00</lastmod>
+<priority>0.64</priority>
+</url>
+<url>
+<loc>https://www.trivenicabs.in/jaipur-to-manali</loc>
+<lastmod>2025-07-19T17:14:18+00:00</lastmod>
+<priority>0.64</priority>
+</url>
+<url>
+<loc>https://www.trivenicabs.in/jaipur-to-amritsar</loc>
+<lastmod>2025-07-19T17:14:18+00:00</lastmod>
+<priority>0.64</priority>
+</url>
+<url>
+<loc>https://www.trivenicabs.in/jaipur-to-dehradun</loc>
+<lastmod>2025-07-19T17:14:18+00:00</lastmod>
+<priority>0.64</priority>
+</url>
+<url>
+<loc>https://www.trivenicabs.in/jaipur-to-rishikesh</loc>
+<lastmod>2025-07-19T17:14:18+00:00</lastmod>
+<priority>0.64</priority>
+</url>
+<url>
+<loc>https://www.trivenicabs.in/jaipur-to-jodhpur</loc>
+<lastmod>2025-07-19T17:14:18+00:00</lastmod>
+<priority>0.64</priority>
+</url>
+<url>
+<loc>https://www.trivenicabs.in/jaipur-to-udaipur</loc>
+<lastmod>2025-07-19T17:14:18+00:00</lastmod>
+<priority>0.64</priority>
+</url>
+<url>
+<loc>https://www.trivenicabs.in/jaipur-to-ayodhya</loc>
+<lastmod>2025-07-19T17:14:18+00:00</lastmod>
+<priority>0.64</priority>
+</url>
+<url>
+<loc>https://www.trivenicabs.in/jaipur-to-ahmedabad</loc>
+<lastmod>2025-07-19T17:14:18+00:00</lastmod>
+<priority>0.64</priority>
+</url>
+<url>
+<loc>https://www.trivenicabs.in/haridwar-to-delhi</loc>
+<lastmod>2025-07-19T17:14:18+00:00</lastmod>
+<priority>0.64</priority>
+</url>
 </urlset>
