@@ -17,7 +17,7 @@
   <loc>https://www.trivenicabs.in/services</loc>
   <lastmod>2025-07-19</lastmod>
   <changefreq>monthly</changefreq>
-  <priority>0.9</priority>
+  <priority>0.8</priority>
 </url>
 <url>
   <loc>https://www.trivenicabs.in/destinations</loc>
@@ -29,19 +29,19 @@
   <loc>https://www.trivenicabs.in/car-rental</loc>
   <lastmod>2025-07-19</lastmod>
   <changefreq>monthly</changefreq>
-  <priority>0.9</priority>
+  <priority>0.8</priority>
 </url>
 <url>
   <loc>https://www.trivenicabs.in/tour-guide</loc>
   <lastmod>2025-07-19</lastmod>
   <changefreq>monthly</changefreq>
-  <priority>0.7</priority>
+  <priority>0.8</priority>
 </url>
 <url>
   <loc>https://www.trivenicabs.in/contact</loc>
   <lastmod>2025-07-19</lastmod>
   <changefreq>yearly</changefreq>
-  <priority>0.6</priority>
+  <priority>0.8</priority>
 </url>
 
 <!-- Tour Packages -->
@@ -87,31 +87,31 @@
   <loc>https://www.trivenicabs.in/vehicles/sedan</loc>
   <lastmod>2025-07-19</lastmod>
   <changefreq>monthly</changefreq>
-  <priority>0.7</priority>
+  <priority>0.8</priority>
 </url>
 <url>
   <loc>https://www.trivenicabs.in/vehicles/suv</loc>
   <lastmod>2025-07-19</lastmod>
   <changefreq>monthly</changefreq>
-  <priority>0.7</priority>
+  <priority>0.8</priority>
 </url>
 <url>
   <loc>https://www.trivenicabs.in/vehicles/tempo-traveller</loc>
   <lastmod>2025-07-19</lastmod>
   <changefreq>monthly</changefreq>
-  <priority>0.7</priority>
+  <priority>0.8</priority>
 </url>
 <url>
   <loc>https://www.trivenicabs.in/vehicles/luxury-bus</loc>
   <lastmod>2025-07-19</lastmod>
   <changefreq>monthly</changefreq>
-  <priority>0.7</priority>
+  <priority>0.8</priority>
 </url>
 <url>
   <loc>https://www.trivenicabs.in/vehicles/bus</loc>
   <lastmod>2025-07-19</lastmod>
   <changefreq>monthly</changefreq>
-  <priority>0.7</priority>
+  <priority>0.8</priority>
 </url>
 
 <!-- Destination Pages -->
@@ -119,174 +119,310 @@
   <loc>https://www.trivenicabs.in/delhi</loc>
   <lastmod>2025-07-19</lastmod>
   <changefreq>monthly</changefreq>
-  <priority>0.7</priority>
+  <priority>0.8</priority>
 </url>
 <url>
   <loc>https://www.trivenicabs.in/agra</loc>
   <lastmod>2025-07-19</lastmod>
   <changefreq>monthly</changefreq>
-  <priority>0.7</priority>
+  <priority>0.8</priority>
 </url>
 <url>
   <loc>https://www.trivenicabs.in/jaipur</loc>
   <lastmod>2025-07-19</lastmod>
   <changefreq>monthly</changefreq>
-  <priority>0.7</priority>
+  <priority>0.8</priority>
 </url>
 <url>
   <loc>https://www.trivenicabs.in/haridwar</loc>
   <lastmod>2025-07-19</lastmod>
   <changefreq>monthly</changefreq>
-  <priority>0.7</priority>
+  <priority>0.8</priority>
 </url>
 
-<!-- Booking Pages (Lower Priority) -->
+<!-- Booking Pages -->
 <url>
   <loc>https://www.trivenicabs.in/tour-package/manali-tour-from-mumbai/book</loc>
   <lastmod>2025-07-19</lastmod>
   <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
+  <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.trivenicabs.in/tour-package/chardham-yatra-package/book</loc>
   <lastmod>2025-07-19</lastmod>
   <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
+  <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.trivenicabs.in/tour-package/shimla-from-mumbai/book</loc>
   <lastmod>2025-07-19</lastmod>
   <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
+  <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.trivenicabs.in/tour-package/rajasthan-tour/book</loc>
   <lastmod>2025-07-19</lastmod>
   <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
+  <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.trivenicabs.in/tour-package/kashmir-tour/book</loc>
   <lastmod>2025-07-19</lastmod>
   <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
+  <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.trivenicabs.in/tour-package/punjab-tour/book</loc>
   <lastmod>2025-07-19</lastmod>
   <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
+  <priority>0.64</priority>
 </url>
 
-<!-- Popular Routes -->
+<!-- Delhi Routes -->
 <url>
   <loc>https://www.trivenicabs.in/delhi-to-agra</loc>
   <lastmod>2025-07-19</lastmod>
   <changefreq>monthly</changefreq>
-  <priority>0.6</priority>
+  <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.trivenicabs.in/delhi-to-jaipur</loc>
   <lastmod>2025-07-19</lastmod>
   <changefreq>monthly</changefreq>
-  <priority>0.6</priority>
+  <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.trivenicabs.in/delhi-to-haridwar</loc>
   <lastmod>2025-07-19</lastmod>
   <changefreq>monthly</changefreq>
-  <priority>0.6</priority>
+  <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.trivenicabs.in/delhi-to-chandigarh</loc>
   <lastmod>2025-07-19</lastmod>
   <changefreq>monthly</changefreq>
-  <priority>0.6</priority>
+  <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.trivenicabs.in/delhi-to-shimla</loc>
   <lastmod>2025-07-19</lastmod>
   <changefreq>monthly</changefreq>
-  <priority>0.6</priority>
+  <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.trivenicabs.in/delhi-to-manali</loc>
   <lastmod>2025-07-19</lastmod>
   <changefreq>monthly</changefreq>
-  <priority>0.6</priority>
+  <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.trivenicabs.in/delhi-to-amritsar</loc>
   <lastmod>2025-07-19</lastmod>
   <changefreq>monthly</changefreq>
-  <priority>0.5</priority>
+  <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.trivenicabs.in/delhi-to-dehradun</loc>
   <lastmod>2025-07-19</lastmod>
   <changefreq>monthly</changefreq>
-  <priority>0.5</priority>
+  <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.trivenicabs.in/delhi-to-rishikesh</loc>
   <lastmod>2025-07-19</lastmod>
   <changefreq>monthly</changefreq>
-  <priority>0.5</priority>
+  <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.trivenicabs.in/delhi-to-jodhpur</loc>
   <lastmod>2025-07-19</lastmod>
   <changefreq>monthly</changefreq>
-  <priority>0.5</priority>
+  <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.trivenicabs.in/delhi-to-udaipur</loc>
   <lastmod>2025-07-19</lastmod>
   <changefreq>monthly</changefreq>
-  <priority>0.5</priority>
+  <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.trivenicabs.in/delhi-to-ayodhya</loc>
   <lastmod>2025-07-19</lastmod>
   <changefreq>monthly</changefreq>
-  <priority>0.5</priority>
+  <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.trivenicabs.in/delhi-to-ahmedabad</loc>
   <lastmod>2025-07-19</lastmod>
   <changefreq>monthly</changefreq>
-  <priority>0.4</priority>
+  <priority>0.64</priority>
 </url>
 
-<!-- Other Routes (Reduced Priority) -->
+<!-- Agra Routes -->
 <url>
   <loc>https://www.trivenicabs.in/agra-to-delhi</loc>
   <lastmod>2025-07-19</lastmod>
   <changefreq>monthly</changefreq>
-  <priority>0.4</priority>
+  <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.trivenicabs.in/agra-to-jaipur</loc>
   <lastmod>2025-07-19</lastmod>
   <changefreq>monthly</changefreq>
-  <priority>0.4</priority>
+  <priority>0.64</priority>
 </url>
+<url>
+  <loc>https://www.trivenicabs.in/agra-to-haridwar</loc>
+  <lastmod>2025-07-19</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.trivenicabs.in/agra-to-chandigarh</loc>
+  <lastmod>2025-07-19</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.trivenicabs.in/agra-to-shimla</loc>
+  <lastmod>2025-07-19</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.trivenicabs.in/agra-to-manali</loc>
+  <lastmod>2025-07-19</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.trivenicabs.in/agra-to-amritsar</loc>
+  <lastmod>2025-07-19</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.trivenicabs.in/agra-to-dehradun</loc>
+  <lastmod>2025-07-19</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.trivenicabs.in/agra-to-rishikesh</loc>
+  <lastmod>2025-07-19</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.trivenicabs.in/agra-to-jodhpur</loc>
+  <lastmod>2025-07-19</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.trivenicabs.in/agra-to-udaipur</loc>
+  <lastmod>2025-07-19</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.trivenicabs.in/agra-to-ayodhya</loc>
+  <lastmod>2025-07-19</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.trivenicabs.in/agra-to-ahmedabad</loc>
+  <lastmod>2025-07-19</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.64</priority>
+</url>
+
+<!-- Jaipur Routes -->
 <url>
   <loc>https://www.trivenicabs.in/jaipur-to-delhi</loc>
   <lastmod>2025-07-19</lastmod>
   <changefreq>monthly</changefreq>
-  <priority>0.4</priority>
+  <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.trivenicabs.in/jaipur-to-agra</loc>
   <lastmod>2025-07-19</lastmod>
   <changefreq>monthly</changefreq>
-  <priority>0.4</priority>
+  <priority>0.64</priority>
 </url>
+<url>
+  <loc>https://www.trivenicabs.in/jaipur-to-haridwar</loc>
+  <lastmod>2025-07-19</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.trivenicabs.in/jaipur-to-chandigarh</loc>
+  <lastmod>2025-07-19</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.trivenicabs.in/jaipur-to-shimla</loc>
+  <lastmod>2025-07-19</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.trivenicabs.in/jaipur-to-manali</loc>
+  <lastmod>2025-07-19</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.trivenicabs.in/jaipur-to-amritsar</loc>
+  <lastmod>2025-07-19</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.trivenicabs.in/jaipur-to-dehradun</loc>
+  <lastmod>2025-07-19</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.trivenicabs.in/jaipur-to-rishikesh</loc>
+  <lastmod>2025-07-19</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.trivenicabs.in/jaipur-to-jodhpur</loc>
+  <lastmod>2025-07-19</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.trivenicabs.in/jaipur-to-udaipur</loc>
+  <lastmod>2025-07-19</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.trivenicabs.in/jaipur-to-ayodhya</loc>
+  <lastmod>2025-07-19</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.trivenicabs.in/jaipur-to-ahmedabad</loc>
+  <lastmod>2025-07-19</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.64</priority>
+</url>
+
+<!-- Haridwar Routes -->
 <url>
   <loc>https://www.trivenicabs.in/haridwar-to-delhi</loc>
   <lastmod>2025-07-19</lastmod>
   <changefreq>monthly</changefreq>
-  <priority>0.4</priority>
+  <priority>0.64</priority>
 </url>
 </urlset>
