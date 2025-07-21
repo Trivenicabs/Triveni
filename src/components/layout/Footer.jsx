@@ -132,10 +132,10 @@ const Footer = () => {
             © 2024 Triveni Cabs. All rights reserved.
           </p>
           <div className="flex space-x-8">
-            <Link href="/privacy" className="text-sm hover:text-[#FACF2D] transition-colors duration-300">
-              Privacy Policy
+            <Link href="/cancellation-and-refund-policy" className="text-sm hover:text-[#FACF2D] transition-colors duration-300">
+              Refund & Cancellation Policy
             </Link>
-            <Link href="/terms" className="text-sm hover:text-[#FACF2D] transition-colors duration-300">
+            <Link href="/terms-and-conditions" className="text-sm hover:text-[#FACF2D] transition-colors duration-300">
               Terms of Service
             </Link>
           </div>
