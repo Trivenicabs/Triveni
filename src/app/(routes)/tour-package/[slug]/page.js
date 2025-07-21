@@ -275,7 +275,7 @@ export default function TourPackagePage({ params }) {
                   <p>
                     <strong>Why Choose This Package:</strong> Premium accommodations, experienced guides, 
                     comfortable transportation, and 24/7 customer support. Book with confidence - 
-                    we've been serving travelers since our establishment with over 1000+ satisfied customers.
+                    we have been serving travelers since our establishment with over 1000+ satisfied customers.
                   </p>
                 </div>
               </section>
