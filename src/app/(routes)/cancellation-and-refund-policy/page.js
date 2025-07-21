@@ -237,7 +237,7 @@ const CancellationRefundPolicy = () => {
                     </h3>
                     <p className="text-lg leading-relaxed">
                       If you fail to show up at the pickup location at the scheduled time without prior notice, 
-                      the booking will be considered a 'No Show' and <strong>no refund will be issued</strong>.
+                      the booking will be considered a No Show and <strong>no refund will be issued</strong>.
                     </p>
                   </div>
                 </div>

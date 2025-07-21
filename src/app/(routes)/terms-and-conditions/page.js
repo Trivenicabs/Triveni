@@ -127,7 +127,7 @@ const TermsAndConditions = () => {
       shortTitle: 'Legal',
       gradient: 'from-teal-500 to-teal-600',
       content: [
-        'All disputes are subject to the jurisdiction of courts located in Ghaziabad, Uttar Pradesh, or the company\'s registered address.'
+        'All disputes are subject to the jurisdiction of courts located in Ghaziabad, Uttar Pradesh, or the companys registered address.'
       ],
       highlights: ['Ghaziabad, UP jurisdiction', 'Legal compliance required']
     }
