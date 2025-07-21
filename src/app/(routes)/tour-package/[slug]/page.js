@@ -230,8 +230,8 @@ export default function TourPackagePage({ params }) {
               
               {/* SEO-rich subtitle */}
               <p className="text-lg mb-4 max-w-3xl">
-                {keywords?.longTail?.[0] || `Experience the best ${packageInfo.destination} tour package`} 
-                starting from {packageInfo.startingPoint}. Book now for {packageInfo.duration} of unforgettable memories.
+                {keywords?.longTail?.[0] || `Best ${packageInfo.destination} tour from ${packageInfo.startingPoint}`}. 
+                Book now for {packageInfo.duration} of unforgettable memories.
               </p>
               
               <div className="flex flex-wrap justify-center gap-6 text-sm tracking-[0.05rem]">
@@ -275,7 +275,7 @@ export default function TourPackagePage({ params }) {
                   <p>
                     <strong>Why Choose This Package:</strong> Premium accommodations, experienced guides, 
                     comfortable transportation, and 24/7 customer support. Book with confidence - 
-                    we have been serving travelers since our establishment with over 1000+ satisfied customers.
+                    we've been serving travelers since our establishment with over 1000+ satisfied customers.
                   </p>
                 </div>
               </section>
@@ -348,41 +348,7 @@ export default function TourPackagePage({ params }) {
                 </section>
               </AccommodationWrapper>
 
-              {/* FAQ Section for SEO */}
-              <section className="bg-gray-50 p-8 rounded-2xl shadow-lg">
-                <h2 className="text-2xl tracking-[0.06rem] font-semibold mb-6">
-                  Frequently Asked Questions
-                </h2>
-                <div className="space-y-6">
-                  <div>
-                    <h3 className="font-semibold text-lg mb-2">
-                      What is included in the {packageInfo.title}?
-                    </h3>
-                    <p className="text-gray-700">
-                      Our package includes accommodation, meals as mentioned, transportation, 
-                      sightseeing tours, and experienced tour guide services.
-                    </p>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-lg mb-2">
-                      How do I book this {packageInfo.destination} tour package?
-                    </h3>
-                    <p className="text-gray-700">
-                      You can book online through our website or call us at 7668570551. 
-                      We accept online payments and offer flexible booking options.
-                    </p>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-lg mb-2">
-                      What is the best time to visit {packageInfo.destination}?
-                    </h3>
-                    <p className="text-gray-700">
-                      The best time depends on your preferences. We operate year-round 
-                      and can advise you on the optimal time based on weather and local events.
-                    </p>
-                  </div>
-                </div>
-              </section>
+
             </div>
 
             {/* Sidebar with enhanced CTAs */}
