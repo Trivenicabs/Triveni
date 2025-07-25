@@ -164,7 +164,7 @@ export default function ServicesPage() {
             🚀 Ready to Start Your Journey?
           </h2>
           <p className="text-lg text-gray-800 mb-6 leading-relaxed">
-            <strong>Book India's most reliable car rental & tour packages!</strong> Professional drivers, AC vehicles, 24/7 support. <strong>Contact us for personalized service!</strong>
+            <strong>Book most reliable car rental & tour packages!</strong> Professional drivers, AC vehicles, 24/7 support. <strong>Contact us for personalized service!</strong>
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/contact">
