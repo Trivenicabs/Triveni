@@ -21,6 +21,9 @@ import {
   Globe
 } from "lucide-react";
 
+// Import data from data.js
+import { features, services, vehiclesServices, tourPackages, phoneNumber, cities } from "@/utilis/data";
+
 // Import your existing components
 import AboutSection from "@/components/home/AboutSection";
 import ServicesSection from "@/components/services/ServicesSection";
@@ -45,14 +48,14 @@ const scaleOnHover = {
   tap: { scale: 0.95 }
 };
 
-// SEO-optimized structured data
+// SEO-optimized structured data using real data
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "TravelAgency",
   "name": "Triveni Cabs",
-  "description": "Professional taxi and cab services across India with 24/7 availability, luxury vehicles, and experienced drivers.",
-  "url": "https://triveni-cabs.com",
-  "telephone": "+91-7668570551",
+  "description": "Best car rental, taxi service and tour packages in India 2025. Sedan ₹11/km, SUV ₹15/km, Tempo Traveller ₹24/km. Professional drivers, AC vehicles, 24/7 support.",
+  "url": "https://www.trivenicabs.in",
+  "telephone": `+91-${phoneNumber}`,
   "address": {
     "@type": "PostalAddress",
     "addressCountry": "IN"
@@ -63,94 +66,107 @@ const structuredData = {
   },
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
-    "name": "Taxi Services",
+    "name": "Car Rental and Tour Services",
     "itemListElement": [
       {
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
-          "name": "Local Taxi Service"
-        }
+          "name": "Sedan Car Rental",
+          "description": `4 passenger sedan rental starting ${vehiclesServices[0]?.perKm || '₹11/km'}`
+        },
+        "price": "11",
+        "priceCurrency": "INR"
       },
       {
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
-          "name": "Outstation Cab Service"
-        }
+          "name": "SUV Car Rental",
+          "description": `6-7 passenger SUV rental starting ${vehiclesServices[1]?.perKm || '₹15/km'}`
+        },
+        "price": "15",
+        "priceCurrency": "INR"
       },
       {
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
-          "name": "Airport Transfer"
+          "name": "Tempo Traveller Rental",
+          "description": `12-26 passenger tempo traveller starting ${vehiclesServices[2]?.perKm || '₹24/km'}`
+        },
+        "price": "24",
+        "priceCurrency": "INR"
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Tour Packages",
+          "description": `Manali tour ${tourPackages[0]?.price || '₹9,999'}, Kashmir tour ${tourPackages[4]?.price || '₹16,999'}`
         }
       }
     ]
-  },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.8",
-    "reviewCount": "1000"
   }
 };
 
-// Key features data
+// Key features using data from data.js
 const keyFeatures = [
   {
-    icon: Clock,
-    title: "24/7 Service",
-    description: "Round-the-clock availability for all your travel needs",
+    icon: Car,
+    title: features[0]?.title || "Quality Fleet",
+    description: features[0]?.description || "Modern, well-maintained vehicles for your comfort and safety",
     color: "text-blue-500"
   },
   {
-    icon: Shield,
-    title: "Safe & Secure",
-    description: "Verified drivers and well-maintained vehicles",
+    icon: Clock,
+    title: features[1]?.title || "24/7 Service",
+    description: features[1]?.description || "Round-the-clock availability for all your travel needs",
     color: "text-green-500"
   },
   {
-    icon: Star,
-    title: "4.8★ Rating",
-    description: "Trusted by 1000+ satisfied customers",
+    icon: MapPin,
+    title: features[2]?.title || "Wide Coverage",
+    description: features[2]?.description || "Serving major cities and tourist destinations nationwide",
     color: "text-yellow-500"
   },
   {
-    icon: Globe,
-    title: "50+ Cities",
-    description: "Coverage across major cities in India",
+    icon: Phone,
+    title: features[3]?.title || "Easy Booking",
+    description: features[3]?.description || "Quick and hassle-free reservation process",
     color: "text-purple-500"
   }
 ];
 
-// Service highlights
+// Service highlights using data from services
 const serviceHighlights = [
   {
-    title: "Local Taxi",
-    description: "Quick rides within the city",
+    title: services[0]?.title || "Vehicles",
+    description: services[0]?.description || "Wide range of comfortable and reliable vehicles",
     icon: Car,
-    whatsappMessage: "Hi! I am interested in booking a local taxi service within the city. Can you provide more details about rates and availability?"
+    whatsappMessage: `Hi! I am interested in booking ${services[0]?.title.toLowerCase() || 'vehicle rental'} service. Can you provide more details about rates and availability?`
   },
   {
-    title: "Outstation Trips",
-    description: "Comfortable long-distance travel",
-    icon: MapPin,
-    whatsappMessage: "Hi! I am interested in booking an outstation trip. Can you help me with pricing and available vehicles for long-distance travel?"
+    title: services[1]?.title || "Tour Guide",
+    description: services[1]?.description || "Expert guides for an enriching experience",
+    icon: Users,
+    whatsappMessage: `Hi! I am interested in ${services[1]?.title.toLowerCase() || 'tour guide'} services. Can you help me with pricing and available options?`
+  },
+  {
+    title: services[2]?.title || "Tour Packages",
+    description: services[2]?.description || "Curated experiences for every traveler",
+    icon: Award,
+    whatsappMessage: `Hi! I am interested in your ${services[2]?.title.toLowerCase() || 'tour packages'}. Can you share available travel experiences and pricing details?`
   },
   {
     title: "Airport Transfer",
-    description: "Reliable airport pickup & drop",
+    description: "Reliable airport pickup & drop services",
     icon: Zap,
     whatsappMessage: "Hi! I need airport transfer service. Can you provide details about pickup/drop services and rates?"
-  },
-  {
-    title: "Tour Packages",
-    description: "Curated travel experiences",
-    icon: Award,
-    whatsappMessage: "Hi! I am interested in your tour packages. Can you share available travel experiences and pricing details?"
   }
 ];
 
+// Homepage component
 export default function OptimizedHomePage() {
   const router = useRouter();
 
@@ -246,7 +262,6 @@ export default function OptimizedHomePage() {
       contact_method: 'whatsapp'
     });
     
-    const phoneNumber = "7668570551";
     const message = encodeURIComponent("Hi! I am interested in booking a taxi service. Can you help me with the details?");
     const whatsappURL = `https://wa.me/${phoneNumber}?text=${message}`;
     window.open(whatsappURL, '_blank');
@@ -262,7 +277,6 @@ export default function OptimizedHomePage() {
       contact_method: 'whatsapp'
     });
     
-    const phoneNumber = "7668570551";
     const message = encodeURIComponent(service.whatsappMessage);
     const whatsappURL = `https://wa.me/${phoneNumber}?text=${message}`;
     window.open(whatsappURL, '_blank');
@@ -296,28 +310,28 @@ export default function OptimizedHomePage() {
     <>
       {/* SEO Head */}
       <Head>
-        <title>Triveni Cabs - Professional Taxi Service | Book Now | 24/7 Available</title>
+        <title>Best Car Rental & Tour Packages 2025 | Triveni Cabs | Professional Taxi Service | Book Now | 24/7 Available</title>
         <meta 
           name="description" 
-          content="Book reliable taxi services with Triveni Cabs. 24/7 availability, professional drivers, luxury vehicles across 50+ cities in India. Safe, secure & affordable cab booking." 
+          content={`Book car rental, taxi, tour packages with Triveni Cabs. Sedan ${vehiclesServices[0]?.perKm || '₹11/km'}, SUV ${vehiclesServices[1]?.perKm || '₹15/km'}, Tempo Traveller ${vehiclesServices[2]?.perKm || '₹24/km'}. Delhi, Mumbai, Agra, Manali tours. Professional drivers, AC vehicles, 24/7 support. Safe, secure & affordable cab booking.`}
         />
-        <meta name="keywords" content="taxi service, cab booking, outstation taxi, airport transfer, local taxi, car rental, India taxi, online cab booking" />
+        <meta name="keywords" content="taxi service, cab booking, outstation taxi, airport transfer, local taxi, car rental, India taxi, online cab booking, car rental, taxi service, tour packages, cheap car rental, best taxi service 2025, Delhi car rental, Mumbai taxi, Agra tour, Jaipur taxi, Manali tour package, Kashmir tour, Rajasthan tour, Chardham Yatra, sedan rental, SUV hire, tempo traveller booking, luxury bus rental, outstation taxi, local taxi, airport transfer, wedding car rental, corporate travel, AC vehicle booking, professional drivers, 24x7 support, online booking, instant booking, same day booking, vehicle rental India, travel services, verified drivers, GPS tracking, safe travel, reliable transport, competitive rates, transparent pricing, Triveni Cabs" />
         <meta name="robots" content="index, follow" />
         <meta name="author" content="Triveni Cabs" />
-        <link rel="canonical" href="https://triveni-cabs.com" />
+        <link rel="canonical" href="https://www.trivenicabs.in" />
         
         {/* Open Graph */}
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="Triveni Cabs - Professional Taxi Service | Book Now" />
-        <meta property="og:description" content="Book reliable taxi services with Triveni Cabs. 24/7 availability, professional drivers, luxury vehicles across India." />
-        <meta property="og:url" content="https://triveni-cabs.com" />
-        <meta property="og:image" content="https://triveni-cabs.com/images/home/banner3.jpg" />
+        <meta property="og:title" content="🚗 Best Car Rental & Tour Packages 2025 | Triveni Cabs | Starting ₹11/km" />
+        <meta property="og:description" content={`✅ Book sedan ${vehiclesServices[0]?.perKm || '₹11/km'}, SUV ${vehiclesServices[1]?.perKm || '₹15/km'}, tempo traveller online. Delhi, Mumbai, Manali tours. Professional drivers, competitive rates.`} />
+        <meta property="og:url" content="https://www.trivenicabs.in" />
+        <meta property="og:image" content="https://www.trivenicabs.in/images/home/banner3.jpg" />
         
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Triveni Cabs - Professional Taxi Service" />
-        <meta name="twitter:description" content="Book reliable taxi services with 24/7 availability across India." />
-        <meta name="twitter:image" content="https://triveni-cabs.com/images/home/banner3.jpg" />
+        <meta name="twitter:title" content="Best Car Rental & Tour Packages India | Triveni Cabs" />
+        <meta name="twitter:description" content={`Book sedan ${vehiclesServices[0]?.perKm || '₹11/km'}, SUV ${vehiclesServices[1]?.perKm || '₹15/km'} online. Professional service, competitive rates.`} />
+        <meta name="twitter:image" content="https://www.trivenicabs.in/images/home/banner3.jpg" />
         
         {/* Structured Data */}
         <script 
@@ -346,7 +360,7 @@ export default function OptimizedHomePage() {
           <div className="relative w-full h-full">
             <Image
               src="/images/home/banner3.jpg"
-              alt="Professional taxi service with scenic destination background"
+              alt="Best car rental and taxi service - Professional drivers with luxury vehicles across India"
               className="hero-banner object-cover"
               fill
               priority
@@ -378,7 +392,7 @@ export default function OptimizedHomePage() {
                 animate: { y: 0, opacity: 1, transition: { delay: 0.5, duration: 0.8 } }
               }}
             >
-              Triveni Cabs - Professional Taxi Service in India
+              🚗 Best Car Rental & Tour Packages 2025 | Triveni Cabs
             </motion.h1>
             
             <motion.p 
@@ -388,7 +402,7 @@ export default function OptimizedHomePage() {
                 animate: { y: 0, opacity: 1, transition: { delay: 0.7, duration: 0.8 } }
               }}
             >
-              Discover the worlds most amazing places with us
+              ✅ Sedan {vehiclesServices[0]?.perKm || '₹11/km'} ✅ SUV {vehiclesServices[1]?.perKm || '₹15/km'} ✅ Professional Drivers ✅ 24/7 Support
             </motion.p>
             
             <motion.div
@@ -406,7 +420,7 @@ export default function OptimizedHomePage() {
                 onClick={() => handleBookNowClick('hero')}
                 aria-label="Get free quote for taxi service via WhatsApp"
               >
-                Free Quote
+                📞 Free Quote Now
               </motion.button>
               
               <motion.button
@@ -417,7 +431,7 @@ export default function OptimizedHomePage() {
                 onClick={handleExploreClick}
                 aria-label="Explore our taxi services"
               >
-                Explore Services
+                🚘 Explore Services
               </motion.button>
             </motion.div>
           </motion.div>
@@ -457,10 +471,10 @@ export default function OptimizedHomePage() {
           <div className="max-w-7xl mx-auto px-4">
             <div className="text-center mb-12">
               <h2 id="features-heading" className="text-2xl md:text-3xl font-bold mb-4">
-                Why Choose Our Taxi Services?
+                🏆 Why Choose Our Car Rental & Taxi Services?
               </h2>
               <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                Experience the difference with our premium cab booking services
+                <strong>Best car rental rates in India!</strong> Professional service with competitive pricing across {cities.length}+ cities
               </p>
             </div>
             
@@ -504,10 +518,10 @@ export default function OptimizedHomePage() {
           <div className="max-w-7xl mx-auto px-4">
             <div className="text-center mb-12">
               <h2 id="services-heading" className="text-2xl md:text-3xl font-bold mb-4">
-                Our Premium Cab Booking Services
+                🚗 Our Premium Car Rental & Tour Services
               </h2>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                From local rides to luxury tours, we provide complete transportation solutions
+              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                <strong>Complete transportation solutions:</strong> From sedan {vehiclesServices[0]?.perKm || '₹11/km'} to luxury tours {tourPackages[0]?.price || '₹9,999'}
               </p>
             </div>
             
@@ -599,10 +613,10 @@ export default function OptimizedHomePage() {
         >
           <div className="max-w-4xl mx-auto px-4 text-center">
             <h2 id="cta-heading" className="text-2xl md:text-3xl font-bold mb-6 text-black">
-              Book Your Taxi Service Today - Get Free Quote
+              🚀 Book Car Rental & Tour Packages Today - Get Free Quote!
             </h2>
-            <p className="text-lg text-gray-800 mb-8 max-w-2xl mx-auto">
-              Professional drivers, clean vehicles, and competitive prices for all your transportation needs. Available 24/7 across India.
+            <p className="text-lg text-gray-800 mb-8 max-w-3xl mx-auto">
+              <strong>Best rates guaranteed!</strong> Sedan {vehiclesServices[0]?.perKm || '₹11/km'}, SUV {vehiclesServices[1]?.perKm || '₹15/km'}, Tempo {vehiclesServices[2]?.perKm || '₹24/km'}. Professional drivers, AC vehicles, competitive prices. Available 24/7 across India.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -615,27 +629,31 @@ export default function OptimizedHomePage() {
                 aria-label="Book taxi service now via WhatsApp"
               >
                 <Phone className="w-5 h-5" />
-                Book Now - Call/WhatsApp
+                📱 Call/WhatsApp: {phoneNumber}
               </motion.button>
               
               <motion.div className="flex items-center text-black font-medium">
                 <CheckCircle className="w-5 h-5 mr-2" />
-                <span>Free Quotes • No Hidden Charges</span>
+                <span>✅ Free Quotes • No Hidden Charges</span>
               </motion.div>
             </div>
             
-            <div className="mt-8 flex justify-center items-center gap-8 text-black/80">
+            <div className="mt-8 flex flex-wrap justify-center items-center gap-8 text-black/80">
               <div className="flex items-center">
                 <Shield className="w-5 h-5 mr-2" />
-                <span>Verified Drivers</span>
+                <span>✅ Verified Drivers</span>
               </div>
               <div className="flex items-center">
                 <Clock className="w-5 h-5 mr-2" />
-                <span>24/7 Support</span>
+                <span>✅ 24/7 Support</span>
+              </div>
+              <div className="flex items-center">
+                <Car className="w-5 h-5 mr-2" />
+                <span>✅ {cities.length}+ Cities</span>
               </div>
               <div className="flex items-center">
                 <Star className="w-5 h-5 mr-2" />
-                <span>4.8★ Rated</span>
+                <span>✅ Professional Service</span>
               </div>
             </div>
           </div>
