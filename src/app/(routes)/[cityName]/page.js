@@ -26,7 +26,6 @@ export function createRouteSlug(cityName, destination) {
   return `${cityName.toLowerCase()}-to-${destination.toLowerCase().replace(/\s+/g, '-')}`;
 }
 
-// Generate static params for both cities and routes
 export async function generateStaticParams() {
   const params = [];
 
@@ -53,7 +52,7 @@ export async function generateStaticParams() {
     const formattedCityName = city.name.charAt(0).toUpperCase() + city.name.slice(1);
     
     // Add route pages with proper error handling
-    const routes = allCityRoutes[formattedCityName] || defaultRoutes || [];
+    const routes = allCityRoutes[formattedCityName] || [];
     
     // Ensure routes is an array before calling forEach
     if (Array.isArray(routes)) {
@@ -67,9 +66,9 @@ export async function generateStaticParams() {
     }
   });
 
+  console.log(`Generated ${params.length} static params`);
   return params;
 }
-
 // FIXED: Enhanced metadata generation with better SEO structure
 export async function generateMetadata({ params }) {
   const { cityName } = params;
