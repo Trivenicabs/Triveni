@@ -183,14 +183,10 @@ const VehicleSlugPage = () => {
           <div className="text-center max-w-md mx-auto p-8">
             <h1 className="text-2xl font-bold text-gray-800 mb-4">Vehicle Not Found</h1>
             <p className="text-gray-600 mb-6">
-              The vehicle type you're looking for is not available. Please check our available fleet.
+              The vehicle type you are looking for is not available. Please check our available fleet.
             </p>
-            <a 
-              href="/vehicles" 
-              className="inline-block bg-yellow-400 text-black px-6 py-3 rounded-lg font-semibold hover:bg-yellow-500 transition-colors"
-            >
-              View All Vehicles
-            </a>
+            
+           
           </div>
         </div>
       </>
